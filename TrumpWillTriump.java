@@ -1,8 +1,8 @@
 /**
  ***********************************************************************************************************************
  * Bailey Thompson
- * Trump Will Triump (1.3.1)
- * 27 November 2016
+ * Trump Will Triump (1.3.2)
+ * 2 December 2016
  * Info: You must play as Donald Trump to conquer the U.S.A. a state at a time by playing various mini-games. Each state
  * Info: has its own mini-game. If the mini-game is won, the state becomes Republican, and thus red. If the mini-game is
  * Info: lost,  the  state  becomes  Democrat, and thus blue. Since there are 50 states in the U.S.A., at the end of the
@@ -1035,7 +1035,7 @@ public class TrumpWillTriump {
                     }
                 }
                 //notifying user of if he/she missed or scored
-                if (win == true) {
+                if (win) {
                     frameState.setVisible(false);
                     dialogText = "Mr. Trump, you scored!";
                     customText();
@@ -1492,7 +1492,7 @@ public class TrumpWillTriump {
             @Override
             public void keyPressed(KeyEvent e) {
                 //if user gets it wrong he/she loses, if right, either goes to next round or wins
-                if (done == true) {
+                if (done) {
                     if (e.getKeyCode() == memoryArray[memorySequence]) {
                         if (memorySequence != 4) {
                             if (memorySequence == memoryLevel + 1) {
@@ -1531,7 +1531,7 @@ public class TrumpWillTriump {
             @Override
             public void run() {
                 //what is done to end the timer
-                if (endTimer == true) {
+                if (endTimer) {
                     timer.cancel();
                     endTimer = false;
                 }
@@ -1617,7 +1617,7 @@ public class TrumpWillTriump {
             @Override
             public void keyPressed(KeyEvent e) {
                 //what is done when user clicks on a key
-                if (done == true) {
+                if (done) {
                     if (skiingCompletion < 10) {
                         if (e.getKeyCode() == skiingColour) {
                             skiingCompletion += 1;
@@ -1660,12 +1660,12 @@ public class TrumpWillTriump {
             @Override
             public void run() {
                 //how to end the timer
-                if (endTimer == true) {
+                if (endTimer) {
                     timer.cancel();
                     endTimer = false;
                 }
                 //showing to the user one of the two options
-                if (next == true) {
+                if (next) {
                     done = true;
                     next = false;
                     skiingColour = ((int) (Math.random() + 0.5)) * 2 + 37;
@@ -2419,7 +2419,7 @@ public class TrumpWillTriump {
                 }
             }
             //executes when entered palindrome has not yet been used and is on the list
-            if (palindromeActual == true) {
+            if (palindromeActual) {
                 //telling user how many points is added
                 palindromeCorrect = "+ " + (10 * palindromeLength) + " points\n";
                 //adding points
@@ -2429,10 +2429,10 @@ public class TrumpWillTriump {
                 //executes when the palindrome is not on the list or it has already been used
             } else {
                 //telling user that palindrome has already been used
-                if (palindromeUsed == true) {
+                if (palindromeUsed) {
                     palindromeCorrect = "-1 Try... Palindrome already used.\n";
                     //telling user the word is a palindrome but not an English word
-                } else if (palindromeTechnical == true && palindromeActual == false && palindromeUsed == false) {
+                } else if (palindromeTechnical && !palindromeActual && !palindromeUsed) {
                     palindromeCorrect = "-1 Try... Not an English word.\n";
                     //telling user that it is not a palindrome
                 } else {
@@ -2522,7 +2522,7 @@ public class TrumpWillTriump {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if (matchStarted == true) {
+                if (matchStarted) {
                     //setting cooldown and damage amount
                     totalTime = (System.nanoTime() - startTime) / 1000000000;
                     if (e.getModifiers() == InputEvent.BUTTON1_MASK && hillaryDamage != 200) {
