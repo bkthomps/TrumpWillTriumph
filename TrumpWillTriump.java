@@ -1,8 +1,8 @@
 /**
  ***********************************************************************************************************************
  * Bailey Thompson
- * Trump Will Triump (1.3.2)
- * 2 December 2016
+ * Trump Will Triump (1.3.3)
+ * 24 December 2016
  * Info: You must play as Donald Trump to conquer the U.S.A. a state at a time by playing various mini-games. Each state
  * Info: has its own mini-game. If the mini-game is won, the state becomes Republican, and thus red. If the mini-game is
  * Info: lost,  the  state  becomes  Democrat, and thus blue. Since there are 50 states in the U.S.A., at the end of the
@@ -11,10 +11,8 @@
  * Info: rival. Let it be noted that Triump in "Trump Will Triump" was spelled as such on purpose.
  ***********************************************************************************************************************
  */
-//declaring package
 package trumpwilltriump;
 
-//declaring imports
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -58,57 +56,49 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
-//declaring main class
 public class TrumpWillTriump {
 
-    //declaring variables used for the gui including saving and loading
-    String gameTitle = "Trump Will Triump";
-    ImageIcon iconTrump = new ImageIcon("Assets/Trump.png");
-    Path file = Paths.get("TrumpWillTriump.txt");
-    String[] split;
-    String saveFile;
-    //declaring gui variables
+    private static final String GAMETITLE = "Trump Will Triump";
+    private static final ImageIcon ICONTRUMP = new ImageIcon("Assets/Trump.png");
+    private static final Path FILE = Paths.get("TrumpWillTriump.txt");
     private JFrame frame, mainFrame;
     private JPanel panel, controlPanel1, controlPanel2, controlPanel3, controlPanel4, controlPanel5;
     private JLabel lblTour, headerLabel, subheaderLabel, responseScore, responseAnswer;
     private JButton btnTour, btnReset;
     private List<Rectangle> cells;
-    //declaring various variables used for minigames
     Point selectedCell;
-    int[][] stateDisplay = new int[48][64];
-    boolean done, endTimer, next, palindromeTechnical, palindromeActual, palindromeUsed;
-    int guiDisplay, touringState, wins, loses, check, likeness, scoreScramble, damage, temperature, pressure, rotations;
-    int iowaLocation, recallTries, score, click, randomJeopardy, palindromeLength, palindromeScore, palindromeTries = 3;
-    int time, memoryLevel, memorySequence, memoryCounter, memoryCompletion, skiingCompletion, skiingColour;
-    long startTime, totalTime;
-    String dialogText, userAnswer, dialogOptions[], palindromeWord = "", palindromeCorrect = "";
-    //declaring variable used for the palindrome library; 208 palindromes
-    String palindromeLibrary[] = {"tattarrattat", "aibohphobia", "detartrated", "kinnikinnik", "deleveled", "evitative",
-        "malayalam", "redivider", "releveler", "rotavator", "adinida", "deified", "hagigah", "murdrum", "nauruan",
-        "peeweep", "racecar", "reifier", "repaper", "reviver", "rotator", "seities", "sememes", "senones", "sixaxis",
-        "soosoos", "tacocat", "zerorez", "degged", "denned", "hallah", "hannah", "mallam", "marram", "pippip", "pullup",
-        "redder", "renner", "revver", "selles", "sesses", "succus", "terret", "tirrit", "tuttut", "alala", "alula",
-        "arara", "civic", "debed", "deked", "deled", "dered", "dewed", "dexed", "hamah", "igigi", "irori", "kaiak",
-        "kanak", "kayak", "kazak", "kelek", "level", "liril", "madam", "minim", "neven", "putup", "radar", "refer",
-        "rotor", "sagas", "semes", "seres", "sexes", "shahs", "sinis", "siris", "solos", "stats", "stets", "stots",
-        "sulus", "susus", "tenet", "torot", "wakaw", "xanax", "acca", "adda", "affa", "alla", "anna", "beeb", "boob",
-        "deed", "esse", "goog", "immi", "keek", "kook", "maam", "naan", "noon", "oppo", "otto", "peep", "poop", "sees",
-        "toot", "aba", "aga", "aha", "ala", "ama", "ana", "ara", "ava", "awa", "bib", "bob", "bub", "dad", "did", "dud",
-        "eke", "eme", "ere", "eve", "ewe", "eye", "gag", "gig", "gog", "hah", "heh", "huh", "mem", "mim", "mom", "mum",
-        "nan", "non", "nun", "oho", "omo", "ono", "oxo", "pap", "pep", "pip", "pop", "pup", "sis", "sos", "tat", "tet",
-        "tit", "tot", "tut", "vav", "waw", "wow", "yay", "zuz", "zzz", "aa", "ee", "mm", "oo", "akasaka", "glenelg",
-        "halalah", "hamamah", "hararah", "ogopogo", "qaanaaq", "eleele", "serres", "aeaea", "aiaia", "anona", "ardra",
-        "aviva", "capac", "kodok", "laval", "natan", "navan", "noyon", "oruro", "tebet", "tevet", "tumut", "xenex",
-        "abba", "akka", "amma", "atta", "elle", "ada", "krk", "nen", "a", "lol", "aka", "i"};
+    private boolean done, endTimer, next, palindromeTechnical, palindromeActual, palindromeUsed;
+    private int guiDisplay, touringState, wins, loses, check, likeness, scoreScramble, damage;
+    private int temperature, pressure, rotations, iowaLocation, recallTries, score, click, randomJeopardy;
+    private int palindromeLength, palindromeScore, palindromeTries = 3, time;
+    private int memoryLevel, memorySequence, memoryCounter, memoryCompletion, skiingCompletion, skiingColour;
+    private final int[][] stateDisplay = new int[48][64];
+    private long startTime, totalTime;
+    private String dialogText, userAnswer, dialogOptions[], palindromeWord = "", palindromeCorrect = "", saveFile;
+    private String[] split;
+    private static final String PALINDROME_LIBRARY[] = {"tattarrattat", "aibohphobia", "detartrated", "kinnikinnik",
+        "deleveled", "evitative", "malayalam", "redivider", "releveler", "rotavator", "adinida", "deified", "hagigah",
+        "murdrum", "nauruan", "peeweep", "racecar", "reifier", "repaper", "reviver", "rotator", "seities", "sememes",
+        "senones", "sixaxis", "soosoos", "tacocat", "zerorez", "degged", "denned", "hallah", "hannah", "mallam",
+        "marram", "pippip", "pullup", "redder", "renner", "revver", "selles", "sesses", "succus", "terret", "tirrit",
+        "tuttut", "alala", "alula", "arara", "civic", "debed", "deked", "deled", "dered", "dewed", "dexed", "hamah",
+        "igigi", "irori", "kaiak", "kanak", "kayak", "kazak", "kelek", "level", "liril", "madam", "minim", "neven",
+        "putup", "radar", "refer", "rotor", "sagas", "semes", "seres", "sexes", "shahs", "sinis", "siris", "solos",
+        "stats", "stets", "stots", "sulus", "susus", "tenet", "torot", "wakaw", "xanax", "acca", "adda", "affa", "alla",
+        "anna", "beeb", "boob", "deed", "esse", "goog", "immi", "keek", "kook", "maam", "naan", "noon", "oppo", "otto",
+        "peep", "poop", "sees", "toot", "aba", "aga", "aha", "ala", "ama", "ana", "ara", "ava", "awa", "bib", "bob",
+        "bub", "dad", "did", "dud", "eke", "eme", "ere", "eve", "ewe", "eye", "gag", "gig", "gog", "hah", "heh", "huh",
+        "mem", "mim", "mom", "mum", "nan", "non", "nun", "oho", "omo", "ono", "oxo", "pap", "pep", "pip", "pop", "pup",
+        "sis", "sos", "tat", "tet", "tit", "tot", "tut", "vav", "waw", "wow", "yay", "zuz", "zzz", "aa", "ee", "mm",
+        "oo", "akasaka", "glenelg", "halalah", "hamamah", "hararah", "ogopogo", "qaanaaq", "eleele", "serres", "aeaea",
+        "aiaia", "anona", "ardra", "aviva", "capac", "kodok", "laval", "natan", "navan", "noyon", "oruro", "tebet",
+        "tevet", "tumut", "xenex", "abba", "akka", "amma", "atta", "elle", "ada", "krk", "nen", "a", "lol", "aka"};
 
-    //main method
     public static void main(String[] args) {
-        //sending to prepareGUI method
         TrumpWillTriump TrumpWillTriump = new TrumpWillTriump();
         TrumpWillTriump.prepareGUI();
     }
 
-    //method used for setting the GUI of the map of the U.S.A.
     private void prepareGUI() {
         //loading from file and setting variables
         load();
@@ -128,41 +118,30 @@ public class TrumpWillTriump {
             guiDisplay = (int) (screenSize.getHeight() * 0.8);
         }
         //making guiDisplay a multiple of 64
-        guiDisplay = (int) (guiDisplay / 64) * 64;
+        guiDisplay = (int) (guiDisplay / 64.0) * 64;
         //making it so you can only play it if your monitor is big enough
         if (guiDisplay == 0) {
-            JOptionPane.showConfirmDialog(null, "Your monitor is too small to play! :(", gameTitle,
+            JOptionPane.showConfirmDialog(null, "Your monitor is too small to play! :(", GAMETITLE,
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
             System.exit(0);
         }
-        //setting the frame title
-        frame = new JFrame(gameTitle);
-        //making it so when the x button is pressed the program exits
+        //creating the frame
+        frame = new JFrame(GAMETITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //making the frame non-resizable
         frame.setResizable(false);
-        //making the GUI more user-friendly
         frame.setLayout(new BorderLayout());
         frame.add(new GridPane());
         frame.pack();
-        //setting the row of buttons
         panel = new JPanel();
-        //seting what is displayed from the label
         lblTour = new JLabel("     Select a state to tour     ");
-        //setting buttons and what is displayed on them
         btnReset = new JButton("Reset");
         btnTour = new JButton("Tour");
-        //setting row of assets to variable panel
         panel.add(btnReset);
         panel.add(lblTour);
         panel.add(btnTour);
-        //setting panel to the frame
         frame.add(panel, BorderLayout.SOUTH);
-        //setting icon of frame
-        frame.setIconImage(iconTrump.getImage());
-        //centering the frame
+        frame.setIconImage(ICONTRUMP.getImage());
         frame.setLocationRelativeTo(null);
-        //setting frame to visible
         frame.setVisible(true);
         //setting what is displayed if the user opens a finished game
         if (wins + loses == 50) {
@@ -178,7 +157,7 @@ public class TrumpWillTriump {
             customText();
             if (check == 0) {
                 try {
-                    Files.delete(file);
+                    Files.delete(FILE);
                 } catch (IOException x) {
                     //useless but needed
                 }
@@ -539,18 +518,15 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for setting text when JOptionPane is being used
     private void customText() {
-        check = JOptionPane.showOptionDialog(null, dialogText, gameTitle, JOptionPane.DEFAULT_OPTION,
+        check = JOptionPane.showOptionDialog(null, dialogText, GAMETITLE, JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null, dialogOptions, dialogOptions[0]);
         if (check == -1) {
             System.exit(0);
         }
     }
 
-    //method used for when the state is won
     private void win() {
-        //incrementing the wins by one
         wins += 1;
         //changing the state colour to red
         for (int vertical = 0; vertical < 48; vertical++) {
@@ -560,15 +536,12 @@ public class TrumpWillTriump {
                 }
             }
         }
-        //saving the win to file
         save();
-        //notifying the user that he/she has won
         dialogText = "Mr. Trump, you won!";
         dialogOptions = new String[]{"Continue"};
         customText();
-        //resetting variables
-        touringState = likeness = 0;
-        //checking if the game is finished
+        touringState = 0;
+        likeness = 0;
         if (wins + loses != 50) {
             frame.setVisible(true);
         } else {
@@ -576,9 +549,7 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for when the state is lost
     private void lose() {
-        //incrementing the loses by one
         loses += 1;
         //changing the state colour to blue
         for (int vertical = 0; vertical < 48; vertical++) {
@@ -588,14 +559,12 @@ public class TrumpWillTriump {
                 }
             }
         }
-        //saving the loss to file
         save();
-        //notifying the user that he/she has lost
         dialogText = "Mr. Trump, you lost...";
         dialogOptions = new String[]{"Continue"};
         customText();
-        touringState = likeness = 0;
-        //checking if the game is finished
+        touringState = 0;
+        likeness = 0;
         if (wins + loses != 50) {
             frame.setVisible(true);
         } else {
@@ -603,7 +572,6 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for if game is finished
     private void checkGameWin() {
         if (wins >= 25) {
             dialogText = "Mr. Trump, you became president!\nTo play again, click the "
@@ -619,11 +587,8 @@ public class TrumpWillTriump {
         frame.setVisible(true);
     }
 
-    //method used for shooting minigame
     private void shooting() {
-        //setting the map to invisible
         frame.setVisible(false);
-        //determining which state the user is playing and setting text to that
         switch (touringState) {
             case 50:
                 dialogText = "Mr. Trump, a bear has just appeared!\nShoot it quickly in the head so that it does not "
@@ -642,7 +607,7 @@ public class TrumpWillTriump {
         customText();
 
         //making the GUI more user friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel background = null;
@@ -664,7 +629,7 @@ public class TrumpWillTriump {
         //more updates to GUI
         frameState.add(background);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
 
         //setting gun scope
@@ -758,17 +723,12 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for reactor minigame
     private void reactor() {
-        //setting variables to default
         temperature = 500;
         pressure = 250;
         rotations = 2500;
         time = 600;
-        //setting map to false
         frame.setVisible(false);
-
-        //setting text depending on which state the user is playing
         if (touringState == 52) {
             dialogText = "Mr. Trump, the Grand Coulee Dam is going out of control!\nYou need to operate it while the "
                     + "engine room shuts down.\nThis will take one minute.";
@@ -780,7 +740,7 @@ public class TrumpWillTriump {
         customText();
 
         //setting the GUI to be more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
@@ -826,7 +786,7 @@ public class TrumpWillTriump {
         //making GUI more user-friendly
         frameState.pack();
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
 
         //lower temperature if button is pressed
@@ -876,7 +836,7 @@ public class TrumpWillTriump {
                 temperatureLabel.setText("Temperature: " + temperature + "°C");
                 pressureLabel.setText("Pressure: " + pressure + "kPa   ");
                 rotationsLabel.setText("Rotations: " + rotations + "rpm");
-                timeLabel.setText("Time Until System Restore: " + (int) (time / 10) + " seconds");
+                timeLabel.setText("Time Until System Restore: " + time / 10 + " seconds");
                 //if temperature gets into dangerous area, red warning is displayed
                 if (temperature >= 800) {
                     temperatureWarning.setIcon(new ImageIcon("Assets/ReactorDangerous.png"));
@@ -921,11 +881,8 @@ public class TrumpWillTriump {
         }, 0, 100);
     }
 
-    //method used for sports minigame
     private void sports() {
-        //setting map to invisible
         frame.setVisible(false);
-        //which text to be displayed is dependant upon which state user is playing as
         switch (touringState) {
             case 61:
                 dialogText = "Mr. Trump, Colorado likes hockey. To gain their vote, get\na ball in net on a free shot. "
@@ -948,7 +905,7 @@ public class TrumpWillTriump {
         customText();
 
         //making GUI more user-friendy
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel background = null;
@@ -982,7 +939,7 @@ public class TrumpWillTriump {
         //making GUI more user-friendly
         frameState.add(background);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
         //initiating mouse listener
         frameState.addMouseListener(new MouseListener() {
@@ -1065,11 +1022,8 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for clicking minigame
     private void clicking() {
-        //setting map to invisible
         frame.setVisible(false);
-        //which text to be displayed is dependant upon which state user is playing as
         switch (touringState) {
             case 51:
                 dialogText = "Mr. Trump, Hawaii is a tropical state, so\nto win it, you must break open a coconut\nby "
@@ -1088,7 +1042,7 @@ public class TrumpWillTriump {
         customText();
 
         //making GUI more user-friendy
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel background = null;
@@ -1110,7 +1064,7 @@ public class TrumpWillTriump {
         //making the GUI more user-friendly
         frameState.add(background);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
         startTime = System.nanoTime();
         //initializing mouse listener
@@ -1156,11 +1110,8 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for fishing minigame
     private void fishing() {
-        //setting map to invisible
         frame.setVisible(false);
-        //which text to be displayed is dependant upon which state user is playing as
         if (touringState == 69) {
             dialogText = "Mr. Trump, ice fishing would greatly improve your success in\nMinnesota. Left click to throw "
                     + "your line out, right click to bring\nit back in. You only get one cast. The longer your line "
@@ -1174,7 +1125,7 @@ public class TrumpWillTriump {
         customText();
 
         //making GUI more user-friendy
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel background;
@@ -1189,7 +1140,7 @@ public class TrumpWillTriump {
         //making GUI more user-friendly
         frameState.add(background);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
 
         //setting the cursor to a fishing rod
@@ -1243,11 +1194,8 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for racing minigame
     private void racing() {
-        //setting map to invisible
         frame.setVisible(false);
-        //which text to be displayed is dependant upon which state user is playing as
         switch (touringState) {
             case 59:
                 dialogText = "Mr. Trump, Montana loves horse racing, so to win their vote,\nbet on a horse. This will "
@@ -1270,7 +1218,7 @@ public class TrumpWillTriump {
         customText();
 
         //making GUI more user-friendy
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
@@ -1329,7 +1277,7 @@ public class TrumpWillTriump {
         frameState.add(buttonPanel2, BorderLayout.SOUTH);
         frameState.pack();
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
 
         btnHorse87.addActionListener((ActionEvent e) -> {
@@ -1462,29 +1410,28 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for memory minigame
     private void memory() {
-        //setting variables to default
         done = false;
-        memoryLevel = memorySequence = memoryCounter = memoryCompletion = 0;
+        memoryLevel = 0;
+        memorySequence = 0;
+        memoryCounter = 0;
+        memoryCompletion = 0;
         int memoryArray[] = new int[5];
-        //setting map to invisible
         frame.setVisible(false);
-        //notifying user about the game
         dialogText = "Mr. Trump, to test your memory, you shall play a memory game!\nTo play, just hit the arrow keys "
                 + "on your keyboard when propted to type.";
         dialogOptions = new String[]{"Continue"};
         customText();
 
         //making GUI more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel image = new JLabel(new ImageIcon("Assets/MemoryGo.png"));
         frameState.add(image);
         frameState.setSize(303, 325);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
 
         //initializing key listener
@@ -1496,7 +1443,8 @@ public class TrumpWillTriump {
                     if (e.getKeyCode() == memoryArray[memorySequence]) {
                         if (memorySequence != 4) {
                             if (memorySequence == memoryLevel + 1) {
-                                memorySequence = memoryCounter = 0;
+                                memorySequence = 0;
+                                memoryCounter = 0;
                                 memoryCompletion += 1;
                             } else {
                                 memorySequence += 1;
@@ -1571,16 +1519,11 @@ public class TrumpWillTriump {
         }, 0, 1000);
     }
 
-    //method used for skiing minigame
     private void skiing() {
-        //setting variables to default
         done = false;
         next = true;
         skiingCompletion = 0;
-        //setting map to invisible
         frame.setVisible(false);
-
-        //notifying user about the game depending on which state the user is playing as
         switch (touringState) {
             case 89:
                 dialogText = "Mr. Trump, North Carolina loves water skiing; therefore,\nsuch is what you should do to "
@@ -1602,14 +1545,14 @@ public class TrumpWillTriump {
         customText();
 
         //making GUI more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel image = new JLabel(new ImageIcon("Assets/SkiingRed.png"));
         frameState.add(image);
         frameState.setSize(303, 325);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
 
         //initializing new key listener
@@ -1631,12 +1574,14 @@ public class TrumpWillTriump {
                                 image.setIcon(new ImageIcon("Assets/SkiingGood.png"));
                             }
                         } else {
-                            next = endTimer = true;
+                            next = true;
+                            endTimer = true;
                             frameState.setVisible(false);
                             lose();
                         }
                     } else {
-                        next = endTimer = true;
+                        next = true;
+                        endTimer = true;
                         frameState.setVisible(false);
                         win();
                     }
@@ -1684,14 +1629,10 @@ public class TrumpWillTriump {
         }, 0, 2000);
     }
 
-    //method used for recall minigame
     private void recall() {
-        //setting variables to default
         int recallArray[] = new int[4];
         recallTries = 10;
-        //setting map to invisible
         frame.setVisible(false);
-        //telling user about the game
         dialogText = "Mr. Trump, to test your skill, play a logic game. There will be\nfour numbers that are randomly "
                 + "generated but you are not\ntold the numbers. Use the sliders to guess the numbers, but\nto help "
                 + "you, you will be told how many correct and how many\nincorrect numbers you have selected.";
@@ -1739,7 +1680,7 @@ public class TrumpWillTriump {
         //making GUI more user-friendly
         frameState.pack();
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
 
         //initializing what happens when button is clicked
@@ -1772,15 +1713,11 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for sorting minigame
     private void sorting() {
-        //setting variables to default
         String sortingLine;
         int sortingArray[] = new int[5];
         int temp;
-        //making map invisible
         frame.setVisible(false);
-        //giving user information about the minigame
         dialogText = "Mr. Trump, to test your skill, given the steps produced by\na random sorting algorithm, pick "
                 + "which one was used.";
         dialogOptions = new String[]{"Continue"};
@@ -1847,7 +1784,7 @@ public class TrumpWillTriump {
         }
 
         //making GUI more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
@@ -1869,7 +1806,7 @@ public class TrumpWillTriump {
         frameState.add(sortingPanel);
         frameState.pack();
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
 
         //determining if user's selection is correct
@@ -1899,25 +1836,22 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for california
     private void california() {
-        //making map invisible
         frame.setVisible(false);
-        //telling user about the minigame
         dialogText = "Mr. Trump, California loves surfing, so to win their vote, just left\nclick on the surf board as "
                 + "fast as you can to clean it! If you do\nit fast enough, they surely will see us eye to eye!";
         dialogOptions = new String[]{"Continue"};
         customText();
 
         //making the GUI more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel background = new JLabel(new ImageIcon("Assets/Surfboard1.png"));
         frameState.add(background);
         frameState.setSize(303, 114);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
         startTime = System.nanoTime();
         //initializing mouse listener
@@ -1974,12 +1908,9 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for new york
     private void newYork() {
-        //making map invisible
         frame.setVisible(false);
 
-        //asking the user various questions and adding points to likeness variable depending on answer
         dialogText = "Hello, Mr. Trump. It is a pleasure to have you on this show.";
         dialogOptions = new String[]{"I know", "Thank you"};
         customText();
@@ -2020,25 +1951,22 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for wisconsin
     private void wisconsin() {
-        //making map invisible
         frame.setVisible(false);
-        //telling user about the minigame
         dialogText = "Mr. Trump, Wisconsin loves making cheese, to win\ntheir vote, just left click and churn the "
                 + "cheese!";
         dialogOptions = new String[]{"Continue"};
         customText();
 
         //making the GUI more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel background = new JLabel(new ImageIcon("Assets/Churn1.png"));
         frameState.add(background);
         frameState.setSize(222, 346);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
         startTime = System.nanoTime();
         //initializing mouse listener
@@ -2090,26 +2018,22 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for oklahoma
     private void oklahoma() {
-        //declaring variable
         String word;
-        //making map invisble
         frame.setVisible(false);
-        //letting user know information about the state
         word = JOptionPane.showInputDialog(null, "Mr. Trump, Oklahoma is considered the least intelligent state,\nI'm "
                 + "sure that if we just wrote a sponsered tweet in their area,\nthey would vote for us since most of "
-                + "them are republican anyways.", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                + "them are republican anyways.", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
         if (word == null) {
             System.exit(0);
         }
         //must be between 1 and 140 characters
         while (word.length() > 140 || word.length() == 0) {
             if (word.length() == 0) {
-                word = JOptionPane.showInputDialog(null, "You must write something.", gameTitle,
+                word = JOptionPane.showInputDialog(null, "You must write something.", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
             } else if (word.length() > 140) {
-                word = JOptionPane.showInputDialog(null, "Length cannot exceed 140 characters.", gameTitle,
+                word = JOptionPane.showInputDialog(null, "Length cannot exceed 140 characters.", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
             }
             if (word == null) {
@@ -2124,14 +2048,10 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for utah
     private void utah() {
-        //variable used to let user know correct answer or if answer is correct
         String answer;
-        //making map invisible
         frame.setVisible(false);
 
-        //asking the user various questions and adding points to likeness variable depending on answer
         dialogText = "Mr. Trump, I am the arch-bishop of Utah, and I will ask you\na few questions to see if you are "
                 + "worthy voting for.";
         dialogOptions = new String[]{"Ok", "God bless America"};
@@ -2192,14 +2112,10 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for louisiana
     private void louisiana() {
-        //variable used to let user know correct answer or if answer is correct
         String answer;
-        //making map invisible
         frame.setVisible(false);
 
-        //asking the user various questions and adding points to likeness variable depending on answer
         dialogText = "Mr. Trump, since Louisiana is a French state, we will ask you a\nfew questions to test if you "
                 + "are worth voting for.";
         dialogOptions = new String[]{"Ok", "D'accord"};
@@ -2249,14 +2165,10 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for new mexico
     private void newMexico() {
-        //variable used to let user know correct answer or if answer is correct
         String answer;
-        //making map invisible
         frame.setVisible(false);
 
-        //asking the user various questions and adding points to likeness variable depending on answer
         dialogText = "Mr. Trump, since New Mexico is a Spanish state, we will ask you a\nfew questions to test if you "
                 + "are worth voting for.";
         dialogOptions = new String[]{"Ok", "De acuerdo"};
@@ -2306,12 +2218,9 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for illinois
     private void illinois() {
-        //making map invisible
         frame.setVisible(false);
 
-        //asking the user various questions and adding points to likeness variable depending on answer
         dialogText = "Hello, Mr. Trump. I will just ask you a\nfew questions for our interview.";
         dialogOptions = new String[]{"Ok", "Go ahead"};
         customText();
@@ -2346,12 +2255,9 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for massachusetts
     private void massachusetts() {
-        //making map invisible
         frame.setVisible(false);
 
-        //letting user know information about the minigame
         dialogText = "Mr. Trump, to win you need 200 points. If the word is a palindrome\nyou will receive the amount "
                 + "of letters times ten in points. The game\nends once you enter three consecutive incorrect "
                 + "palindromes.";
@@ -2360,85 +2266,62 @@ public class TrumpWillTriump {
 
         //starts loop for when user has not lost, giving user ability to enter palindromes
         while (palindromeTries > 0) {
-            //getting word that user wants to submit
             palindromeWord = JOptionPane.showInputDialog(null, "Enter a palindrome.\n" + palindromeCorrect + "Score: "
-                    + palindromeScore + " points\nTries: " + palindromeTries, gameTitle, JOptionPane.PLAIN_MESSAGE);
-            //checking if user pressed cancel or the x button
+                    + palindromeScore + " points\nTries: " + palindromeTries, GAMETITLE, JOptionPane.PLAIN_MESSAGE);
             if (palindromeWord == null) {
                 System.exit(0);
             }
-            //if user inputs nothing and hits enter, user is notified to re-write the message
             while ("".equals(palindromeWord) || palindromeWord.contains(" ")) {
                 palindromeWord = JOptionPane.showInputDialog(null, "Put in one palindrome, not two, not zero... "
                         + "ONE.\n" + palindromeCorrect + "Score: " + palindromeScore + " points\nTries: "
-                        + palindromeTries, gameTitle, JOptionPane.PLAIN_MESSAGE);
-                //checking if user pressed cancel or the x button
+                        + palindromeTries, GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 if (palindromeWord == null) {
                     System.exit(0);
                 }
             }
-            //converting word to lower case
             palindromeWord = palindromeWord.toLowerCase();
-            //setting technical to false
             palindromeTechnical = false;
-            //checking length of word
             palindromeLength = palindromeWord.length();
-            //declaring char array based on length of string
             char letter[] = new char[palindromeLength];
-            //filling in array
             for (int counter = 0; counter < palindromeLength; counter++) {
-                letter[counter] = (char) (palindromeWord.charAt(counter));
+                letter[counter] = palindromeWord.charAt(counter);
             }
-            //declaring counter used for palindrome
             int counterPalindrome = 0;
-            //checking if palindrome
             for (int counter = 0; counter < (palindromeLength / 2); counter++) {
                 if (letter[counter] == letter[(palindromeLength - counter - 1)]) {
                     counterPalindrome += 1;
                 }
             }
-            //sets wether the palindrome is a technical one
             if (counterPalindrome >= (palindromeLength / 2)) {
                 palindromeTechnical = true;
             }
-            //setting variables to false
             palindromeActual = false;
             palindromeUsed = false;
-            //creating a temporary variable that is upper case
             String upper = palindromeWord.toUpperCase();
             //going through all 208 palindromes and determining if it is on the list
             for (int counter = 0; counter < 208; counter++) {
-                if (palindromeWord.equals(palindromeLibrary[counter])) {
+                if (palindromeWord.equals(PALINDROME_LIBRARY[counter])) {
                     //if the entered palindrome is on the list, and the one on the list is lowercase, it is a palindrome
                     palindromeActual = true;
                     //setting palindrome on array list to upper case, so that it is not re-used
-                    palindromeLibrary[counter] = palindromeLibrary[counter].toUpperCase();
-                } else if (upper.equals(palindromeLibrary[counter])) {
+                    PALINDROME_LIBRARY[counter] = PALINDROME_LIBRARY[counter].toUpperCase();
+                } else if (upper.equals(PALINDROME_LIBRARY[counter])) {
                     //if palindrome has already been used, used is set to true
                     palindromeUsed = true;
                 }
             }
-            //executes when entered palindrome has not yet been used and is on the list
             if (palindromeActual) {
-                //telling user how many points is added
                 palindromeCorrect = "+ " + (10 * palindromeLength) + " points\n";
-                //adding points
-                palindromeScore = palindromeScore + (10 * palindromeLength);
-                //reseting palindromeTries
+                palindromeScore += (10 * palindromeLength);
                 palindromeTries = 3;
-                //executes when the palindrome is not on the list or it has already been used
             } else {
-                //telling user that palindrome has already been used
                 if (palindromeUsed) {
                     palindromeCorrect = "-1 Try... Palindrome already used.\n";
-                    //telling user the word is a palindrome but not an English word
                 } else if (palindromeTechnical && !palindromeActual && !palindromeUsed) {
                     palindromeCorrect = "-1 Try... Not an English word.\n";
-                    //telling user that it is not a palindrome
                 } else {
                     palindromeCorrect = "-1 Try... Not a palindrome.\n";
                 }
-                //taking a try away from the user
                 palindromeTries -= 1;
             }
         }
@@ -2450,12 +2333,9 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for arizona
     private void arizona() {
-        //making map invisible
         frame.setVisible(false);
 
-        //asking the user various questions and adding points to likeness variable depending on answer
         dialogText = "Senior Trump, I am mexican...";
         dialogOptions = new String[]{"(Let him speak)", "(Interrupt him)"};
         customText();
@@ -2499,20 +2379,18 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for new jersey
     private void newJersey() {
-        //making map invisible
         frame.setVisible(false);
 
         //making the GUI more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel background = new JLabel(new ImageIcon("Assets/BoxingTitle.png"));
         frameState.add(background);
         frameState.setSize(353, 275);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
         startTime = System.nanoTime();
         //initializing mouse listner
@@ -2608,7 +2486,6 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for new hampshire
     private void newHampshire() {
         if (scoreScramble == 0) {
             frame.setVisible(false);
@@ -2622,36 +2499,26 @@ public class TrumpWillTriump {
             "freezing"};
         String word, answer, checkScramble;
         int length;
-        //generates random number from 0 to 19
         int random = ((int) (Math.random() * ((10 - 0) + 0))) + 0;
-        //sets word and answer to random string
-        word = answer = computerOvertime[random];
-        //checks length of random string
+        word = computerOvertime[random];
+        answer = computerOvertime[random];
         length = answer.length();
-        //declaring char array based on length of string
         char letter[] = new char[length];
-        //filling in array
         for (int counterScramble = 0; counterScramble < length; counterScramble++) {
-            letter[counterScramble] = (char) (word.charAt(counterScramble));
+            letter[counterScramble] = word.charAt(counterScramble);
         }
-        //creating another array to be randomly filled in by old array
         char scrambled[] = new char[length];
-        //for loop to randomly fill in new array
         for (int counterScramble = 0; counterScramble < length; counterScramble++) {
-            //random number from 0 to length number
             random = ((int) (Math.random() * ((length - 0) + 0))) + 0;
-            //if randomly picked number contains a space, repick a new random number
             while (letter[random] == ' ') {
                 random = ((int) (Math.random() * ((length - 0) + 0))) + 0;
             }
-            //set scrambled number from random place in array of letter
             scrambled[counterScramble] = letter[random];
-            //set place where char was taken from letter array so it does not get picked again
             letter[random] = ' ';
         }
         //set string word from the char array scrambled
         word = String.valueOf(scrambled);
-        checkScramble = JOptionPane.showInputDialog(null, scoreScramble + " points\nUnscramble: " + word, gameTitle,
+        checkScramble = JOptionPane.showInputDialog(null, scoreScramble + " points\nUnscramble: " + word, GAMETITLE,
                 JOptionPane.PLAIN_MESSAGE);
         if (checkScramble == null) {
             System.exit(0);
@@ -2668,19 +2535,16 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for nevada
     private void nevada() {
         JLabel background[] = new JLabel[9];
-        //setting map to invisible
         frame.setVisible(false);
-        //giving user information about minigame
         dialogText = "Mr. Trump, Nevada is the gambling state, so\nnaturally, to win their vote, you shall "
                 + "gamble.\nYou will have ten tries to get a matching pair.\nTo try the slot again, click on it.";
         dialogOptions = new String[]{"Continue"};
         customText();
 
         //making GUI more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         frameState.setLayout(new GridLayout(3, 3));
@@ -2690,7 +2554,7 @@ public class TrumpWillTriump {
         }
         frameState.setSize(423, 445);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
         startTime = System.nanoTime();
         //initializing mouse listner
@@ -2743,19 +2607,15 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for maryland
     private void maryland() {
-        //setting map to invisible
         frame.setVisible(false);
-
-        //giving user information about minigame
         dialogText = "Mr. Trump, as you might know, Maryland is home of the NSA. So, let's\nspy on some people. "
                 + "Please pick which ethnic group to spy on.";
         dialogOptions = new String[]{"Continue"};
         customText();
 
         //making GUI more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         //declaring buttons
@@ -2785,7 +2645,7 @@ public class TrumpWillTriump {
         frameState.add(buttonPanel2, BorderLayout.SOUTH);
         frameState.setSize(353, 367);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
 
         //declaring what happens on button click
@@ -2843,24 +2703,21 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for idaho
     private void idaho() {
-        //making map invisible
         frame.setVisible(false);
-        //giving user information of minigame
         dialogText = "Mr. Trump, Idaho is the potato state, to win\ntheir vote, just left click and chop the potatos!";
         dialogOptions = new String[]{"Continue"};
         customText();
 
         //making GUI more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel background = new JLabel(new ImageIcon("Assets/Potato1.png"));
         frameState.add(background);
         frameState.setSize(353, 226);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
         startTime = System.nanoTime();
         //initializing mouse listner
@@ -2915,11 +2772,8 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for virginia
     private void virginia() {
-        //making map invisible
         frame.setVisible(false);
-        //giving user information of minigame
         dialogText = "Mr. Trump, Virginia is the home of the CIA, so naturallly, we will torture\nsomeone. On "
                 + "agreement, we will rig the Virginian election in your favour.";
         dialogOptions = new String[]{"Ok", "No (Opt Out)"};
@@ -2928,7 +2782,7 @@ public class TrumpWillTriump {
             lose();
         } else {
             //making GUI more user-friendly
-            JFrame frameState = new JFrame(gameTitle);
+            JFrame frameState = new JFrame(GAMETITLE);
             frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frameState.setResizable(false);
             //declaring GUI components
@@ -2959,7 +2813,7 @@ public class TrumpWillTriump {
             frameState.add(buttonPanel, BorderLayout.SOUTH);
             frameState.pack();
             frameState.setLocationRelativeTo(null);
-            frameState.setIconImage(iconTrump.getImage());
+            frameState.setIconImage(ICONTRUMP.getImage());
             frameState.setVisible(true);
 
             //butons used to reduce health
@@ -3029,12 +2883,8 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for west virginia
     private void westVirginia() {
-        //making map invisible
         frame.setVisible(false);
-
-        //asking the user various questions and adding points to likeness variable depending on answer
         dialogText = "Mr. Trump, West Virginia is considered one of the least intelligent states.\nTo win their vote, "
                 + "just make a YouTube video to be sponsored in their state.";
         dialogOptions = new String[]{"Continue"};
@@ -3081,12 +2931,9 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for iowa
     private void iowa() {
-        //making map invisible
         frame.setVisible(false);
-        //making GUI more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
@@ -3101,7 +2948,7 @@ public class TrumpWillTriump {
         frameState.add(btnTwo, BorderLayout.SOUTH);
         frameState.setSize(348, 310);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
 
         //asking the user various questions and adding points to likeness variable depending on answer
@@ -3176,25 +3023,22 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for kentucky
     private void kentucky() {
-        //making map invisible
         frame.setVisible(false);
-        //asking the user various questions and adding points to likeness variable depending on answer
         dialogText = "Mr. Trump, Kentucky is the chicken state, to win\ntheir vote, just left click and cook the "
                 + "chicken!";
         dialogOptions = new String[]{"Continue"};
         customText();
 
         //making GUI more user-friendly
-        JFrame frameState = new JFrame(gameTitle);
+        JFrame frameState = new JFrame(GAMETITLE);
         frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel background = new JLabel(new ImageIcon("Assets/Chicken1.png"));
         frameState.add(background);
         frameState.setSize(371, 365);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(iconTrump.getImage());
+        frameState.setIconImage(ICONTRUMP.getImage());
         frameState.setVisible(true);
         startTime = System.nanoTime();
         frameState.addMouseListener(new MouseListener() {
@@ -3243,13 +3087,9 @@ public class TrumpWillTriump {
         });
     }
 
-    //method used for north dakota
     private void northDakota() {
-        //declaring variable used for telling user if he/she is correct and if not the correct answer
         String answer;
-        //making map invisible
         frame.setVisible(false);
-        //asking the user various questions and adding points to likeness variable depending on answer
         dialogText = "Mr. Trump, since North Dakota is the most German state, we\nwill ask you a few questions to test "
                 + "if you are worth voting for.";
         dialogOptions = new String[]{"Ok", "Fortsetzen"};
@@ -3299,11 +3139,8 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for rhode island
     private void rhodeIsland() {
-        //making map invisible
         frame.setVisible(false);
-        //giving user information of state
         dialogText = "Mr. Trump, Rhode Island is so small that we\nwill just host a barbeque, and will most probably "
                 + "win.";
         dialogOptions = new String[]{"Continue"};
@@ -3317,7 +3154,6 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for starting jeopardy program
     private void jeopardyPrepareGUI() {
         frame.setVisible(false);
         dialogText = "Mr. Trump, we have a Jeopardy game prepared for you to test you.\nYou need at least 1000 points "
@@ -3326,11 +3162,11 @@ public class TrumpWillTriump {
         customText();
 
         //setting mainFrame
-        mainFrame = new JFrame(gameTitle);
+        mainFrame = new JFrame(GAMETITLE);
         mainFrame.setSize(300, 400);
         mainFrame.setLayout(new GridLayout(9, 1));
         mainFrame.setLocationRelativeTo(null);
-        mainFrame.setIconImage(iconTrump.getImage());
+        mainFrame.setIconImage(ICONTRUMP.getImage());
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setResizable(false);
         //setting text for labels
@@ -3365,9 +3201,7 @@ public class TrumpWillTriump {
         settingButtons();
     }
 
-    //method used for declaring buttons for jeopardy
     private void settingButtons() {
-        //setting text to displayed buttons
         JButton science100 = new JButton("100");
         JButton science200 = new JButton("200");
         JButton science300 = new JButton("300");
@@ -3388,7 +3222,6 @@ public class TrumpWillTriump {
         JButton games300 = new JButton("300");
         JButton games400 = new JButton("400");
         JButton games500 = new JButton("500");
-        //declaring blank as an array and creating 20 blank buttons
         JButton blank[];
         blank = new JButton[20];
         for (int blankCounter = 0; blankCounter < 20; blankCounter++) {
@@ -3396,7 +3229,6 @@ public class TrumpWillTriump {
             blank[blankCounter].setVisible(false);
         }
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         science100.addActionListener((ActionEvent e) -> {
             science100.setVisible(false);
             blank[0].setVisible(true);
@@ -3404,7 +3236,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         science200.addActionListener((ActionEvent e) -> {
             science200.setVisible(false);
             blank[1].setVisible(true);
@@ -3412,7 +3243,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         science300.addActionListener((ActionEvent e) -> {
             science300.setVisible(false);
             blank[2].setVisible(true);
@@ -3420,7 +3250,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         science400.addActionListener((ActionEvent e) -> {
             science400.setVisible(false);
             blank[3].setVisible(true);
@@ -3428,7 +3257,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         science500.addActionListener((ActionEvent e) -> {
             science500.setVisible(false);
             blank[4].setVisible(true);
@@ -3436,7 +3264,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         math100.addActionListener((ActionEvent e) -> {
             math100.setVisible(false);
             blank[5].setVisible(true);
@@ -3444,7 +3271,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         math200.addActionListener((ActionEvent e) -> {
             math200.setVisible(false);
             blank[6].setVisible(true);
@@ -3452,7 +3278,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         math300.addActionListener((ActionEvent e) -> {
             math300.setVisible(false);
             blank[7].setVisible(true);
@@ -3460,7 +3285,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         math400.addActionListener((ActionEvent e) -> {
             math400.setVisible(false);
             blank[8].setVisible(true);
@@ -3468,7 +3292,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         math500.addActionListener((ActionEvent e) -> {
             math500.setVisible(false);
             blank[9].setVisible(true);
@@ -3476,7 +3299,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         history100.addActionListener((ActionEvent e) -> {
             history100.setVisible(false);
             blank[10].setVisible(true);
@@ -3484,7 +3306,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         history200.addActionListener((ActionEvent e) -> {
             history200.setVisible(false);
             blank[11].setVisible(true);
@@ -3492,7 +3313,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         history300.addActionListener((ActionEvent e) -> {
             history300.setVisible(false);
             blank[12].setVisible(true);
@@ -3500,7 +3320,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         history400.addActionListener((ActionEvent e) -> {
             history400.setVisible(false);
             blank[13].setVisible(true);
@@ -3508,7 +3327,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         history500.addActionListener((ActionEvent e) -> {
             history500.setVisible(false);
             blank[14].setVisible(true);
@@ -3516,7 +3334,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         games100.addActionListener((ActionEvent e) -> {
             games100.setVisible(false);
             blank[15].setVisible(true);
@@ -3524,7 +3341,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         games200.addActionListener((ActionEvent e) -> {
             games200.setVisible(false);
             blank[16].setVisible(true);
@@ -3532,7 +3348,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         games300.addActionListener((ActionEvent e) -> {
             games300.setVisible(false);
             blank[17].setVisible(true);
@@ -3540,7 +3355,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         games400.addActionListener((ActionEvent e) -> {
             games400.setVisible(false);
             blank[18].setVisible(true);
@@ -3548,7 +3362,6 @@ public class TrumpWillTriump {
             caseWin();
         });
 
-        //set action listener for button, when button is clicked, it becomes invisible and blank button becomes visible
         games500.addActionListener((ActionEvent e) -> {
             games500.setVisible(false);
             blank[19].setVisible(true);
@@ -3598,12 +3411,9 @@ public class TrumpWillTriump {
         controlPanel5.add(games500);
         controlPanel5.add(blank[19]);
 
-        //set buttons default to visible, except for blanks which will be set
-        //to false later in the program, but is up above in the displayed code
         mainFrame.setVisible(true);
     }
 
-    //method used for determing if user has won jeopardy program
     private void caseWin() {
         if (click == 20) {
             mainFrame.setVisible(false);
@@ -3615,35 +3425,23 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for removing certain characters and converting to lower case
     private void clickCommand() {
-        //if amount of clicks is less than 20, add 1 to click variable
         if (click < 20) {
             click += 1;
         }
-        //prevents text to be edited if cancel button or x button is clicked, thus preventing error messages
         if (userAnswer != null) {
-            //reset the response answer text
             responseAnswer.setText("");
-            //convert userAnswer to lower case
             userAnswer = userAnswer.toLowerCase();
             //remove ' ', '.', ',', ';', ':', '!', and '?' from userAnswer for easier manipulation
             userAnswer = userAnswer.replaceAll("[ .,;:!?]", "");
         }
     }
 
-    //method used for jeopardy questions
     private void science100() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
-                userAnswer = JOptionPane.showInputDialog(null, "The powerhouse of the cell is?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The powerhouse of the cell is?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("mitochondria".equals(userAnswer) || "mitochondrion".equals(userAnswer)
@@ -3656,7 +3454,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 2:
-                userAnswer = JOptionPane.showInputDialog(null, "The controler of the cell is?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The controler of the cell is?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("nucleus".equals(userAnswer) || "thenucleus".equals(userAnswer)) {
@@ -3668,7 +3466,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 3:
-                userAnswer = JOptionPane.showInputDialog(null, "The outside part of the animal cell is?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The outside part of the animal cell is?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("cellularmembrane".equals(userAnswer) || "thecellularmembrane".equals(userAnswer)
@@ -3683,7 +3481,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 4:
-                userAnswer = JOptionPane.showInputDialog(null, "The outside part of the plant cell is?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The outside part of the plant cell is?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("cellwall".equals(userAnswer) || "thecellwall".equals(userAnswer)
@@ -3697,7 +3495,7 @@ public class TrumpWillTriump {
                 break;
             case 5:
                 userAnswer = JOptionPane.showInputDialog(null, "Information carrying substances with double "
-                        + "helix structure is called?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "helix structure is called?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("dna".equals(userAnswer) || "deoxyribosenucleicacid".equals(userAnswer)) {
                     score += 100;
@@ -3710,18 +3508,11 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void science200() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
-                userAnswer = JOptionPane.showInputDialog(null, "The father of the theory of evolution.", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The father of the theory of evolution.", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("charlesdarwin".equals(userAnswer) || "charles".equals(userAnswer) || "darwin".equals(userAnswer)) {
@@ -3733,7 +3524,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 2:
-                userAnswer = JOptionPane.showInputDialog(null, "The father of the theory of relativity.", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The father of the theory of relativity.", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("alberteinstein".equals(userAnswer) || "albert".equals(userAnswer)
@@ -3747,7 +3538,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "Name of the person in which the fundemental particle "
-                        + "associated with mass was named after.", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "associated with mass was named after.", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("peterhiggs".equals(userAnswer) || "peter".equals(userAnswer) || "higgs".equals(userAnswer)) {
                     score += 200;
@@ -3759,7 +3550,7 @@ public class TrumpWillTriump {
                 break;
             case 4:
                 userAnswer = JOptionPane.showInputDialog(null, "Name of the person that hypothesized three laws of "
-                        + "motion.", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "motion.", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("sirisaacnewton".equals(userAnswer) || "isaacnewton".equals(userAnswer)
                         || "isaac".equals(userAnswer) || "newton".equals(userAnswer)) {
@@ -3771,7 +3562,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 5:
-                userAnswer = JOptionPane.showInputDialog(null, "Who patented the light bulb?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "Who patented the light bulb?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("thomasedison".equals(userAnswer) || "thomas".equals(userAnswer) || "edison".equals(userAnswer)) {
@@ -3785,18 +3576,11 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void science300() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
-                userAnswer = JOptionPane.showInputDialog(null, "A unit of magnitude and direction is a?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "A unit of magnitude and direction is a?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("vector".equals(userAnswer) || "avector".equals(userAnswer)) {
@@ -3808,7 +3592,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 2:
-                userAnswer = JOptionPane.showInputDialog(null, "A unit of magnitude is a?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "A unit of magnitude is a?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("scalar".equals(userAnswer) || "ascalar".equals(userAnswer)) {
@@ -3820,7 +3604,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 3:
-                userAnswer = JOptionPane.showInputDialog(null, "The SI unit of force is measured in?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The SI unit of force is measured in?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("newtons".equals(userAnswer) || "newton".equals(userAnswer) || "n".equals(userAnswer)) {
@@ -3832,7 +3616,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 4:
-                userAnswer = JOptionPane.showInputDialog(null, "A newton metre is a?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "A newton metre is a?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("joule".equals(userAnswer) || "ajoule".equals(userAnswer) || "j".equals(userAnswer)) {
@@ -3844,7 +3628,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 5:
-                userAnswer = JOptionPane.showInputDialog(null, "the SI base unit of mass is the?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "the SI base unit of mass is the?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("kilogram".equals(userAnswer) || "kilograms".equals(userAnswer) || "kg".equals(userAnswer)) {
@@ -3858,18 +3642,11 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void science400() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
-                userAnswer = JOptionPane.showInputDialog(null, "The current model of the atom is the?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The current model of the atom is the?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("thequantummodel".equals(userAnswer) || "quantummodel".equals(userAnswer)
@@ -3883,7 +3660,7 @@ public class TrumpWillTriump {
                 break;
             case 2:
                 userAnswer = JOptionPane.showInputDialog(null, "What is the family name of group 18 on the periodic "
-                        + "table?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "table?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("noblegas".equals(userAnswer) || "noblegasses".equals(userAnswer)) {
                     score += 400;
@@ -3895,7 +3672,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "What is the family name of group 17 on the periodic "
-                        + "table?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "table?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("halogen".equals(userAnswer) || "halogens".equals(userAnswer)) {
                     score += 400;
@@ -3907,7 +3684,7 @@ public class TrumpWillTriump {
                 break;
             case 4:
                 userAnswer = JOptionPane.showInputDialog(null, "What is the family name of group 2 on the periodic "
-                        + "table?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "table?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("akalineearthmetals".equals(userAnswer) || "alkalineearthmetal".equals(userAnswer)) {
                     score += 400;
@@ -3919,7 +3696,7 @@ public class TrumpWillTriump {
                 break;
             case 5:
                 userAnswer = JOptionPane.showInputDialog(null, "What is the family name of group 1 on the periodic "
-                        + "table?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "table?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("alkalimetals".equals(userAnswer) || "alkalimetal".equals(userAnswer)) {
                     score += 400;
@@ -3932,19 +3709,12 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void science500() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
                 userAnswer = JOptionPane.showInputDialog(null, "How much more energy does a Calorie have compared to "
-                        + "a calorie as a ratio?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "a calorie as a ratio?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1000".equals(userAnswer) || "thousand".equals(userAnswer) || "onethousand".equals(userAnswer)
                         || "athousand".equals(userAnswer)) {
@@ -3957,7 +3727,7 @@ public class TrumpWillTriump {
                 break;
             case 2:
                 userAnswer = JOptionPane.showInputDialog(null, "As an integer value, how many joules are there per "
-                        + "kilocalorie?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "kilocalorie?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("4184".equals(userAnswer) || "4180".equals(userAnswer) || "4190".equals(userAnswer)
                         || "4200".equals(userAnswer)) {
@@ -3970,7 +3740,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "What colour has the most energy on the standard "
-                        + "visible light spectrum?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "visible light spectrum?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("violet".equals(userAnswer)) {
                     score += 500;
@@ -3981,7 +3751,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 4:
-                userAnswer = JOptionPane.showInputDialog(null, "What type of wave is a sound wave?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "What type of wave is a sound wave?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("mechanical".equals(userAnswer) || "mechanicalwave".equals(userAnswer)
@@ -3995,7 +3765,7 @@ public class TrumpWillTriump {
                 break;
             case 5:
                 userAnswer = JOptionPane.showInputDialog(null, "To no decimal places, how many light-years are in "
-                        + "100 parsecs?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "100 parsecs?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("326".equals(userAnswer) || "330".equals(userAnswer) || "320".equals(userAnswer)
                         || "300".equals(userAnswer)) {
@@ -4009,18 +3779,11 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void math100() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
-                userAnswer = JOptionPane.showInputDialog(null, "What is (5+12-2*9)/(1/2)", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "What is (5+12-2*9)/(1/2)", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("-2".equals(userAnswer)) {
@@ -4032,7 +3795,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 2:
-                userAnswer = JOptionPane.showInputDialog(null, "What is (7+3-3*4)/(1/3)", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "What is (7+3-3*4)/(1/3)", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("-6".equals(userAnswer)) {
@@ -4044,7 +3807,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 3:
-                userAnswer = JOptionPane.showInputDialog(null, "What is (9+12-2*13)*(4/5)", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "What is (9+12-2*13)*(4/5)", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("-4".equals(userAnswer)) {
@@ -4056,7 +3819,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 4:
-                userAnswer = JOptionPane.showInputDialog(null, "What is (9+12-2*13)*(8/5)", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "What is (9+12-2*13)*(8/5)", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("-8".equals(userAnswer)) {
@@ -4068,7 +3831,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 5:
-                userAnswer = JOptionPane.showInputDialog(null, "What is (9+13-2*7)/(4/5)", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "What is (9+13-2*7)/(4/5)", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("10".equals(userAnswer) || "+10".equals(userAnswer)) {
@@ -4082,18 +3845,11 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void math200() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
-                userAnswer = JOptionPane.showInputDialog(null, "A number divided by zero is known as?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "A number divided by zero is known as?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("undefined".equals(userAnswer) || "undefinedform".equals(userAnswer)) {
@@ -4106,7 +3862,7 @@ public class TrumpWillTriump {
                 break;
             case 2:
                 userAnswer = JOptionPane.showInputDialog(null, "As n approaches infinity, what does 1/n equal?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("0".equals(userAnswer) || "zero".equals(userAnswer) || "nothing".equals(userAnswer)
                         || "null".equals(userAnswer)) {
@@ -4119,7 +3875,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "Assuming it exists, as n approaches zero, what does "
-                        + "1/n equal?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "1/n equal?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("infinity".equals(userAnswer) || "infinite".equals(userAnswer)) {
                     score += 200;
@@ -4131,7 +3887,7 @@ public class TrumpWillTriump {
                 break;
             case 4:
                 userAnswer = JOptionPane.showInputDialog(null, "0.999999(infinite amount of 9's) is the same as what "
-                        + "integer value?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "integer value?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1".equals(userAnswer) || "one".equals(userAnswer)) {
                     score += 200;
@@ -4143,7 +3899,7 @@ public class TrumpWillTriump {
                 break;
             case 5:
                 userAnswer = JOptionPane.showInputDialog(null, "0.000001(infinite amount of 0's followed by a 1) is "
-                        + "the same as what integer value?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "the same as what integer value?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("0".equals(userAnswer) || "zero".equals(userAnswer)) {
                     score += 200;
@@ -4156,18 +3912,11 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void math300() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
-                userAnswer = JOptionPane.showInputDialog(null, "Division is the _______ of multiplication.", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "Division is the _______ of multiplication.", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("inverse".equals(userAnswer)) {
@@ -4179,7 +3928,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 2:
-                userAnswer = JOptionPane.showInputDialog(null, "sin^(-1)x is the _______ of sin x.", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "sin^(-1)x is the _______ of sin x.", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("inverse".equals(userAnswer)) {
@@ -4191,7 +3940,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 3:
-                userAnswer = JOptionPane.showInputDialog(null, "Find x: 2x+5=x-5", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "Find x: 2x+5=x-5", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("-10".equals(userAnswer) || "x=-10".equals(userAnswer)) {
@@ -4203,7 +3952,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 4:
-                userAnswer = JOptionPane.showInputDialog(null, "Find x: 4x+20=3x-10", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "Find x: 4x+20=3x-10", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("-30".equals(userAnswer) || "x=-30".equals(userAnswer)) {
@@ -4215,7 +3964,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 5:
-                userAnswer = JOptionPane.showInputDialog(null, "Find x: 6x+10=9x-5", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "Find x: 6x+10=9x-5", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("5".equals(userAnswer) || "x=5".equals(userAnswer) || "+5".equals(userAnswer)
@@ -4230,19 +3979,12 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void math400() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
                 userAnswer = JOptionPane.showInputDialog(null, "When using limits, zero divided by zero is known "
-                        + "as?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "as?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("indeterminate".equals(userAnswer) || "indeterminateform".equals(userAnswer)
                         || "theindeterminateform".equals(userAnswer)) {
@@ -4254,7 +3996,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 2:
-                userAnswer = JOptionPane.showInputDialog(null, "The irrational number e is known as?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The irrational number e is known as?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("euler'snumber".equals(userAnswer) || "eulersnumber".equals(userAnswer)
@@ -4268,7 +4010,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 3:
-                userAnswer = JOptionPane.showInputDialog(null, "To no decimal places, 100e is?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "To no decimal places, 100e is?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("272".equals(userAnswer)) {
@@ -4280,7 +4022,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 4:
-                userAnswer = JOptionPane.showInputDialog(null, "The square root of -1 is?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The square root of -1 is?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("i".equals(userAnswer)) {
@@ -4292,7 +4034,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 5:
-                userAnswer = JOptionPane.showInputDialog(null, "The square root of -9 is?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The square root of -9 is?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("3i".equals(userAnswer)) {
@@ -4306,18 +4048,11 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void math500() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
-                userAnswer = JOptionPane.showInputDialog(null, "Solve for x: x^2=10x-25*0!", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "Solve for x: x^2=10x-25*0!", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("x=5".equals(userAnswer) || "5".equals(userAnswer) || "x=+5".equals(userAnswer)
@@ -4330,7 +4065,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 2:
-                userAnswer = JOptionPane.showInputDialog(null, "Solve for x: x^2=20x-100*0!", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "Solve for x: x^2=20x-100*0!", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("x=10".equals(userAnswer) || "10".equals(userAnswer) || "x=+10".equals(userAnswer)
@@ -4343,7 +4078,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 3:
-                userAnswer = JOptionPane.showInputDialog(null, "e^(i*pi)+1=_", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                userAnswer = JOptionPane.showInputDialog(null, "e^(i*pi)+1=_", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("0".equals(userAnswer) || "zero".equals(userAnswer)) {
                     score += 500;
@@ -4354,7 +4089,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 4:
-                userAnswer = JOptionPane.showInputDialog(null, "Solve for x: x^2=6x-9*0!", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "Solve for x: x^2=6x-9*0!", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("x=3".equals(userAnswer) || "3".equals(userAnswer) || "x=+3".equals(userAnswer)
@@ -4367,7 +4102,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 5:
-                userAnswer = JOptionPane.showInputDialog(null, "Solve for x: x^2=8x-16*0!", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "Solve for x: x^2=8x-16*0!", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("x=4".equals(userAnswer) || "4".equals(userAnswer) || "x=+4".equals(userAnswer)
@@ -4382,19 +4117,12 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void history100() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
                 userAnswer = JOptionPane.showInputDialog(null, "The year the first black president was elected into "
-                        + "American Parliamentary power?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "American Parliamentary power?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("2008".equals(userAnswer)) {
                     score += 100;
@@ -4406,7 +4134,7 @@ public class TrumpWillTriump {
                 break;
             case 2:
                 userAnswer = JOptionPane.showInputDialog(null, "The year the first black president was re-elected into "
-                        + "American Parliamentary power?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "American Parliamentary power?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("2012".equals(userAnswer)) {
                     score += 100;
@@ -4418,7 +4146,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "The year the first black president was elected out of "
-                        + "American Parliamentary power?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "American Parliamentary power?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("2016".equals(userAnswer)) {
                     score += 100;
@@ -4429,7 +4157,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 4:
-                userAnswer = JOptionPane.showInputDialog(null, "What year was Canada founded?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "What year was Canada founded?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1867".equals(userAnswer)) {
@@ -4441,7 +4169,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 5:
-                userAnswer = JOptionPane.showInputDialog(null, "What year did World War 1 start?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "What year did World War 1 start?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1914".equals(userAnswer)) {
@@ -4455,18 +4183,11 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void history200() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
-                userAnswer = JOptionPane.showInputDialog(null, "The year of the first Moon landing?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The year of the first Moon landing?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1969".equals(userAnswer)) {
@@ -4479,7 +4200,7 @@ public class TrumpWillTriump {
                 break;
             case 2:
                 userAnswer = JOptionPane.showInputDialog(null, "The year water was announced to be found on Mars?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("2015".equals(userAnswer)) {
                     score += 200;
@@ -4491,7 +4212,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "The year gravitational waves were announced to be "
-                        + "discovered?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "discovered?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("2016".equals(userAnswer)) {
                     score += 200;
@@ -4503,7 +4224,7 @@ public class TrumpWillTriump {
                 break;
             case 4:
                 userAnswer = JOptionPane.showInputDialog(null, "The year the discovery of the Higgs Boson was "
-                        + "announced?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "announced?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("2013".equals(userAnswer)) {
                     score += 200;
@@ -4515,7 +4236,7 @@ public class TrumpWillTriump {
                 break;
             case 5:
                 userAnswer = JOptionPane.showInputDialog(null, "The year the ISS Space Station was launched?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1998".equals(userAnswer)) {
                     score += 200;
@@ -4528,19 +4249,12 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void history300() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
                 userAnswer = JOptionPane.showInputDialog(null, "The year Adolf Hitler was nominated man of the year.",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1939".equals(userAnswer)) {
                     score += 300;
@@ -4552,7 +4266,7 @@ public class TrumpWillTriump {
                 break;
             case 2:
                 userAnswer = JOptionPane.showInputDialog(null, "The year Adolf Hitler became chancellor of Germany.",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1933".equals(userAnswer)) {
                     score += 300;
@@ -4564,7 +4278,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "The year Adolf Hitler became head of the Nazi Party.",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1921".equals(userAnswer)) {
                     score += 300;
@@ -4576,7 +4290,7 @@ public class TrumpWillTriump {
                 break;
             case 4:
                 userAnswer = JOptionPane.showInputDialog(null, "The year America declared war on the Axis Party during "
-                        + "World War 2.", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "World War 2.", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1941".equals(userAnswer)) {
                     score += 300;
@@ -4588,7 +4302,7 @@ public class TrumpWillTriump {
                 break;
             case 5:
                 userAnswer = JOptionPane.showInputDialog(null, "The attack on which country sparked World War 2?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("poland".equals(userAnswer)) {
                     score += 300;
@@ -4601,19 +4315,12 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void history400() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
                 userAnswer = JOptionPane.showInputDialog(null, "In 1945 a nuclear bomb was detonated in Hiroshima, "
-                        + "Japan. What was the name of the bomb?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "Japan. What was the name of the bomb?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("littleboy".equals(userAnswer)) {
                     score += 400;
@@ -4625,7 +4332,7 @@ public class TrumpWillTriump {
                 break;
             case 2:
                 userAnswer = JOptionPane.showInputDialog(null, "In 1945 a nuclear bomb was detonated in Nagasaki, "
-                        + "Japan. What was the name of the bomb?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "Japan. What was the name of the bomb?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("fatman".equals(userAnswer)) {
                     score += 400;
@@ -4637,7 +4344,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "In which year did Einstein publish his special theory "
-                        + "of relativity?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "of relativity?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1905".equals(userAnswer)) {
                     score += 400;
@@ -4649,7 +4356,7 @@ public class TrumpWillTriump {
                 break;
             case 4:
                 userAnswer = JOptionPane.showInputDialog(null, "In which year did Einstein publish his general theory "
-                        + "of relativity?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "of relativity?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1915".equals(userAnswer)) {
                     score += 400;
@@ -4661,7 +4368,7 @@ public class TrumpWillTriump {
                 break;
             case 5:
                 userAnswer = JOptionPane.showInputDialog(null, "What was the name of the city in which Archduke Franz "
-                        + "Ferdinand of Austria was assassinated in 1914?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "Ferdinand of Austria was assassinated in 1914?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("sarajevo".equals(userAnswer)) {
                     score += 400;
@@ -4674,19 +4381,12 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void history500() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
                 userAnswer = JOptionPane.showInputDialog(null, "Who assassinated Archduke Franz Ferdinand of Austria "
-                        + "in 1914?", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "in 1914?", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("gavriloprincip".equals(userAnswer) || "gavrilo".equals(userAnswer)
                         || "princip".equals(userAnswer)) {
@@ -4698,7 +4398,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 2:
-                userAnswer = JOptionPane.showInputDialog(null, "In which year was Albert Einstein born?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "In which year was Albert Einstein born?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1879".equals(userAnswer)) {
@@ -4710,7 +4410,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 3:
-                userAnswer = JOptionPane.showInputDialog(null, "In which year was Sir Isaac Newton born?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "In which year was Sir Isaac Newton born?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1643".equals(userAnswer)) {
@@ -4722,7 +4422,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 4:
-                userAnswer = JOptionPane.showInputDialog(null, "In which year was Stephen Hawking born?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "In which year was Stephen Hawking born?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1942".equals(userAnswer)) {
@@ -4734,7 +4434,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 5:
-                userAnswer = JOptionPane.showInputDialog(null, "In which year was Charles Darwin born?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "In which year was Charles Darwin born?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1809".equals(userAnswer)) {
@@ -4748,19 +4448,12 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void games100() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
                 userAnswer = JOptionPane.showInputDialog(null, "The company that created the Mario Brothers is called?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("nintendo".equals(userAnswer) || "nintendor&d".equals(userAnswer)
                         || "nintendoresearch&development".equals(userAnswer)) {
@@ -4773,7 +4466,7 @@ public class TrumpWillTriump {
                 break;
             case 2:
                 userAnswer = JOptionPane.showInputDialog(null, "The company that created Nathan Drake is called?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("naughtydog".equals(userAnswer)) {
                     score += 100;
@@ -4785,7 +4478,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "The company that published Link is called?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("nintendo".equals(userAnswer)) {
                     score += 100;
@@ -4797,7 +4490,7 @@ public class TrumpWillTriump {
                 break;
             case 4:
                 userAnswer = JOptionPane.showInputDialog(null, "The company that created Ezio Auditore is called?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("ubisoft".equals(userAnswer) || "ubisoftmontreal".equals(userAnswer)) {
                     score += 100;
@@ -4809,7 +4502,7 @@ public class TrumpWillTriump {
                 break;
             case 5:
                 userAnswer = JOptionPane.showInputDialog(null, "The company that created Solid Snake is called?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("kojimaproductions".equals(userAnswer) || "kojima".equals(userAnswer)) {
                     score += 100;
@@ -4822,20 +4515,13 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void games200() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
                 userAnswer = JOptionPane.showInputDialog(null, "The game in which two users have paddles on seperate "
                         + "side of the screen,\nand each user attempts to hit a ball past the paddle of the opposing "
-                        + "user.", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "user.", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("pong".equals(userAnswer)) {
                     score += 200;
@@ -4847,7 +4533,7 @@ public class TrumpWillTriump {
                 break;
             case 2:
                 userAnswer = JOptionPane.showInputDialog(null, "The game released in 1978 in which the player controls "
-                        + "a ship,\nand must destroy opposing alien ships.", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "a ship,\nand must destroy opposing alien ships.", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("spaceinvaders".equals(userAnswer) || "spaceinvader".equals(userAnswer)) {
                     score += 200;
@@ -4860,7 +4546,7 @@ public class TrumpWillTriump {
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "The game released in 1981 in which the player controls "
                         + "a character,\nand must save a princess by jumping over barrels while climbing ladders.",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("donkeykong".equals(userAnswer)) {
                     score += 200;
@@ -4872,7 +4558,7 @@ public class TrumpWillTriump {
                 break;
             case 4:
                 userAnswer = JOptionPane.showInputDialog(null, "The game in which you assemble shapes as they move "
-                        + "down,\neach shape consisting of four squares arranged in various manners.", gameTitle,
+                        + "down,\neach shape consisting of four squares arranged in various manners.", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("tetris".equals(userAnswer)) {
@@ -4885,7 +4571,7 @@ public class TrumpWillTriump {
                 break;
             case 5:
                 userAnswer = JOptionPane.showInputDialog(null, "The game in which you play as a big yellow dot that "
-                        + "eats smaller yellow dots and runs away from ghosts.", gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        + "eats smaller yellow dots and runs away from ghosts.", GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("pacman".equals(userAnswer) || "pac-man".equals(userAnswer)) {
                     score += 200;
@@ -4898,19 +4584,12 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void games300() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
                 userAnswer = JOptionPane.showInputDialog(null, "What was the best selling video game of 2015?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("blackops3".equals(userAnswer) || "blackopsthree".equals(userAnswer) || "bo3".equals(userAnswer)
                         || "callofdutyblackops3".equals(userAnswer) || "callofdutyblackopsthree".equals(userAnswer)) {
@@ -4923,7 +4602,7 @@ public class TrumpWillTriump {
                 break;
             case 2:
                 userAnswer = JOptionPane.showInputDialog(null, "What was the best selling video game of 2014?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("callofdutyadvancedwarfare".equals(userAnswer) || "advancedwarfare".equals(userAnswer)
                         || "aw".equals(userAnswer)) {
@@ -4936,7 +4615,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "What was the best selling video game of 2013?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("grandtheftautofive".equals(userAnswer) || "grandtheftauto5".equals(userAnswer)
                         || "gta5".equals(userAnswer) || "gtafive".equals(userAnswer)
@@ -4950,7 +4629,7 @@ public class TrumpWillTriump {
                 break;
             case 4:
                 userAnswer = JOptionPane.showInputDialog(null, "What was the best selling video game of 2012?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("blackops2".equals(userAnswer) || "blackopstwo".equals(userAnswer) || "bo2".equals(userAnswer)
                         || "callofdutyblackops2".equals(userAnswer) || "callofdutyblackopstwo".equals(userAnswer)) {
@@ -4963,7 +4642,7 @@ public class TrumpWillTriump {
                 break;
             case 5:
                 userAnswer = JOptionPane.showInputDialog(null, "What was the best selling video game in 2011?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("modernwarfare3".equals(userAnswer) || "modernwarfarethree".equals(userAnswer)
                         || "mw3".equals(userAnswer) || "callofdutymodernwarfare3".equals(userAnswer)
@@ -4978,19 +4657,12 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void games400() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
                 userAnswer = JOptionPane.showInputDialog(null, "Name of the pacman ghost with a name starting with I.",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("inky".equals(userAnswer)) {
                     score += 400;
@@ -5002,7 +4674,7 @@ public class TrumpWillTriump {
                 break;
             case 2:
                 userAnswer = JOptionPane.showInputDialog(null, "Name of the pacman ghost with a name starting with B.",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("blinky".equals(userAnswer)) {
                     score += 400;
@@ -5014,7 +4686,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "Name of the pacman ghost with a name starting with P.",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("pinky".equals(userAnswer)) {
                     score += 400;
@@ -5026,7 +4698,7 @@ public class TrumpWillTriump {
                 break;
             case 4:
                 userAnswer = JOptionPane.showInputDialog(null, "Name of the pacman ghost with a name starting with C.",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("clyde".equals(userAnswer)) {
                     score += 400;
@@ -5037,7 +4709,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 5:
-                userAnswer = JOptionPane.showInputDialog(null, "Year the game Pac-Man was released.", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "Year the game Pac-Man was released.", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1980".equals(userAnswer)) {
@@ -5051,19 +4723,12 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for jeopardy questions
     private void games500() {
-        //creating random number from 1 to 5
         randomJeopardy = ((int) (Math.random() * ((5 - 1) + 1))) + 1;
-        //use random number to decide which question to ask.
-        //in each scenario, a question is asked, the user answers,
-        //if the answer is correct the user gains points,
-        //if it is incorrect, the user is told what the correct answer is, but does not gain points,
-        //afterwards, the switch case statement is broken.
         switch (randomJeopardy) {
             case 1:
                 userAnswer = JOptionPane.showInputDialog(null, "The name of the person that created Monopoly?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("charlesdarrow".equals(userAnswer) || "charles".equals(userAnswer) || "darrow".equals(userAnswer)) {
                     score += 500;
@@ -5074,7 +4739,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 2:
-                userAnswer = JOptionPane.showInputDialog(null, "The year the game Monopoly was released?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The year the game Monopoly was released?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1935".equals(userAnswer)) {
@@ -5087,7 +4752,7 @@ public class TrumpWillTriump {
                 break;
             case 3:
                 userAnswer = JOptionPane.showInputDialog(null, "The name of the person that created the game Life?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("miltonbradley".equals(userAnswer) || "milton".equals(userAnswer) || "bradley".equals(userAnswer)) {
                     score += 500;
@@ -5098,7 +4763,7 @@ public class TrumpWillTriump {
                 }
                 break;
             case 4:
-                userAnswer = JOptionPane.showInputDialog(null, "The year the game Life was created?", gameTitle,
+                userAnswer = JOptionPane.showInputDialog(null, "The year the game Life was created?", GAMETITLE,
                         JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1860".equals(userAnswer)) {
@@ -5111,7 +4776,7 @@ public class TrumpWillTriump {
                 break;
             case 5:
                 userAnswer = JOptionPane.showInputDialog(null, "The year the game Trivial Pursuit was conceived?",
-                        gameTitle, JOptionPane.PLAIN_MESSAGE);
+                        GAMETITLE, JOptionPane.PLAIN_MESSAGE);
                 clickCommand();
                 if ("1979".equals(userAnswer)) {
                     score += 500;
@@ -5124,23 +4789,18 @@ public class TrumpWillTriump {
         }
     }
 
-    //method used for loading from file
     private void load() {
         try {
-            //trying to create file
-            Files.createFile(file);
-            //executed if file already exists
+            Files.createFile(FILE);
         } catch (FileAlreadyExistsException x) {
-            //file is read from and saved to variable saveFile is file already exists
-            try (InputStream in = Files.newInputStream(file);
+            try (InputStream in = Files.newInputStream(FILE);
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    //content of file is saved to saveFile
+                String line = reader.readLine();
+                while (line != null) {
                     saveFile = line;
                 }
-            } catch (IOException y) {
-                System.err.println(y);
+            } catch (IOException e) {
+                System.err.println(e);
             }
         } catch (IOException x) {
             System.err.println(x);
@@ -5248,20 +4908,16 @@ public class TrumpWillTriump {
         split = saveFile.split("\\s+");
     }
 
-    //method used for saving to file
     private void save() {
-        //creating a way for data to be saved
         saveFile = wins + " " + loses + " ";
         for (int vertical = 0; vertical < 48; vertical++) {
             for (int horizontal = 0; horizontal < 64; horizontal++) {
                 saveFile += stateDisplay[vertical][horizontal] + " ";
             }
         }
-        //saveFile is converted to byte data
         byte data[] = saveFile.getBytes();
-        //byte data is saved to file using file io
         try (OutputStream out = new BufferedOutputStream(
-                Files.newOutputStream(file, WRITE, TRUNCATE_EXISTING))) {
+                Files.newOutputStream(FILE, WRITE, TRUNCATE_EXISTING))) {
             out.write(data, 0, data.length);
         } catch (IOException x) {
             System.err.println(x);
