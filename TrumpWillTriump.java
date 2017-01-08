@@ -1,15 +1,13 @@
 /**
- ***********************************************************************************************************************
  * Bailey Thompson
- * Trump Will Triump (1.3.3)
- * 24 December 2016
+ * Trump Will Triump (1.3.4)
+ * 8 January 2017
  * Info: You must play as Donald Trump to conquer the U.S.A. a state at a time by playing various mini-games. Each state
  * Info: has its own mini-game. If the mini-game is won, the state becomes Republican, and thus red. If the mini-game is
  * Info: lost,  the  state  becomes  Democrat, and thus blue. Since there are 50 states in the U.S.A., at the end of the
  * Info: game,  if  25  or  more  states  become Republican, you, Donald Trump, become president of the United States of
  * Info: America.  However,  if  less  than  25 states are won, you lose the race of presidency to Hillary Clinton, your
  * Info: rival. Let it be noted that Triump in "Trump Will Triump" was spelled as such on purpose.
- ***********************************************************************************************************************
  */
 package trumpwilltriump;
 
