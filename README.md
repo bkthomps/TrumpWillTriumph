@@ -1,2 +1,2 @@
 # TrumpWillTriump
-This was made in Java. It requires Java SE to play. The title was spelled like that on purpose. This is a game, and is not related to my political views.
+The user plays as trump and is presented a map of the U.S.A. which is composed of 50 states. The user must then tour each state. Each state has a mini-game in which the user must play. If the mini-game is won, the state becomes red for republican. If the state is lost, the state becomes blue for democrat. If by the end of the game, 25 or more states are red, the user wins and becomes president.
