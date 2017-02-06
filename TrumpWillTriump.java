@@ -1,7 +1,7 @@
 /**
  * Bailey Thompson
- * Trump Will Triump (1.3.5)
- * 14 January 2017
+ * Trump Will Triump (1.3.6)
+ * 5 February 2017
  * Info: You must play as Donald Trump to conquer the U.S.A. a state at a time by playing various mini-games. Each state
  * Info: has its own mini-game. If the mini-game is won, the state becomes Republican, and thus red. If the mini-game is
  * Info: lost,  the  state  becomes  Democrat, and thus blue. Since there are 50 states in the U.S.A., at the end of the
@@ -2296,15 +2296,11 @@ public class TrumpWillTriump {
             palindromeActual = false;
             palindromeUsed = false;
             String upper = palindromeWord.toUpperCase();
-            //going through all 208 palindromes and determining if it is on the list
-            for (int counter = 0; counter < 208; counter++) {
+            for (int counter = 0; counter < PALINDROME_LIBRARY.length; counter++) {
                 if (palindromeWord.equals(PALINDROME_LIBRARY[counter])) {
-                    //if the entered palindrome is on the list, and the one on the list is lowercase, it is a palindrome
                     palindromeActual = true;
-                    //setting palindrome on array list to upper case, so that it is not re-used
                     PALINDROME_LIBRARY[counter] = PALINDROME_LIBRARY[counter].toUpperCase();
                 } else if (upper.equals(PALINDROME_LIBRARY[counter])) {
-                    //if palindrome has already been used, used is set to true
                     palindromeUsed = true;
                 }
             }
