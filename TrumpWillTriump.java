@@ -1,4 +1,4 @@
-/**
+/*
  * Bailey Thompson
  * Trump Will Triump (1.3.6)
  * 5 February 2017
