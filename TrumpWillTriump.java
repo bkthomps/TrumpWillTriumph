@@ -57,7 +57,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
-class TrumpWillTriump {
+public class TrumpWillTriump {
 
     private static final String GAME_TITLE = "Trump Will Triump";
     private static final ImageIcon ICON_TRUMP = new ImageIcon("Assets/Trump.png");
