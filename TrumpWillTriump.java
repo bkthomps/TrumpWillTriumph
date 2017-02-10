@@ -1,7 +1,7 @@
 /*
  * Bailey Thompson
- * Trump Will Triump (1.4.0)
- * 7 February 2017
+ * Trump Will Triump (1.3.7)
+ * 9 February 2017
  * You must play as Donald Trump to conquer the U.S.A. a state at a time by playing various mini-games. Each state has
  * its own mini-game. If the mini-game is won, the state becomes Republican, and thus red. If the mini-game is lost, the
  * state becomes Democrat, and thus blue. Since there are 50 states in the U.S.A., at the end of the game, if 25 or more
