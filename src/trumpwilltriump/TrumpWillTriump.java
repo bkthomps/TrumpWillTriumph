@@ -260,8 +260,8 @@ class TrumpWillTriump {
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    int horizontalClickPosition = (e.getX()) / (getWidth() / 64);
-                    int verticalClickPosition = (e.getY()) / (getHeight() / 48);
+                    final int horizontalClickPosition = (e.getX()) / (getWidth() / 64);
+                    final int verticalClickPosition = (e.getY()) / (getHeight() / 48);
                     if (horizontalClickPosition >= 0 && horizontalClickPosition < 64
                             && verticalClickPosition >= 0 && verticalClickPosition < 48) {
                         touringState = stateDisplay[verticalClickPosition][horizontalClickPosition];
@@ -318,11 +318,11 @@ class TrumpWillTriump {
                         g2d.setColor(Color.RED);
                     } else if (stateDisplay[vertical][horizontal].stateStatusToInt() < 150
                             && stateDisplay[vertical][horizontal].stateStatusToInt() >= 100) {
-                        Color color = new Color(30, 144, 255);
+                        final Color color = new Color(30, 144, 255);
                         g2d.setColor(color);
                     } else if (stateDisplay[vertical][horizontal].stateStatusToInt() < 100
                             && stateDisplay[vertical][horizontal].stateStatusToInt() >= 50) {
-                        Color color = new Color(186, 85, 211);
+                        final Color color = new Color(186, 85, 211);
                         g2d.setColor(color);
                     }
                     g2d.fill(cell);
