@@ -18,7 +18,7 @@ class Sports {
 
     void sports() {
         doExposition();
-        setCursorImage();
+        setImageAndFrameSize();
         configureGUI();
         onMouseEvent();
     }
@@ -56,33 +56,34 @@ class Sports {
         TrumpWillTriump.displayExposition(exposition);
     }
 
-    private void setCursorImage() {
+    private void setImageAndFrameSize() {
         switch (TrumpWillTriump.touringState) {
             case NEUTRAL_COLORADO:
                 background = new JLabel(new ImageIcon("Assets/HockeyNet.png"));
                 frameState.setSize(303, 325);
-                frameState.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("Assets/"
-                        + "HockeyPuck.png").getImage(), new Point(0, 0), ""));
+                setCursor("Assets/HockeyPuck.png");
                 break;
             case NEUTRAL_MICHIGAN:
                 background = new JLabel(new ImageIcon("Assets/SoccerBackground.png"));
                 frameState.setSize(303, 325);
-                frameState.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("Assets/"
-                        + "SoccerBall.png").getImage(), new Point(0, 0), ""));
+                setCursor("Assets/SoccerBall.png");
                 break;
             case NEUTRAL_OHIO:
                 background = new JLabel(new ImageIcon("Assets/FootballPost.png"));
                 frameState.setSize(303, 325);
-                frameState.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("Assets/"
-                        + "Football.png").getImage(), new Point(0, 0), ""));
+                setCursor("Assets/Football.png");
                 break;
             case NEUTRAL_GEORGIA:
                 background = new JLabel(new ImageIcon("Assets/BasketballBackground.png"));
                 frameState.setSize(203, 325);
-                frameState.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("Assets/"
-                        + "Basketball.png").getImage(), new Point(0, 0), ""));
+                setCursor("Assets/Basketball.png");
                 break;
         }
+    }
+
+    private void setCursor(String cursorFile) {
+        frameState.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon(cursorFile).getImage(),
+                new Point(0, 0), ""));
     }
 
     private void onMouseEvent() {
