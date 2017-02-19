@@ -82,12 +82,14 @@ class Jeopardy {
         JButton games300 = new JButton("300");
         JButton games400 = new JButton("400");
         JButton games500 = new JButton("500");
-        JButton blank[];
-        blank = new JButton[20];
+        JButton blank[] = new JButton[20];
         for (int blankCounter = 0; blankCounter < blank.length; blankCounter++) {
             blank[blankCounter] = new JButton("       ");
             blank[blankCounter].setVisible(false);
         }
+
+        final int WIDTH = 5 * (int) science100.getPreferredSize().getWidth();
+        mainFrame.setSize(WIDTH, 400);
 
         science100.addActionListener((ActionEvent e) -> {
             science100.setVisible(false);
