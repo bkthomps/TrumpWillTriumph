@@ -70,8 +70,8 @@ class Shooting {
     }
 
     private void createCursorImage() {
-        frameState.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("Assets/"
-                + "GunCursor.png").getImage(), new Point(0, 0), ""));
+        final ImageIcon image = new ImageIcon("Assets/GunCursor.png");
+        frameState.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(image.getImage(), new Point(0, 0), ""));
     }
 
     private void mouseActions() {
