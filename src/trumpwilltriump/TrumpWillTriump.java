@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -51,12 +52,22 @@ class TrumpWillTriump {
     }
 
     private void startLogic() {
+        checkOperatingSystem();
         loadData();
         setSizeOfFrame();
         configureGUI();
         informUserIfNoStatesToTour();
         userClicksResetButton();
         userClicksTourButton();
+    }
+
+    private void checkOperatingSystem() {
+        final String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
+        if (OS.contains("nux")) {
+            errorAndExit("Linux is not currently supported. Only Windows and macOS are supported.");
+        } else if (!OS.contains("win") && !OS.contains("mac") && !OS.contains("darwin")) {
+            errorAndExit("Currently, only Windows and macOS are supported.");
+        }
     }
 
     private void loadData() {
@@ -80,10 +91,14 @@ class TrumpWillTriump {
         }
         guiDisplay = (int) (guiDisplay / 64.0) * 64;
         if (guiDisplay == 0) {
-            JOptionPane.showConfirmDialog(null, "Your monitor is too small to play! :(", GAME_TITLE,
-                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-            System.exit(0);
+            errorAndExit("Your Monitor Is Too Small.");
         }
+    }
+
+    private void errorAndExit(String errorText) {
+        JOptionPane.showConfirmDialog(null, "Critical Error:\n" + errorText + "\nShutting Down.", GAME_TITLE,
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        System.exit(0);
     }
 
     private void configureGUI() {
