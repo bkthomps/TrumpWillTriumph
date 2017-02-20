@@ -60,8 +60,8 @@ class Fishing {
     }
 
     private void configureCursorImage() {
-        frameState.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("Assets/"
-                + "FishingCursor.png").getImage(), new Point(0, 0), ""));
+        final ImageIcon image = new ImageIcon("Assets/FishingCursor.png");
+        frameState.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(image.getImage(), new Point(0, 0), ""));
     }
 
     private void doMouseActions() {
