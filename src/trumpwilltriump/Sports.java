@@ -82,8 +82,8 @@ class Sports {
     }
 
     private void setCursor(String cursorFile) {
-        frameState.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon(cursorFile).getImage(),
-                new Point(0, 0), ""));
+        final ImageIcon image = new ImageIcon(cursorFile);
+        frameState.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(image.getImage(), new Point(0, 0), ""));
     }
 
     private void onMouseEvent() {
