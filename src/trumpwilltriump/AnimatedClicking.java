@@ -134,12 +134,8 @@ class AnimatedClicking {
 
     private void idahoAnimate() {
         incrementClickCountIfLessThanInputValue(49);
-        if (clickCount > 0 && clickCount <= 16) {
-            background.setIcon(new ImageIcon("Assets/Potato" + clickCount + ".png"));
-        } else if (clickCount > 16 && clickCount <= 32) {
-            background.setIcon(new ImageIcon("Assets/Potato" + (clickCount - 16) + ".png"));
-        } else if (clickCount > 32 && clickCount <= 48) {
-            background.setIcon(new ImageIcon("Assets/Potato" + (clickCount - 32) + ".png"));
+        if (clickCount > 0 && clickCount <= 48) {
+            background.setIcon(new ImageIcon("Assets/Potato" + (clickCount % 16 + 1) + ".png"));
         } else {
             endGameAndWinIfTotalTimeIsLessThanInputValueInSeconds(12);
         }
@@ -156,10 +152,8 @@ class AnimatedClicking {
 
     private void wisconsinAnimate() {
         incrementClickCountIfLessThanInputValue(62);
-        if (clickCount > 0 && clickCount <= 30) {
-            background.setIcon(new ImageIcon("Assets/Churn" + clickCount + ".png"));
-        } else if (clickCount > 30 && clickCount <= 60) {
-            background.setIcon(new ImageIcon("Assets/Churn" + (clickCount - 30) + ".png"));
+        if (clickCount > 0 && clickCount <= 60) {
+            background.setIcon(new ImageIcon("Assets/Churn" + (clickCount % 30 + 1) + ".png"));
         } else {
             endGameAndWinIfTotalTimeIsLessThanInputValueInSeconds(15);
         }
