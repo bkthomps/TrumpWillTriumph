@@ -39,12 +39,15 @@ class TrumpWillTriump {
 
     static StateStatus touringState;
 
+    private static final int MAP_VERTICAL_TILES = 48;
+    private static final int MAP_HORIZONTAL_TILES = 64;
+
     private static final JFrame frame = new JFrame(GAME_TITLE);
     private static final JLabel bottomText = new JLabel("     Select a state to tour     ");
     private static final JButton tour = new JButton("Tour");
     private static final JButton reset = new JButton("Reset");
 
-    private static final StateStatus[][] stateDisplay = new StateStatus[48][64];
+    private static final StateStatus[][] stateDisplay = new StateStatus[MAP_VERTICAL_TILES][MAP_HORIZONTAL_TILES];
     private static int guiDisplay, wins, loses;
 
     public static void main(String[] args) {
@@ -75,10 +78,12 @@ class TrumpWillTriump {
         final String[] split = SaveOrLoad.load();
         wins = Integer.parseInt(split[0]);
         loses = Integer.parseInt(split[1]);
-        for (int vertical = 0; vertical < 48; vertical++) {
-            for (int horizontal = 0; horizontal < 64; horizontal++) {
-                stateDisplay[vertical][horizontal] =
-                        StateStatus.intToStateStatus(Integer.parseInt(split[horizontal + vertical * 64 + 2]));
+        for (int vertical = 0; vertical < MAP_VERTICAL_TILES; vertical++) {
+            for (int horizontal = 0; horizontal < MAP_HORIZONTAL_TILES; horizontal++) {
+                final int START_OF_MAP_DATA = 2;
+                final int mapIndex = horizontal + vertical * MAP_HORIZONTAL_TILES + START_OF_MAP_DATA;
+                final int stateStatus = Integer.parseInt(split[mapIndex]);
+                stateDisplay[vertical][horizontal] = StateStatus.intToStateStatus(stateStatus);
             }
         }
     }
@@ -90,7 +95,7 @@ class TrumpWillTriump {
         } else {
             guiDisplay = (int) (screenSize.getHeight() * 0.8);
         }
-        guiDisplay = (int) (guiDisplay / 64.0) * 64;
+        guiDisplay = (int) (guiDisplay / (double) MAP_HORIZONTAL_TILES) * MAP_HORIZONTAL_TILES;
         if (guiDisplay == 0) {
             errorAndExit("Your Monitor Is Too Small.");
         }
@@ -272,14 +277,14 @@ class TrumpWillTriump {
         private final List<Rectangle> cells;
 
         GridPane() {
-            cells = new ArrayList<>(48 * 64);
+            cells = new ArrayList<>(MAP_VERTICAL_TILES * MAP_HORIZONTAL_TILES);
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    final int horizontalClickPosition = (e.getX()) / (getWidth() / 64);
-                    final int verticalClickPosition = (e.getY()) / (getHeight() / 48);
-                    if (horizontalClickPosition >= 0 && horizontalClickPosition < 64
-                            && verticalClickPosition >= 0 && verticalClickPosition < 48) {
+                    final int horizontalClickPosition = (e.getX()) / (getWidth() / MAP_HORIZONTAL_TILES);
+                    final int verticalClickPosition = (e.getY()) / (getHeight() / MAP_VERTICAL_TILES);
+                    if (horizontalClickPosition >= 0 && horizontalClickPosition < MAP_HORIZONTAL_TILES
+                            && verticalClickPosition >= 0 && verticalClickPosition < MAP_VERTICAL_TILES) {
                         touringState = stateDisplay[verticalClickPosition][horizontalClickPosition];
                         final int currentState = touringState.stateStatusToInt();
                         if (currentState >= 50 && currentState < 100) {
@@ -308,24 +313,20 @@ class TrumpWillTriump {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g.create();
-            final int cellWidth = getWidth() / 64;
-            final int cellHeight = getHeight() / 48;
+            final int cellWidth = getWidth() / MAP_HORIZONTAL_TILES;
+            final int cellHeight = getHeight() / MAP_VERTICAL_TILES;
             if (cells.isEmpty()) {
-                for (int row = 0; row < 48; row++) {
-                    for (int col = 0; col < 64; col++) {
-                        Rectangle cell = new Rectangle(
-                                +(col * cellWidth),
-                                +(row * cellHeight),
-                                cellWidth,
-                                cellHeight);
+                for (int row = 0; row < MAP_VERTICAL_TILES; row++) {
+                    for (int col = 0; col < MAP_HORIZONTAL_TILES; col++) {
+                        final Rectangle cell = new Rectangle(col * cellWidth, row * cellHeight, cellWidth, cellHeight);
                         cells.add(cell);
                     }
                 }
             }
 
-            for (int vertical = 0; vertical < 48; vertical++) {
-                for (int horizontal = 0; horizontal < 64; horizontal++) {
-                    Rectangle cell = cells.get(horizontal + vertical * 64);
+            for (int vertical = 0; vertical < MAP_VERTICAL_TILES; vertical++) {
+                for (int horizontal = 0; horizontal < MAP_HORIZONTAL_TILES; horizontal++) {
+                    Rectangle cell = cells.get(horizontal + vertical * MAP_HORIZONTAL_TILES);
                     if (stateDisplay[vertical][horizontal] == StateStatus.WHITE_SQUARE) {
                         g2d.setColor(Color.WHITE);
                     } else if (stateDisplay[vertical][horizontal] == StateStatus.BLACK_SQUARE) {
@@ -384,12 +385,11 @@ class TrumpWillTriump {
         final int REPUBLICAN_WIN = 100;
         final int DEMOCRAT_WIN = 50;
         final int currentWin = (isRepublicanWin) ? (REPUBLICAN_WIN) : (DEMOCRAT_WIN);
-        for (int vertical = 0; vertical < 48; vertical++) {
-            for (int horizontal = 0; horizontal < 64; horizontal++) {
+        for (int vertical = 0; vertical < MAP_VERTICAL_TILES; vertical++) {
+            for (int horizontal = 0; horizontal < MAP_HORIZONTAL_TILES; horizontal++) {
                 if (stateDisplay[vertical][horizontal] == touringState) {
-                    stateDisplay[vertical][horizontal] =
-                            StateStatus.intToStateStatus(currentWin
-                                    + stateDisplay[vertical][horizontal].stateStatusToInt());
+                    final int stateStatus = currentWin + stateDisplay[vertical][horizontal].stateStatusToInt();
+                    stateDisplay[vertical][horizontal] = StateStatus.intToStateStatus(stateStatus);
                 }
             }
         }

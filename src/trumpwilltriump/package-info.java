@@ -1,6 +1,6 @@
 /**
  * Bailey Thompson <br>
- * Trump Will Triump (1.4.3) <br>
+ * Trump Will Triump (1.4.4) <br>
  * 18 April 2017 <br>
  * <br>
  * You must play as Donald Trump to conquer the USA a state at a time by playing various mini-games.&nbsp;Each state has
