@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 /**
  * Creates the map of the USA, and performs actions based on how the user interacts with the map. The user can tour by
@@ -102,7 +103,7 @@ class TrumpWillTriump {
     }
 
     private void configureGUI() {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLayout(new BorderLayout());
         frame.add(new GridPane());
@@ -127,9 +128,9 @@ class TrumpWillTriump {
     private void userClicksResetButton() {
         reset.addActionListener((ActionEvent e) -> {
             frame.setVisible(false);
-            final int CHECK = customText("DO YOU REALLY WANT TO RESET ALL DATA?\nTHIS MEANS THAT ALL DATA WILL BE "
+            final int check = customText("DO YOU REALLY WANT TO RESET ALL DATA?\nTHIS MEANS THAT ALL DATA WILL BE "
                     + "RESET TO DEFAULT", new String[]{"Reset", "Back"});
-            if (CHECK == 0) {
+            if (check == 0) {
                 try {
                     Files.delete(FILE);
                 } catch (IOException x) {
@@ -280,8 +281,8 @@ class TrumpWillTriump {
                     if (horizontalClickPosition >= 0 && horizontalClickPosition < 64
                             && verticalClickPosition >= 0 && verticalClickPosition < 48) {
                         touringState = stateDisplay[verticalClickPosition][horizontalClickPosition];
-                        final int STATE_VALUE = touringState.stateStatusToInt();
-                        if (STATE_VALUE >= 50 && STATE_VALUE < 100) {
+                        final int currentState = touringState.stateStatusToInt();
+                        if (currentState >= 50 && currentState < 100) {
                             final String[] STATES = {"Alaska", "Hawaii", "Washington", "Oregon", "California", "Idaho",
                                     "Nevada", "Utah", "Arizona", "Montana", "Wyoming", "Colorado", "New Mexico",
                                     "North Dakota", "South Dakota", "Nebraska", "Kansas", "Oklahoma", "Texas",
@@ -291,7 +292,7 @@ class TrumpWillTriump {
                                     "North Carolina", "South Carolina", "Maine", "Vermont", "New Hampshire",
                                     "Massachusetts", "Rhode Island", "Connecticut", "New Jersey", "Delaware",
                                     "Maryland"};
-                            bottomText.setText("     Tour " + STATES[STATE_VALUE - 50] + "?     ");
+                            bottomText.setText("     Tour " + STATES[currentState - 50] + "?     ");
                         }
                     }
                 }
@@ -307,16 +308,16 @@ class TrumpWillTriump {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g.create();
-            final int CELL_WIDTH = getWidth() / 64;
-            final int CELL_HEIGHT = getHeight() / 48;
+            final int cellWidth = getWidth() / 64;
+            final int cellHeight = getHeight() / 48;
             if (cells.isEmpty()) {
                 for (int row = 0; row < 48; row++) {
                     for (int col = 0; col < 64; col++) {
                         Rectangle cell = new Rectangle(
-                                +(col * CELL_WIDTH),
-                                +(row * CELL_HEIGHT),
-                                CELL_WIDTH,
-                                CELL_HEIGHT);
+                                +(col * cellWidth),
+                                +(row * cellHeight),
+                                cellWidth,
+                                cellHeight);
                         cells.add(cell);
                     }
                 }
@@ -382,12 +383,12 @@ class TrumpWillTriump {
     private static void miniGameDone(boolean isRepublicanWin, String message) {
         final int REPUBLICAN_WIN = 100;
         final int DEMOCRAT_WIN = 50;
-        final int CURRENT_WIN = (isRepublicanWin) ? (REPUBLICAN_WIN) : (DEMOCRAT_WIN);
+        final int currentWin = (isRepublicanWin) ? (REPUBLICAN_WIN) : (DEMOCRAT_WIN);
         for (int vertical = 0; vertical < 48; vertical++) {
             for (int horizontal = 0; horizontal < 64; horizontal++) {
                 if (stateDisplay[vertical][horizontal] == touringState) {
                     stateDisplay[vertical][horizontal] =
-                            StateStatus.intToStateStatus(CURRENT_WIN
+                            StateStatus.intToStateStatus(currentWin
                                     + stateDisplay[vertical][horizontal].stateStatusToInt());
                 }
             }

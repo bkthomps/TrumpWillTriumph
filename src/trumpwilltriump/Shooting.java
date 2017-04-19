@@ -8,6 +8,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  * If the user successfully shoots the target animal, the user wins. Else, the user loses.
@@ -46,7 +47,7 @@ class Shooting {
     }
 
     private void configureGUI() {
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel background = null;
         switch (TrumpWillTriump.touringState) {

@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  * The user is presented with randomly generated gambling imagery, if three identical images appear in a row, the user
@@ -33,7 +34,7 @@ class Gambling {
     }
 
     private void configureGUI() {
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         frameState.setLayout(new GridLayout(3, 3));
         for (int counter = 0; counter < background.length; counter++) {

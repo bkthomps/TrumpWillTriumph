@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 /**
  * The user must use logic to determine which choice to bet on. If the user picked the best option, and is lucky, the
@@ -43,7 +44,7 @@ class Racing {
 
     private void configureGUI() {
         JFrame frameState = new JFrame(TrumpWillTriump.GAME_TITLE);
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
         JLabel info = new JLabel("Select What To Bet On - Success Chance");

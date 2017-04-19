@@ -29,10 +29,10 @@ class SaveOrLoad {
                     saveFile = line;
                 }
             } catch (IOException e) {
-                System.err.println("Error 1 in load method");
+                System.err.println("Error in SaveOrLoad.load: could not open file.");
             }
         } catch (IOException x) {
-            System.err.println("Error 2 in load method");
+            System.err.println("Error in SaveOrLoad.load: could not create file.");
         } finally {
             if (isFileNonExistent(saveFile)) {
                 saveFile = defaultFile();
@@ -156,7 +156,7 @@ class SaveOrLoad {
                 Files.newOutputStream(TrumpWillTriump.FILE, WRITE, TRUNCATE_EXISTING))) {
             out.write(data, 0, data.length);
         } catch (IOException x) {
-            System.err.println("Error in save method");
+            System.err.println("Error in SaveOrLoad.save: could not open or write to file.");
         }
     }
 }

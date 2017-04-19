@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  * The user must cast a rod, and afterwards pulling the rod back in. If the rod is out for long enough, the user wins.
@@ -43,7 +44,7 @@ class Fishing {
 
     private void configureGUI() {
         JLabel background;
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
         if (TrumpWillTriump.touringState == StateStatus.NEUTRAL_MINNESOTA) {

@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  * The user must pick the best speech options to deliver at the Trump rally. If the user does so, the user wins. Else,
@@ -28,7 +29,7 @@ class Rally {
 
     private void configureGUI() {
         TrumpWillTriump.hideMap();
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         frameState.add(background, BorderLayout.NORTH);
         frameState.add(optionOne, BorderLayout.CENTER);
