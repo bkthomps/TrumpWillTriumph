@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
+import javax.swing.WindowConstants;
 
 /**
  * The user must successfully determine the number combination. If the user does so, the user wins. If the user fails to
@@ -47,7 +48,7 @@ class Recall {
     }
 
     private void configureGUI() {
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
         for (int counter = 0; counter < slider.length; counter++) {

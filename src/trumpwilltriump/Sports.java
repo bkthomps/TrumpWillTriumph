@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  * If the user is able to land the ball or puck into the net, the user wins. Else, the user loses.
@@ -24,7 +25,7 @@ class Sports {
     }
 
     private void configureGUI() {
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         frameState.setResizable(false);
         frameState.add(background);

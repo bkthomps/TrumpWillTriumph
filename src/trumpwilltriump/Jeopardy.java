@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 /**
  * The user must answer five questions in each of the four categories. If the user gets enough points, the user wins.
@@ -36,7 +37,7 @@ class Jeopardy {
         mainFrame.setLayout(new GridLayout(9, 1));
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setResizable(false);
 
         final JLabel headerLabel = new JLabel("Jeopardy", JLabel.CENTER);

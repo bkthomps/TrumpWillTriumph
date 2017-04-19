@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  * The user must click on an image under a certain amount of times to win. If the user takes too long, the user loses.
@@ -44,7 +45,7 @@ class Clicking {
 
     private void configureGUI() {
         JLabel background = null;
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         switch (TrumpWillTriump.touringState) {
             case NEUTRAL_HAWAII:

@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 /**
  * The user is presented with a variety of techniques to torture an inmate. The user can quit at any time. If an inmate
@@ -39,7 +40,7 @@ class AgencyCIA {
     }
 
     private void configureGUI() {
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
         JPanel buttonPanel = new JPanel();

@@ -7,6 +7,7 @@ import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  * The user must successfully type in the correct keys. If the user does so, the user wins. Else, the user loses.
@@ -49,7 +50,7 @@ class Skiing {
     }
 
     private void configureGUI() {
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         frameState.add(image);
         frameState.setSize(303, 325);

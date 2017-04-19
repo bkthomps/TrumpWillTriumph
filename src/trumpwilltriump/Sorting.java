@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 /**
  * If the user is able to determine which type of sorting was used, the user wins. Else, the user loses.
@@ -118,7 +119,7 @@ class Sorting {
     }
 
     private void configureGUI() {
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
         JLabel label = new JLabel(sortingLine);

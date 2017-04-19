@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  * The user must box with Hillary Clinton. To achieve a combo, two jabs must be performed, followed by one hook. If the
@@ -27,7 +28,7 @@ class Boxing {
 
     private void configureGUI() {
         TrumpWillTriump.hideMap();
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         frameState.add(background);
         frameState.setSize(353, 275);

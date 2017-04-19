@@ -16,8 +16,8 @@ class Barbecue {
     }
 
     private void determineIfUserWins() {
-        final int NUMBER = (int) (Math.random() * 10);
-        if (NUMBER != 0) {
+        final int number = (int) (Math.random() * 10);
+        if (number != 0) {
             TrumpWillTriump.win();
         } else {
             TrumpWillTriump.lose();

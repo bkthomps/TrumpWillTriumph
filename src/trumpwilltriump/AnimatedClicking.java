@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  * The user is presented with an image that changes frames on each click. If the user clicks a certain amount of times
@@ -63,7 +64,7 @@ class AnimatedClicking {
     }
 
     private void configureGUI() {
-        frameState.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         background = new JLabel(new ImageIcon(startingImage));
         frameState.add(background);
