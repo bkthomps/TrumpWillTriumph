@@ -361,7 +361,7 @@ class Jeopardy {
                         400);
                 break;
             case 2:
-                operateUserInput("What is the family name of group 18 on the periodic table?", "noblegas(ses)?",
+                operateUserInput("What is the family name of group 18 on the periodic table?", "noblegas((s)?es)?",
                         "Noble Gasses", 400);
                 break;
             case 3:
@@ -521,8 +521,8 @@ class Jeopardy {
                         "2012", "2012", 100);
                 break;
             case 3:
-                operateUserInput("The year the first black president was elected out of American Parliamentary power?",
-                        "2016", "2016", 100);
+                operateUserInput("The year the first black president handed over American Parliamentary power?", "2017",
+                        "2017", 100);
                 break;
             case 4:
                 operateUserInput("What year was Canada founded?", "1867", "1867", 100);
