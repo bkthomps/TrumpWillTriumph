@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -20,9 +20,9 @@ class SaveOrLoad {
     static String[] load() {
         String saveFile = null;
         try {
-            Files.createFile(TrumpWillTriump.FILE);
+            Files.createFile(CallOfDemocracy.FILE);
         } catch (FileAlreadyExistsException x) {
-            try (InputStream in = Files.newInputStream(TrumpWillTriump.FILE);
+            try (InputStream in = Files.newInputStream(CallOfDemocracy.FILE);
                  BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
@@ -153,7 +153,7 @@ class SaveOrLoad {
         }
         byte data[] = saveFile.getBytes();
         try (OutputStream out = new BufferedOutputStream(
-                Files.newOutputStream(TrumpWillTriump.FILE, WRITE, TRUNCATE_EXISTING))) {
+                Files.newOutputStream(CallOfDemocracy.FILE, WRITE, TRUNCATE_EXISTING))) {
             out.write(data, 0, data.length);
         } catch (IOException x) {
             System.err.println("Error in SaveOrLoad.save: could not open or write to file.");

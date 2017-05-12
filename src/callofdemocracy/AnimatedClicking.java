@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
@@ -14,7 +14,7 @@ import javax.swing.WindowConstants;
  */
 class AnimatedClicking {
 
-    private final JFrame frameState = new JFrame(TrumpWillTriump.GAME_TITLE);
+    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
     private JLabel background;
 
     private int guiWidth, guiHeight, clickCount;
@@ -29,7 +29,7 @@ class AnimatedClicking {
 
     private void doExposition() {
         String exposition = "ERROR";
-        switch (TrumpWillTriump.touringState) {
+        switch (CallOfDemocracy.touringState) {
             case NEUTRAL_CALIFORNIA:
                 exposition = "Mr. Trump, California loves surfing, so to win their vote, just left\nclick on the surf "
                         + "board as fast as you can to clean it! If you do\nit fast enough, they surely will see us "
@@ -60,7 +60,7 @@ class AnimatedClicking {
                 guiHeight = 346;
                 break;
         }
-        TrumpWillTriump.displayExposition(exposition);
+        CallOfDemocracy.displayExposition(exposition);
     }
 
     private void configureGUI() {
@@ -70,7 +70,7 @@ class AnimatedClicking {
         frameState.add(background);
         frameState.setSize(guiWidth, guiHeight);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
+        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
         frameState.setVisible(true);
         startTime = System.nanoTime();
     }
@@ -108,7 +108,7 @@ class AnimatedClicking {
     }
 
     private void dispatchAnimation() {
-        switch (TrumpWillTriump.touringState) {
+        switch (CallOfDemocracy.touringState) {
             case NEUTRAL_CALIFORNIA:
                 californiaAnimate();
                 break;
@@ -171,9 +171,9 @@ class AnimatedClicking {
         final int NANOSECONDS_PER_SECOND = 1000000000;
         final long totalTime = (System.nanoTime() - startTime) / NANOSECONDS_PER_SECOND;
         if (totalTime < inputValueInSeconds) {
-            TrumpWillTriump.win();
+            CallOfDemocracy.win();
         } else {
-            TrumpWillTriump.lose();
+            CallOfDemocracy.lose();
         }
     }
 }

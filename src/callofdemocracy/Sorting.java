@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,7 +19,7 @@ class Sorting {
     private SortingType sortingType;
     private String sortingLine;
 
-    private final JFrame frameState = new JFrame(TrumpWillTriump.GAME_TITLE);
+    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
     private final JButton bubbleSort = new JButton("Bubble Sort");
     private final JButton selectionSort = new JButton("Selection Sort");
     private final JButton insertionSort = new JButton("InsertionSort");
@@ -34,7 +34,7 @@ class Sorting {
     }
 
     private void doExposition() {
-        TrumpWillTriump.displayExposition("Mr. Trump, to test your skill, given the steps produced by\na random "
+        CallOfDemocracy.displayExposition("Mr. Trump, to test your skill, given the steps produced by\na random "
                 + "sorting algorithm, pick which one was used.");
     }
 
@@ -134,7 +134,7 @@ class Sorting {
         frameState.add(sortingPanel);
         frameState.pack();
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
+        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
@@ -148,9 +148,9 @@ class Sorting {
         bubbleSort.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if (sortingType == SortingType.BUBBLE) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
     }
@@ -159,9 +159,9 @@ class Sorting {
         selectionSort.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if (sortingType == SortingType.SELECTION) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
     }
@@ -170,9 +170,9 @@ class Sorting {
         insertionSort.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if (sortingType == SortingType.INSERTION) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
     }

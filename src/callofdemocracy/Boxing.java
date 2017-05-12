@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
@@ -14,7 +14,7 @@ import javax.swing.WindowConstants;
  */
 class Boxing {
 
-    private final JFrame frameState = new JFrame(TrumpWillTriump.GAME_TITLE);
+    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
     private final JLabel background = new JLabel(new ImageIcon("Assets/BoxingTitle.png"));
 
     private boolean matchStarted;
@@ -27,13 +27,13 @@ class Boxing {
     }
 
     private void configureGUI() {
-        TrumpWillTriump.hideMap();
+        CallOfDemocracy.hideMap();
         frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         frameState.add(background);
         frameState.setSize(353, 275);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
+        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
         frameState.setVisible(true);
         startTime = System.nanoTime();
     }
@@ -129,7 +129,7 @@ class Boxing {
     private void loseIfTrumpIsDead() {
         if (trumpDamage > 50) {
             frameState.setVisible(false);
-            TrumpWillTriump.lose();
+            CallOfDemocracy.lose();
         }
     }
 
@@ -143,7 +143,7 @@ class Boxing {
             hillaryDamage = 200;
         } else if (isGameOver()) {
             frameState.setVisible(false);
-            TrumpWillTriump.win();
+            CallOfDemocracy.win();
         }
     }
 

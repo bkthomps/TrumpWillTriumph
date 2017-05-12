@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -21,7 +21,7 @@ class Racing {
 
     private void doExposition() {
         String exposition = "ERROR";
-        switch (TrumpWillTriump.touringState) {
+        switch (CallOfDemocracy.touringState) {
             case NEUTRAL_MONTANA:
                 exposition = "Mr. Trump, Montana loves horse racing, so to win their vote,\nbet on a horse. This will "
                         + "be during a four horse race.";
@@ -39,11 +39,11 @@ class Racing {
                         + "during a four car race.";
                 break;
         }
-        TrumpWillTriump.displayExposition(exposition);
+        CallOfDemocracy.displayExposition(exposition);
     }
 
     private void configureGUI() {
-        JFrame frameState = new JFrame(TrumpWillTriump.GAME_TITLE);
+        JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
         frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
@@ -67,7 +67,7 @@ class Racing {
 
         JPanel buttonPanel1 = new JPanel();
         JPanel buttonPanel2 = new JPanel();
-        switch (TrumpWillTriump.touringState) {
+        switch (CallOfDemocracy.touringState) {
             case NEUTRAL_MONTANA:
                 buttonPanel1.add(horse87);
                 buttonPanel1.add(horse17);
@@ -99,135 +99,135 @@ class Racing {
         frameState.add(buttonPanel2, BorderLayout.SOUTH);
         frameState.pack();
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
+        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
         frameState.setVisible(true);
 
         horse87.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 8.33) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         horse17.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 11.11) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         horse65.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 14.29) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         horse37.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 1.39) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         boat12.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 1.56) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         boat16.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 33.33) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         boat56.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 4.35) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         boat37.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 10) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         car45.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 5.56) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         car11.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 7.14) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         car23.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 1.61) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         car73.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 16.67) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         car71.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 4.76) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         car87.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 1.79) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         car12.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 12.5) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
         car36.addActionListener((ActionEvent e) -> {
             frameState.setVisible(false);
             if ((int) (Math.random() * 6.67) == 0) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         });
     }

@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -14,7 +14,7 @@ import javax.swing.WindowConstants;
  */
 class Rally {
 
-    private final JFrame frameState = new JFrame(TrumpWillTriump.GAME_TITLE);
+    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
     private final JLabel background = new JLabel(new ImageIcon("Assets/IowaBackground.png"));
     private final JButton optionOne = new JButton("How stupid are the people of Iowa");
     private final JButton optionTwo = new JButton("I love the people of Iowa");
@@ -28,7 +28,7 @@ class Rally {
     }
 
     private void configureGUI() {
-        TrumpWillTriump.hideMap();
+        CallOfDemocracy.hideMap();
         frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         frameState.add(background, BorderLayout.NORTH);
@@ -36,7 +36,7 @@ class Rally {
         frameState.add(optionTwo, BorderLayout.SOUTH);
         frameState.setSize(348, 310);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
+        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
@@ -74,9 +74,9 @@ class Rally {
                 score = (buttonNumber == 1) ? (score + 1) : (score - 1);
                 frameState.setVisible(false);
                 if (score >= 5) {
-                    TrumpWillTriump.win();
+                    CallOfDemocracy.win();
                 } else {
-                    TrumpWillTriump.lose();
+                    CallOfDemocracy.lose();
                 }
                 break;
         }

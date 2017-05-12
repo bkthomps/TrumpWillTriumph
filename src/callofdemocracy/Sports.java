@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -14,7 +14,7 @@ import javax.swing.WindowConstants;
  */
 class Sports {
 
-    private final JFrame frameState = new JFrame(TrumpWillTriump.GAME_TITLE);
+    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
     private JLabel background;
 
     void sports() {
@@ -30,13 +30,13 @@ class Sports {
         frameState.setResizable(false);
         frameState.add(background);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
+        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
     private void doExposition() {
         String exposition = "ERROR";
-        switch (TrumpWillTriump.touringState) {
+        switch (CallOfDemocracy.touringState) {
             case NEUTRAL_COLORADO:
                 exposition = "Mr. Trump, Colorado likes hockey. To gain their vote, get\na ball in net on a free shot. "
                         + "To do this click swipe and release.";
@@ -54,11 +54,11 @@ class Sports {
                         + "throw. To do this click swipe and release.";
                 break;
         }
-        TrumpWillTriump.displayExposition(exposition);
+        CallOfDemocracy.displayExposition(exposition);
     }
 
     private void setImageAndFrameSize() {
-        switch (TrumpWillTriump.touringState) {
+        switch (CallOfDemocracy.touringState) {
             case NEUTRAL_COLORADO:
                 background = new JLabel(new ImageIcon("Assets/HockeyNet.png"));
                 frameState.setSize(303, 325);
@@ -118,11 +118,11 @@ class Sports {
                 }
                 frameState.setVisible(false);
                 if (win) {
-                    TrumpWillTriump.customText("Mr. Trump, you scored!");
-                    TrumpWillTriump.win();
+                    CallOfDemocracy.customText("Mr. Trump, you scored!");
+                    CallOfDemocracy.win();
                 } else {
-                    TrumpWillTriump.customText("Mr. Trump, you missed...");
-                    TrumpWillTriump.lose();
+                    CallOfDemocracy.customText("Mr. Trump, you missed...");
+                    CallOfDemocracy.lose();
                 }
             }
 
@@ -145,7 +145,7 @@ class Sports {
 
     private boolean didUserScore(int startX, int startY) {
         boolean ret = false;
-        switch (TrumpWillTriump.touringState) {
+        switch (CallOfDemocracy.touringState) {
             case NEUTRAL_COLORADO:
                 if (startX > 65 && startX < 225 && startY > 20 && startY < 110) {
                     ret = true;

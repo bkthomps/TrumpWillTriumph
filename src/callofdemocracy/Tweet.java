@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import javax.swing.JOptionPane;
 
@@ -18,10 +18,10 @@ class Tweet {
     }
 
     private void getInitialTweet() {
-        TrumpWillTriump.hideMap();
+        CallOfDemocracy.hideMap();
         sentence = JOptionPane.showInputDialog(null, "Mr. Trump, Oklahoma is considered the least intelligent state,"
                 + "\nI'm sure that if we just wrote a sponsored tweet in their area,\nthey would vote for us since "
-                + "most of them are republican anyways.", TrumpWillTriump.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
+                + "most of them are republican anyways.", CallOfDemocracy.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
         checkIfUserExit();
     }
 
@@ -34,11 +34,11 @@ class Tweet {
     private void invalidOriginalTweet() {
         while (sentence.length() > 140 || sentence.length() == 0) {
             if (sentence.length() == 0) {
-                sentence = JOptionPane.showInputDialog(null, "You must write something.", TrumpWillTriump.GAME_TITLE,
+                sentence = JOptionPane.showInputDialog(null, "You must write something.", CallOfDemocracy.GAME_TITLE,
                         JOptionPane.PLAIN_MESSAGE);
             } else if (sentence.length() > 140) {
                 sentence = JOptionPane.showInputDialog(null, "Length cannot exceed 140 characters.",
-                        TrumpWillTriump.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
+                        CallOfDemocracy.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
             }
             checkIfUserExit();
         }
@@ -47,9 +47,9 @@ class Tweet {
     private void checkIfUserWins() {
         final int NUMBER = (int) (Math.random() * 10);
         if (NUMBER != 0) {
-            TrumpWillTriump.win();
+            CallOfDemocracy.win();
         } else {
-            TrumpWillTriump.lose();
+            CallOfDemocracy.lose();
         }
     }
 }

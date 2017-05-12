@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -17,7 +17,7 @@ import javax.swing.WindowConstants;
  */
 class Jeopardy {
 
-    private final JFrame mainFrame = new JFrame(TrumpWillTriump.GAME_TITLE);
+    private final JFrame mainFrame = new JFrame(CallOfDemocracy.GAME_TITLE);
     private final JPanel pointCategory100 = new JPanel();
     private final JPanel pointCategory200 = new JPanel();
     private final JPanel pointCategory300 = new JPanel();
@@ -31,12 +31,12 @@ class Jeopardy {
     void jeopardyPrepareGUI() {
         final String exposition = "Mr. Trump, we have a Jeopardy game prepared for you to test you.\nYou need at least "
                 + "1000 points to win the state.";
-        TrumpWillTriump.displayExposition(exposition);
+        CallOfDemocracy.displayExposition(exposition);
 
         mainFrame.setSize(300, 400);
         mainFrame.setLayout(new GridLayout(9, 1));
         mainFrame.setLocationRelativeTo(null);
-        mainFrame.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
+        mainFrame.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setResizable(false);
 
@@ -280,9 +280,9 @@ class Jeopardy {
         if (click == 20) {
             mainFrame.setVisible(false);
             if (score >= 1000) {
-                TrumpWillTriump.win();
+                CallOfDemocracy.win();
             } else {
-                TrumpWillTriump.lose();
+                CallOfDemocracy.lose();
             }
         }
     }
@@ -746,7 +746,7 @@ class Jeopardy {
     }
 
     private void operateUserInput(String question, String answer, String sampleAnswer, int scoreAdd) {
-        String userAnswer = JOptionPane.showInputDialog(null, question, TrumpWillTriump.GAME_TITLE,
+        String userAnswer = JOptionPane.showInputDialog(null, question, CallOfDemocracy.GAME_TITLE,
                 JOptionPane.PLAIN_MESSAGE);
         if (userAnswer == null) {
             userAnswer = "";

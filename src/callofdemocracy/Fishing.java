@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -16,7 +16,7 @@ import javax.swing.WindowConstants;
  */
 class Fishing {
 
-    private final JFrame frameState = new JFrame(TrumpWillTriump.GAME_TITLE);
+    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
 
     void fishing() {
         doExposition();
@@ -27,7 +27,7 @@ class Fishing {
 
     private void doExposition() {
         String exposition = "ERROR";
-        switch (TrumpWillTriump.touringState) {
+        switch (CallOfDemocracy.touringState) {
             case NEUTRAL_MINNESOTA:
                 exposition = "Mr. Trump, ice fishing would greatly improve your success in\nMinnesota. Left click to "
                         + "throw your line out, right click to bring\nit back in. You only get one cast. The longer "
@@ -39,7 +39,7 @@ class Fishing {
                         + "line is\nout, the higher chance you have of catching something.";
                 break;
         }
-        TrumpWillTriump.displayExposition(exposition);
+        CallOfDemocracy.displayExposition(exposition);
     }
 
     private void configureGUI() {
@@ -47,7 +47,7 @@ class Fishing {
         frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
-        if (TrumpWillTriump.touringState == StateStatus.NEUTRAL_MINNESOTA) {
+        if (CallOfDemocracy.touringState == StateStatus.NEUTRAL_MINNESOTA) {
             background = new JLabel(new ImageIcon("Assets/IceFishing.png"));
             frameState.setSize(353, 258);
         } else {
@@ -56,7 +56,7 @@ class Fishing {
         }
         frameState.add(background);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
+        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
@@ -80,11 +80,11 @@ class Fishing {
                     int fish = (int) (Math.random() * 30 / totalTime);
                     frameState.setVisible(false);
                     if (fish == 0) {
-                        TrumpWillTriump.customText("Mr. Trump, you caught a fish!");
-                        TrumpWillTriump.win();
+                        CallOfDemocracy.customText("Mr. Trump, you caught a fish!");
+                        CallOfDemocracy.win();
                     } else {
-                        TrumpWillTriump.customText("Mr. Trump, you didn't catch anything...");
-                        TrumpWillTriump.lose();
+                        CallOfDemocracy.customText("Mr. Trump, you didn't catch anything...");
+                        CallOfDemocracy.lose();
                     }
                 }
             }

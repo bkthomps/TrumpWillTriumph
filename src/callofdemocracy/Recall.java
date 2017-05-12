@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -38,7 +38,7 @@ class Recall {
         final String exposition = "Mr. Trump, to test your skill, play a logic game. There will be\nfour numbers that "
                 + "are randomly generated, but you are not\ntold the numbers. Use the sliders to guess the numbers.\n"
                 + "To help you, you will be told how many correct and how many\nincorrect numbers you have selected.";
-        TrumpWillTriump.displayExposition(exposition);
+        CallOfDemocracy.displayExposition(exposition);
     }
 
     private void setSliderValues() {
@@ -69,7 +69,7 @@ class Recall {
 
         frameState.pack();
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
+        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
@@ -95,10 +95,10 @@ class Recall {
             tries.setText("Tries Left: " + recallTries);
         } else if (good == 4 && recallTries >= -1) {
             frameState.setVisible(false);
-            TrumpWillTriump.win();
+            CallOfDemocracy.win();
         } else {
             frameState.setVisible(false);
-            TrumpWillTriump.lose();
+            CallOfDemocracy.lose();
         }
     }
 }

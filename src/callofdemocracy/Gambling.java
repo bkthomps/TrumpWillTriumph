@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -16,7 +16,7 @@ class Gambling {
 
     private final int[] val = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-    private final JFrame frameState = new JFrame(TrumpWillTriump.GAME_TITLE);
+    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
     private final JLabel[] background = new JLabel[val.length];
 
     private int clickCount;
@@ -28,7 +28,7 @@ class Gambling {
     }
 
     private void doExposition() {
-        TrumpWillTriump.displayExposition("Mr. Trump, Nevada is the gambling state, so\nnaturally, to win their vote, "
+        CallOfDemocracy.displayExposition("Mr. Trump, Nevada is the gambling state, so\nnaturally, to win their vote, "
                 + "you shall gamble.\nYou will have ten tries to get a matching pair.\nTo try the slot again, click "
                 + "on it.");
     }
@@ -43,7 +43,7 @@ class Gambling {
         }
         frameState.setSize(423, 445);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
+        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
@@ -82,10 +82,10 @@ class Gambling {
     private void endGameIfConditionsMet() {
         if (isThreeSameImagesInRow()) {
             frameState.setVisible(false);
-            TrumpWillTriump.win();
+            CallOfDemocracy.win();
         } else if (isUserOutOfTries()) {
             frameState.setVisible(false);
-            TrumpWillTriump.lose();
+            CallOfDemocracy.lose();
         }
     }
 

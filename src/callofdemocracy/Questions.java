@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 /**
  * The user is asked various questions. If the user responds with the correct answer, the user gains points. By the end
@@ -12,8 +12,8 @@ class Questions {
     private String[] options;
 
     void questions() {
-        TrumpWillTriump.hideMap();
-        switch (TrumpWillTriump.touringState) {
+        CallOfDemocracy.hideMap();
+        switch (CallOfDemocracy.touringState) {
             case NEUTRAL_ARIZONA:
                 arizona();
                 break;
@@ -202,12 +202,12 @@ class Questions {
     }
 
     private void ask(String text, int... points) {
-        final int index = TrumpWillTriump.customText(text, options);
+        final int index = CallOfDemocracy.customText(text, options);
         score += points[index];
     }
 
     private void question(String text, int answerIndex) {
-        final int userIndex = TrumpWillTriump.customText(answer + text, options);
+        final int userIndex = CallOfDemocracy.customText(answer + text, options);
         if (userIndex == answerIndex) {
             answer = "Correct! ";
             score++;
@@ -218,9 +218,9 @@ class Questions {
 
     private void endGame(int scoreToWin) {
         if (score >= scoreToWin) {
-            TrumpWillTriump.win();
+            CallOfDemocracy.win();
         } else {
-            TrumpWillTriump.lose();
+            CallOfDemocracy.lose();
         }
     }
 }

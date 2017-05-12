@@ -1,4 +1,4 @@
-package trumpwilltriump;
+package callofdemocracy;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -14,7 +14,7 @@ import javax.swing.WindowConstants;
  */
 class Skiing {
 
-    private final JFrame frameState = new JFrame(TrumpWillTriump.GAME_TITLE);
+    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
     private final JLabel image = new JLabel(new ImageIcon("Assets/SkiingRed.png"));
 
     private boolean done, endTimer, next = true;
@@ -29,7 +29,7 @@ class Skiing {
 
     private void doExposition() {
         String exposition = "ERROR";
-        switch (TrumpWillTriump.touringState) {
+        switch (CallOfDemocracy.touringState) {
             case NEUTRAL_NORTH_CAROLINA:
                 exposition = "Mr. Trump, North Carolina loves water skiing; therefore,\nsuch is what you should do to "
                         + "gain their vote. Type the left\nkey when red is shown and right when blue is shown.\nYou "
@@ -46,7 +46,7 @@ class Skiing {
                         + "will need to immediately use your keyboard!";
                 break;
         }
-        TrumpWillTriump.displayExposition(exposition);
+        CallOfDemocracy.displayExposition(exposition);
     }
 
     private void configureGUI() {
@@ -55,7 +55,7 @@ class Skiing {
         frameState.add(image);
         frameState.setSize(303, 325);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(TrumpWillTriump.ICON_TRUMP.getImage());
+        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
@@ -80,13 +80,13 @@ class Skiing {
                             next = true;
                             endTimer = true;
                             frameState.setVisible(false);
-                            TrumpWillTriump.lose();
+                            CallOfDemocracy.lose();
                         }
                     } else {
                         next = true;
                         endTimer = true;
                         frameState.setVisible(false);
-                        TrumpWillTriump.win();
+                        CallOfDemocracy.win();
                     }
                 }
             }
@@ -125,7 +125,7 @@ class Skiing {
                     timer.cancel();
                     endTimer = false;
                     frameState.setVisible(false);
-                    TrumpWillTriump.lose();
+                    CallOfDemocracy.lose();
                 }
             }
         }, 0, 2000);
