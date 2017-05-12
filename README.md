@@ -1,2 +1,2 @@
-# TrumpWillTriump
-You must play as Donald Trump to conquer the USA a state at a time by playing various mini-games. Each state has its own mini-game. If the mini-game is won, the state becomes Republican, and thus red. If the mini-game is lost, the state becomes Democrat, and thus blue. Since there are 50 states in the USA, at the end of the game, if 25 or more states become Republican, you, Donald Trump, become president of the United States of America. However, if less than 25 states are won, you lose the race of presidency to Hillary Clinton, your rival. Let it be noted that "Triump" in "Trump Will Triump" was spelled as such on purpose.
+# CallOfDemocracy
+You are running for president of the United States of America. To become president, you must conquer at least 25 of the 50 states. Each state has its own mini-game, which must be won for the state to be conquered.
