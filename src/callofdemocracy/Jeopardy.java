@@ -89,8 +89,8 @@ class Jeopardy {
             blank[blankCounter].setVisible(false);
         }
 
-        final int WIDTH = 5 * (int) science100.getPreferredSize().getWidth();
-        mainFrame.setSize(WIDTH, 400);
+        final int width = 5 * (int) science100.getPreferredSize().getWidth();
+        mainFrame.setSize(width, 400);
 
         science100.addActionListener((ActionEvent e) -> {
             science100.setVisible(false);

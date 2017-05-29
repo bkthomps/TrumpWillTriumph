@@ -133,8 +133,7 @@ class Shooting {
         frameState.addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseMoved(MouseEvent me) {
-                final int NANOSECONDS_PER_SECOND = 1000000000;
-                final long totalTime = (System.nanoTime() - startTime) / NANOSECONDS_PER_SECOND;
+                final long totalTime = (System.nanoTime() - startTime) / CallOfDemocracy.NANO_SECONDS_PER_SECOND;
                 if (totalTime > 5) {
                     frameState.setVisible(false);
                     CallOfDemocracy.customText("Mr. Trump, you took too long, as such it got startled!");

@@ -73,8 +73,7 @@ class Boxing {
     }
 
     private void matchInProgress(MouseEvent e) {
-        final int NANOSECONDS_PER_SECOND = 1000000000;
-        final long totalTime = (System.nanoTime() - startTime) / NANOSECONDS_PER_SECOND;
+        final long totalTime = (System.nanoTime() - startTime) / CallOfDemocracy.NANO_SECONDS_PER_SECOND;
         if (isJab(e) && !isGameOver() && isJabCoolDownOver(totalTime)) {
             resetTimeAndAddDamageTrump(totalTime);
             doJabDamageAndAddToCombo();
