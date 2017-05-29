@@ -75,8 +75,7 @@ class Fishing {
                 if (e.getModifiers() == InputEvent.BUTTON1_MASK) {
                     startTime = System.nanoTime();
                 } else if (e.getModifiers() == InputEvent.BUTTON3_MASK) {
-                    final long NANOSECONDS_PER_SECOND = 1000000000;
-                    final long totalTime = (System.nanoTime() - startTime) / NANOSECONDS_PER_SECOND;
+                    final long totalTime = (System.nanoTime() - startTime) / CallOfDemocracy.NANO_SECONDS_PER_SECOND;
                     int fish = (int) (Math.random() * 30 / totalTime);
                     frameState.setVisible(false);
                     if (fish == 0) {

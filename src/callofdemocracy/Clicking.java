@@ -77,8 +77,8 @@ class Clicking {
                 if (e.getModifiers() == InputEvent.BUTTON1_MASK) {
                     clickCount++;
                     if (clickCount == AMOUNT_OF_CLICKS_NEEDED) {
-                        final int NANO_SECONDS_PER_SECOND = 1000000000;
-                        final long totalTime = (System.nanoTime() - startTime) / NANO_SECONDS_PER_SECOND;
+                        final long totalTime =
+                                (System.nanoTime() - startTime) / CallOfDemocracy.NANO_SECONDS_PER_SECOND;
                         frameState.setVisible(false);
                         if (totalTime <= TIME_GIVEN_IN_SECONDS) {
                             CallOfDemocracy.win();

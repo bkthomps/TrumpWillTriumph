@@ -168,8 +168,7 @@ class AnimatedClicking {
 
     private void endGameAndWinIfTotalTimeIsLessThanInputValueInSeconds(int inputValueInSeconds) {
         frameState.setVisible(false);
-        final int NANOSECONDS_PER_SECOND = 1000000000;
-        final long totalTime = (System.nanoTime() - startTime) / NANOSECONDS_PER_SECOND;
+        final long totalTime = (System.nanoTime() - startTime) / CallOfDemocracy.NANO_SECONDS_PER_SECOND;
         if (totalTime < inputValueInSeconds) {
             CallOfDemocracy.win();
         } else {

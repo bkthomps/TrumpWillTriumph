@@ -39,19 +39,19 @@ class AgencyNSA {
         frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
-        JPanel buttonPanel1 = new JPanel();
-        JPanel buttonPanel2 = new JPanel();
+        JPanel topButtonPanel = new JPanel();
+        JPanel bottomButtonPanel = new JPanel();
 
-        buttonPanel1.add(mexicans);
-        buttonPanel1.add(asians);
-        buttonPanel1.add(africanAmericans);
-        buttonPanel2.add(caucasians);
-        buttonPanel2.add(africans);
-        buttonPanel2.add(europeans);
+        topButtonPanel.add(mexicans);
+        topButtonPanel.add(asians);
+        topButtonPanel.add(africanAmericans);
+        bottomButtonPanel.add(caucasians);
+        bottomButtonPanel.add(africans);
+        bottomButtonPanel.add(europeans);
 
         frameState.add(background, BorderLayout.NORTH);
-        frameState.add(buttonPanel1, BorderLayout.CENTER);
-        frameState.add(buttonPanel2, BorderLayout.SOUTH);
+        frameState.add(topButtonPanel, BorderLayout.CENTER);
+        frameState.add(bottomButtonPanel, BorderLayout.SOUTH);
         frameState.setSize(353, 367);
         frameState.setLocationRelativeTo(null);
         frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());

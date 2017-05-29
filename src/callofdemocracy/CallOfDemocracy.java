@@ -37,6 +37,8 @@ class CallOfDemocracy {
     static final ImageIcon ICON_TRUMP = new ImageIcon("Assets/Trump.png");
     static final Path FILE = Paths.get("CallOfDemocracy.txt");
 
+    static final int NANO_SECONDS_PER_SECOND = 1000000000;
+
     static StateStatus touringState;
 
     private static final int MAP_VERTICAL_TILES = 48;
@@ -66,10 +68,10 @@ class CallOfDemocracy {
     }
 
     private void checkOperatingSystem() {
-        final String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
-        if (OS.contains("nux")) {
+        final String os = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
+        if (os.contains("nux")) {
             errorAndExit("Linux is not currently supported. Only Windows and macOS are supported.");
-        } else if (!OS.contains("win") && !OS.contains("mac") && !OS.contains("darwin")) {
+        } else if (!os.contains("win") && !os.contains("mac") && !os.contains("darwin")) {
             errorAndExit("Currently, only Windows and macOS are supported.");
         }
     }
