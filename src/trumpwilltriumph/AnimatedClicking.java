@@ -1,4 +1,4 @@
-package callofdemocracy;
+package trumpwilltriumph;
 
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
@@ -14,7 +14,7 @@ import javax.swing.WindowConstants;
  */
 class AnimatedClicking {
 
-    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
+    private final JFrame frameState = new JFrame(TrumpWillTriumph.GAME_TITLE);
     private JLabel background;
 
     private int guiWidth, guiHeight, clickCount;
@@ -29,7 +29,7 @@ class AnimatedClicking {
 
     private void doExposition() {
         String exposition = "ERROR";
-        switch (CallOfDemocracy.touringState) {
+        switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_CALIFORNIA:
                 exposition = "Mr. Trump, California loves surfing, so to win their vote, just left\nclick on the surf "
                         + "board as fast as you can to clean it! If you do\nit fast enough, they surely will see us "
@@ -60,7 +60,7 @@ class AnimatedClicking {
                 guiHeight = 346;
                 break;
         }
-        CallOfDemocracy.displayExposition(exposition);
+        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void configureGUI() {
@@ -70,7 +70,7 @@ class AnimatedClicking {
         frameState.add(background);
         frameState.setSize(guiWidth, guiHeight);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
+        frameState.setIconImage(TrumpWillTriumph.ICON_TRUMP.getImage());
         frameState.setVisible(true);
         startTime = System.nanoTime();
     }
@@ -108,7 +108,7 @@ class AnimatedClicking {
     }
 
     private void dispatchAnimation() {
-        switch (CallOfDemocracy.touringState) {
+        switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_CALIFORNIA:
                 californiaAnimate();
                 break;
@@ -168,11 +168,11 @@ class AnimatedClicking {
 
     private void endGameAndWinIfTotalTimeIsLessThanInputValueInSeconds(int inputValueInSeconds) {
         frameState.setVisible(false);
-        final long totalTime = (System.nanoTime() - startTime) / CallOfDemocracy.NANO_SECONDS_PER_SECOND;
+        final long totalTime = (System.nanoTime() - startTime) / TrumpWillTriumph.NANO_SECONDS_PER_SECOND;
         if (totalTime < inputValueInSeconds) {
-            CallOfDemocracy.win();
+            TrumpWillTriumph.win();
         } else {
-            CallOfDemocracy.lose();
+            TrumpWillTriumph.lose();
         }
     }
 }

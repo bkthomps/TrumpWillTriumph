@@ -1,4 +1,4 @@
-package callofdemocracy;
+package trumpwilltriumph;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,11 +31,11 @@ import javax.swing.WindowConstants;
  * the reset button. After a state has been toured, the object responsible for the state will call a method from this
  * class in order to inform to the user whether the state has been won, or if it was lost.
  */
-class CallOfDemocracy {
+class TrumpWillTriumph {
 
-    static final String GAME_TITLE = "Call Of Democracy";
+    static final String GAME_TITLE = "Trump Will Triumph";
     static final ImageIcon ICON_TRUMP = new ImageIcon("Assets/Trump.png");
-    static final Path FILE = Paths.get("CallOfDemocracy.txt");
+    static final Path FILE = Paths.get("TrumpWillTriumph.txt");
 
     static final int NANO_SECONDS_PER_SECOND = 1000000000;
 
@@ -53,8 +53,8 @@ class CallOfDemocracy {
     private static int guiDisplay, wins, loses;
 
     public static void main(String[] args) {
-        final CallOfDemocracy callOfDemocracy = new CallOfDemocracy();
-        callOfDemocracy.startLogic();
+        final TrumpWillTriumph trumpWillTriumph = new TrumpWillTriumph();
+        trumpWillTriumph.startLogic();
     }
 
     private void startLogic() {

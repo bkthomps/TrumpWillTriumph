@@ -1,4 +1,4 @@
-package callofdemocracy;
+package trumpwilltriumph;
 
 import javax.swing.JOptionPane;
 
@@ -30,7 +30,7 @@ class Scramble {
     }
 
     private void doExposition() {
-        CallOfDemocracy.displayExposition("Mr. Trump, we will test you with a word scramble\ngame. Get 10 points and "
+        TrumpWillTriumph.displayExposition("Mr. Trump, we will test you with a word scramble\ngame. Get 10 points and "
                 + "you will win the state's\nvote. Get one word wrong and you will lose it.");
     }
 
@@ -65,7 +65,7 @@ class Scramble {
 
     private void getUserAnswer() {
         userInput = JOptionPane.showInputDialog(null, score + " points\nUnscramble: " + word,
-                CallOfDemocracy.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
+                TrumpWillTriumph.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
         if (userInput == null) {
             System.exit(0);
         }
@@ -75,12 +75,12 @@ class Scramble {
         if (userInput.equals(answer)) {
             score += answer.length();
             if (score >= 10) {
-                CallOfDemocracy.win();
+                TrumpWillTriumph.win();
             } else {
                 gameLogic();
             }
         } else {
-            CallOfDemocracy.lose();
+            TrumpWillTriumph.lose();
         }
     }
 }

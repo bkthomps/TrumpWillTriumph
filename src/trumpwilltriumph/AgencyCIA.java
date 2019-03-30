@@ -1,4 +1,4 @@
-package callofdemocracy;
+package trumpwilltriumph;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -16,7 +16,7 @@ import javax.swing.WindowConstants;
  */
 class AgencyCIA {
 
-    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
+    private final JFrame frameState = new JFrame(TrumpWillTriumph.GAME_TITLE);
     private final JLabel background = new JLabel(new ImageIcon("Assets/CIA.png"));
     private final JLabel healthLeft = new JLabel("Health Left: 100%");
     private final JButton breakArms = new JButton("Break Arms");
@@ -35,7 +35,7 @@ class AgencyCIA {
     }
 
     private void doExposition() {
-        CallOfDemocracy.displayExposition("Mr. Trump, Virginia is the home of the CIA,\nso naturally, we will "
+        TrumpWillTriumph.displayExposition("Mr. Trump, Virginia is the home of the CIA,\nso naturally, we will "
                 + "torture someone.");
     }
 
@@ -57,7 +57,7 @@ class AgencyCIA {
         frameState.add(buttonPanel, BorderLayout.SOUTH);
         frameState.pack();
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
+        frameState.setIconImage(TrumpWillTriumph.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
@@ -82,14 +82,14 @@ class AgencyCIA {
     private void endGame() {
         frameState.setVisible(false);
         if (damage < 5) {
-            CallOfDemocracy.customText("Mr. Trump, you didn't damage the inmate enough, the inmate won't talk.");
-            CallOfDemocracy.lose();
+            TrumpWillTriumph.customText("Mr. Trump, you didn't damage the inmate enough, the inmate won't talk.");
+            TrumpWillTriumph.lose();
         } else if (damage >= 10) {
-            CallOfDemocracy.customText("Mr. Trump, you killed the inmate!");
-            CallOfDemocracy.lose();
+            TrumpWillTriumph.customText("Mr. Trump, you killed the inmate!");
+            TrumpWillTriumph.lose();
         } else {
-            CallOfDemocracy.customText("Mr. Trump, great job, we will make sure you win Virginia!");
-            CallOfDemocracy.win();
+            TrumpWillTriumph.customText("Mr. Trump, great job, we will make sure you win Virginia!");
+            TrumpWillTriumph.win();
         }
     }
 }

@@ -1,4 +1,4 @@
-package callofdemocracy;
+package trumpwilltriumph;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -17,7 +17,7 @@ import javax.swing.WindowConstants;
  */
 class Reactor {
 
-    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
+    private final JFrame frameState = new JFrame(TrumpWillTriumph.GAME_TITLE);
 
     private final JPanel temperaturePanel = new JPanel();
     private final JLabel temperatureLabel = new JLabel("Temperature: 500 °C");
@@ -51,7 +51,7 @@ class Reactor {
 
     private void doExposition() {
         String exposition = "ERROR";
-        switch (CallOfDemocracy.touringState) {
+        switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_WASHINGTON:
                 exposition = "Mr. Trump, the Grand Coulee Dam is going out of control!\nYou need to operate it while "
                         + "the engine room shuts down.\nThis will take one minute.";
@@ -61,7 +61,7 @@ class Reactor {
                         + "nowhere to be found.\nPlease keep the reactor from melting down for one minute!";
                 break;
         }
-        CallOfDemocracy.displayExposition(exposition);
+        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void configureGUI() {
@@ -90,7 +90,7 @@ class Reactor {
 
         frameState.pack();
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
+        frameState.setIconImage(TrumpWillTriumph.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
@@ -147,21 +147,21 @@ class Reactor {
         if (isGoneCritical()) {
             timer.cancel();
             frameState.setVisible(false);
-            if (CallOfDemocracy.touringState == StateStatus.NEUTRAL_WASHINGTON) {
-                CallOfDemocracy.customText("Evacuate! The dam is going to explode!");
+            if (TrumpWillTriumph.touringState == StateStatus.NEUTRAL_WASHINGTON) {
+                TrumpWillTriumph.customText("Evacuate! The dam is going to explode!");
             } else {
-                CallOfDemocracy.customText("Evacuate! A meltdown will soon occur!");
+                TrumpWillTriumph.customText("Evacuate! A meltdown will soon occur!");
             }
-            CallOfDemocracy.lose();
+            TrumpWillTriumph.lose();
         } else if (isShutDown()) {
             timer.cancel();
             frameState.setVisible(false);
-            if (CallOfDemocracy.touringState == StateStatus.NEUTRAL_WASHINGTON) {
-                CallOfDemocracy.customText("Mr. Trump, the hydroelectric dam successfully shut down!");
+            if (TrumpWillTriumph.touringState == StateStatus.NEUTRAL_WASHINGTON) {
+                TrumpWillTriumph.customText("Mr. Trump, the hydroelectric dam successfully shut down!");
             } else {
-                CallOfDemocracy.customText("Mr. Trump, the power plant successfully shut down!");
+                TrumpWillTriumph.customText("Mr. Trump, the power plant successfully shut down!");
             }
-            CallOfDemocracy.win();
+            TrumpWillTriumph.win();
         }
     }
 

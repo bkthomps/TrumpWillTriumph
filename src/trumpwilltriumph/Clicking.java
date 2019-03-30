@@ -1,4 +1,4 @@
-package callofdemocracy;
+package trumpwilltriumph;
 
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
@@ -13,7 +13,7 @@ import javax.swing.WindowConstants;
  */
 class Clicking {
 
-    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
+    private final JFrame frameState = new JFrame(TrumpWillTriumph.GAME_TITLE);
 
     private static final int AMOUNT_OF_CLICKS_NEEDED = 30;
     private static final int TIME_GIVEN_IN_SECONDS = 10;
@@ -26,7 +26,7 @@ class Clicking {
 
     private void doExposition() {
         String exposition = "ERROR";
-        switch (CallOfDemocracy.touringState) {
+        switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_HAWAII:
                 exposition = "Mr. Trump, Hawaii is a tropical state, so\nto win it, you must break open a coconut\nby "
                         + "repeatedly left clicking on it.";
@@ -40,14 +40,14 @@ class Clicking {
                         + "repeatedly left click on it.";
                 break;
         }
-        CallOfDemocracy.displayExposition(exposition);
+        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void configureGUI() {
         JLabel background = null;
         frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
-        switch (CallOfDemocracy.touringState) {
+        switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_HAWAII:
                 background = new JLabel(new ImageIcon("Assets/Coconut.png"));
                 frameState.setSize(228, 250);
@@ -63,7 +63,7 @@ class Clicking {
         }
         frameState.add(background);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
+        frameState.setIconImage(TrumpWillTriumph.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
@@ -78,12 +78,12 @@ class Clicking {
                     clickCount++;
                     if (clickCount == AMOUNT_OF_CLICKS_NEEDED) {
                         final long totalTime =
-                                (System.nanoTime() - startTime) / CallOfDemocracy.NANO_SECONDS_PER_SECOND;
+                                (System.nanoTime() - startTime) / TrumpWillTriumph.NANO_SECONDS_PER_SECOND;
                         frameState.setVisible(false);
                         if (totalTime <= TIME_GIVEN_IN_SECONDS) {
-                            CallOfDemocracy.win();
+                            TrumpWillTriumph.win();
                         } else {
-                            CallOfDemocracy.lose();
+                            TrumpWillTriumph.lose();
                         }
                     }
                 }
