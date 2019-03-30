@@ -1,4 +1,4 @@
-package callofdemocracy;
+package trumpwilltriumph;
 
 import javax.swing.JOptionPane;
 
@@ -39,7 +39,7 @@ class Palindrome {
     }
 
     private void doExposition() {
-        CallOfDemocracy.displayExposition("Mr. Trump, to win you need 200 points. If the word is a palindrome\nyou "
+        TrumpWillTriumph.displayExposition("Mr. Trump, to win you need 200 points. If the word is a palindrome\nyou "
                 + "will receive the amount of letters times ten in points. The game\nends once you enter three "
                 + "consecutive incorrect palindromes.");
     }
@@ -57,7 +57,7 @@ class Palindrome {
 
     private void enterWord() {
         word = JOptionPane.showInputDialog(null, "Enter a palindrome.\n" + correct + "Score: "
-                + score + " points\nTries: " + tries, CallOfDemocracy.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
+                + score + " points\nTries: " + tries, TrumpWillTriumph.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
         exitIfWordIsNull();
     }
 
@@ -65,7 +65,7 @@ class Palindrome {
         while ("".equals(word) || word.contains(" ")) {
             word = JOptionPane.showInputDialog(null, "Put in one palindrome, not two, not zero... "
                     + "ONE.\n" + correct + "Score: " + score + " points\nTries: "
-                    + tries, CallOfDemocracy.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
+                    + tries, TrumpWillTriumph.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
             exitIfWordIsNull();
         }
     }
@@ -136,9 +136,9 @@ class Palindrome {
 
     private void miniGameDone() {
         if (score >= 200) {
-            CallOfDemocracy.win();
+            TrumpWillTriumph.win();
         } else {
-            CallOfDemocracy.lose();
+            TrumpWillTriumph.lose();
         }
     }
 }

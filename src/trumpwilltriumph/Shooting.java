@@ -1,4 +1,4 @@
-package callofdemocracy;
+package trumpwilltriumph;
 
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -15,7 +15,7 @@ import javax.swing.WindowConstants;
  */
 class Shooting {
 
-    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
+    private final JFrame frameState = new JFrame(TrumpWillTriumph.GAME_TITLE);
 
     private long startTime;
 
@@ -29,7 +29,7 @@ class Shooting {
 
     private void doExposition() {
         String exposition = "ERROR";
-        switch (CallOfDemocracy.touringState) {
+        switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_ALASKA:
                 exposition = "Mr. Trump, a bear has just appeared!\nShoot it quickly in the head so that it does not "
                         + "run away.\nThis will surely bring us good media coverage in Alaska.";
@@ -43,14 +43,14 @@ class Shooting {
                         + "it does not run away.\nThis will surely bring us good media coverage in Florida.";
                 break;
         }
-        CallOfDemocracy.displayExposition(exposition);
+        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void configureGUI() {
         frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
         JLabel background = null;
-        switch (CallOfDemocracy.touringState) {
+        switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_ALASKA:
                 background = new JLabel(new ImageIcon("Assets/Bear.png"));
                 frameState.setSize(320, 240);
@@ -66,7 +66,7 @@ class Shooting {
         }
         frameState.add(background);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
+        frameState.setIconImage(TrumpWillTriumph.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
@@ -83,11 +83,11 @@ class Shooting {
             public void mousePressed(MouseEvent e) {
                 frameState.setVisible(false);
                 if (isHit(e)) {
-                    CallOfDemocracy.customText("Congratulations! You killed it!");
-                    CallOfDemocracy.win();
+                    TrumpWillTriumph.customText("Congratulations! You killed it!");
+                    TrumpWillTriumph.win();
                 } else {
-                    CallOfDemocracy.customText("Mr. Trump, you missed!");
-                    CallOfDemocracy.lose();
+                    TrumpWillTriumph.customText("Mr. Trump, you missed!");
+                    TrumpWillTriumph.lose();
                 }
             }
 
@@ -115,7 +115,7 @@ class Shooting {
 
     private boolean isHit(MouseEvent e) {
         boolean inBounds = false;
-        switch (CallOfDemocracy.touringState) {
+        switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_ALASKA:
                 inBounds = e.getX() > 118 & e.getX() < 138 && e.getY() > 145 && e.getY() < 175;
                 break;
@@ -133,11 +133,11 @@ class Shooting {
         frameState.addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseMoved(MouseEvent me) {
-                final long totalTime = (System.nanoTime() - startTime) / CallOfDemocracy.NANO_SECONDS_PER_SECOND;
+                final long totalTime = (System.nanoTime() - startTime) / TrumpWillTriumph.NANO_SECONDS_PER_SECOND;
                 if (totalTime > 5) {
                     frameState.setVisible(false);
-                    CallOfDemocracy.customText("Mr. Trump, you took too long, as such it got startled!");
-                    CallOfDemocracy.lose();
+                    TrumpWillTriumph.customText("Mr. Trump, you took too long, as such it got startled!");
+                    TrumpWillTriumph.lose();
                 }
             }
 

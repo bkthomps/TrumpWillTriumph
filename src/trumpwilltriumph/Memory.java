@@ -1,4 +1,4 @@
-package callofdemocracy;
+package trumpwilltriumph;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,7 +15,7 @@ import javax.swing.WindowConstants;
  */
 class Memory {
 
-    private final JFrame frameState = new JFrame(CallOfDemocracy.GAME_TITLE);
+    private final JFrame frameState = new JFrame(TrumpWillTriumph.GAME_TITLE);
     private final JLabel image = new JLabel(new ImageIcon("Assets/MemoryGo.png"));
 
     private boolean done, endTimer;
@@ -30,7 +30,7 @@ class Memory {
     }
 
     private void doExposition() {
-        CallOfDemocracy.displayExposition("Mr. Trump, to test your memory, you shall play a memory game!\nTo play, "
+        TrumpWillTriumph.displayExposition("Mr. Trump, to test your memory, you shall play a memory game!\nTo play, "
                 + "just hit the arrow keys on your keyboard when prompted to type.");
     }
 
@@ -40,7 +40,7 @@ class Memory {
         frameState.add(image);
         frameState.setSize(303, 325);
         frameState.setLocationRelativeTo(null);
-        frameState.setIconImage(CallOfDemocracy.ICON_TRUMP.getImage());
+        frameState.setIconImage(TrumpWillTriumph.ICON_TRUMP.getImage());
         frameState.setVisible(true);
     }
 
@@ -61,12 +61,12 @@ class Memory {
                         } else {
                             endTimer = true;
                             frameState.setVisible(false);
-                            CallOfDemocracy.win();
+                            TrumpWillTriumph.win();
                         }
                     } else {
                         endTimer = true;
                         frameState.setVisible(false);
-                        CallOfDemocracy.lose();
+                        TrumpWillTriumph.lose();
                     }
                 }
             }
