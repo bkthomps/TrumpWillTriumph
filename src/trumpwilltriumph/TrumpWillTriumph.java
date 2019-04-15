@@ -36,16 +36,15 @@ class TrumpWillTriumph {
     static final String GAME_TITLE = "Trump Will Triumph";
     static final ImageIcon ICON_TRUMP = new ImageIcon("Assets/Trump.png");
     static final Path FILE = Paths.get("TrumpWillTriumph.txt");
-
-    static final int NANO_SECONDS_PER_SECOND = 1000000000;
-
-    static StateStatus touringState;
-
+    private static final String defaultTour = "     Select a state to tour     ";
     private static final int MAP_VERTICAL_TILES = 48;
     private static final int MAP_HORIZONTAL_TILES = 64;
 
+    static final int NANO_SECONDS_PER_SECOND = 1000000000;
+    static StateStatus touringState;
+
     private static final JFrame frame = new JFrame(GAME_TITLE);
-    private static final JLabel bottomText = new JLabel("     Select a state to tour     ");
+    private static final JLabel bottomText = new JLabel(defaultTour);
     private static final JButton tour = new JButton("Tour");
     private static final JButton reset = new JButton("Reset");
 
@@ -271,6 +270,8 @@ class TrumpWillTriumph {
                     jeopardy.jeopardyPrepareGUI();
                     break;
             }
+            tour.setEnabled(false);
+            bottomText.setText(defaultTour);
         });
     }
 
@@ -300,6 +301,7 @@ class TrumpWillTriumph {
                                     "Massachusetts", "Rhode Island", "Connecticut", "New Jersey", "Delaware",
                                     "Maryland"};
                             bottomText.setText("     Tour " + STATES[currentState - 50] + "?     ");
+                            tour.setEnabled(true);
                         }
                     }
                 }
@@ -355,8 +357,8 @@ class TrumpWillTriumph {
         frame.setVisible(false);
     }
 
-    static int customText(String text) {
-        return customText(text, new String[]{"Continue"});
+    static void customText(String text) {
+        customText(text, new String[]{"Continue"});
     }
 
     static int customText(String text, String[] options) {
