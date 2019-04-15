@@ -122,6 +122,7 @@ class TrumpWillTriumph {
         frame.setIconImage(ICON_TRUMP.getImage());
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        tour.setEnabled(false);
     }
 
     private void informUserIfNoStatesToTour() {
