@@ -15,16 +15,16 @@ import javax.swing.WindowConstants;
  */
 class Recall {
 
-    private final JFrame frameState = new JFrame("TWT");
-    private final JLabel correct = new JLabel("Correct");
-    private final JLabel incorrect = new JLabel("Incorrect");
-    private final JLabel tries = new JLabel("Tries Left: 10");
-    private final JButton button = new JButton("Check");
+    private final JFrame frameState = new JFrame(TrumpWillTriumph.RESOURCE.getString("Recall.twt"));
+    private final JLabel correct = new JLabel(TrumpWillTriumph.RESOURCE.getString("Recall.correct"));
+    private final JLabel incorrect = new JLabel(TrumpWillTriumph.RESOURCE.getString("Recall.incorrect"));
+    private final JLabel tries = new JLabel(TrumpWillTriumph.RESOURCE.getString("Recall.triesLeft") + " 10");
+    private final JButton button = new JButton(TrumpWillTriumph.RESOURCE.getString("Recall.check"));
     private final JSlider[] slider = new JSlider[AMOUNT_OF_SLIDERS];
 
     private static final int AMOUNT_OF_SLIDERS = 4;
 
-    private final int recallArray[] = new int[AMOUNT_OF_SLIDERS];
+    private final int[] recallArray = new int[AMOUNT_OF_SLIDERS];
     private int recallTries = 10;
 
     void recall() {
@@ -35,10 +35,8 @@ class Recall {
     }
 
     private void doExposition() {
-        final String exposition = "Mr. Trump, to test your skill, play a logic game. There will be\nfour numbers that "
-                + "are randomly generated, but you are not\ntold the numbers. Use the sliders to guess the numbers.\n"
-                + "To help you, you will be told how many correct and how many\nincorrect numbers you have selected.";
-        TrumpWillTriumph.displayExposition(exposition);
+        TrumpWillTriumph.expositionDialog("Recall.exposition_1", "Recall.exposition_2", "Recall.exposition_3",
+                "Recall.exposition_4", "Recall.exposition_5");
     }
 
     private void setSliderValues() {
@@ -90,9 +88,9 @@ class Recall {
 
     private void progressToNextRoundOrEnd(int good, int bad) {
         if (good != 4 && recallTries >= 0) {
-            correct.setText("Correct: " + good);
-            incorrect.setText("Incorrect: " + bad);
-            tries.setText("Tries Left: " + recallTries);
+            correct.setText(TrumpWillTriumph.RESOURCE.getString("Recall.correct") + " " + good);
+            incorrect.setText(TrumpWillTriumph.RESOURCE.getString("Recall.incorrect") + " " + bad);
+            tries.setText(TrumpWillTriumph.RESOURCE.getString("Recall.triesLeft") + " " + recallTries);
         } else if (good == 4 && recallTries >= -1) {
             frameState.setVisible(false);
             TrumpWillTriumph.win();

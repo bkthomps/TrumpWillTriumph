@@ -28,9 +28,8 @@ class Gambling {
     }
 
     private void doExposition() {
-        TrumpWillTriumph.displayExposition("Mr. Trump, Nevada is the gambling state, so\nnaturally, to win their vote, "
-                + "you shall gamble.\nYou will have ten tries to get a matching pair.\nTo try the slot again, click "
-                + "on it.");
+        TrumpWillTriumph.expositionDialog("Gambling.exposition_1", "Gambling.exposition_2", "Gambling.exposition_3",
+                "Gambling.exposition_4");
     }
 
     private void configureGUI() {

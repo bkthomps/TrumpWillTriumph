@@ -11,8 +11,7 @@ class Barbecue {
     }
 
     private void doExposition() {
-        TrumpWillTriumph.displayExposition("Mr. Trump, Rhode Island is so small that we\nwill just host a barbecue, "
-                + "and will most probably win.");
+        TrumpWillTriumph.expositionDialog("Barbecue.exposition_1", "Barbecue.exposition_2");
     }
 
     private void determineIfUserWins() {

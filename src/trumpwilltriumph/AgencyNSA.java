@@ -17,12 +17,13 @@ class AgencyNSA {
 
     private final JFrame frameState = new JFrame(TrumpWillTriumph.GAME_TITLE);
     private final JLabel background = new JLabel(new ImageIcon("Assets/NSA.png"));
-    private final JButton mexicans = new JButton("Mexicans");
-    private final JButton asians = new JButton("Asians");
-    private final JButton africanAmericans = new JButton("African-Americans");
-    private final JButton caucasians = new JButton("Caucasians");
-    private final JButton africans = new JButton("Africans");
-    private final JButton europeans = new JButton("Europeans");
+    private final JButton mexicans = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyNSA.mexicans"));
+    private final JButton asians = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyNSA.asians"));
+    private final JButton africanAmericans
+            = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyNSA.africanAmericans"));
+    private final JButton caucasians = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyNSA.caucasians"));
+    private final JButton africans = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyNSA.africans"));
+    private final JButton europeans = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyNSA.europeans"));
 
     void agencyNSA() {
         doExposition();
@@ -31,8 +32,7 @@ class AgencyNSA {
     }
 
     private void doExposition() {
-        TrumpWillTriumph.displayExposition("Mr. Trump, as you might know, Maryland is home of the NSA. So, let's\nspy "
-                + "on some people. Please pick which ethnic group to spy on.");
+        TrumpWillTriumph.expositionDialog("AgencyNSA.exposition_1", "AgencyNSA.exposition_2");
     }
 
     private void configureGUI() {
@@ -69,16 +69,13 @@ class AgencyNSA {
 
     private void winningChoice() {
         frameState.setVisible(false);
-        TrumpWillTriumph.customText("No progress was achieved what so ever, but for\nsome reason, people are content on "
-                + "your decision.");
+        TrumpWillTriumph.customDialog("AgencyNSA.winning_1", "AgencyNSA.winning_2");
         TrumpWillTriumph.win();
     }
 
     private void losingChoice() {
         frameState.setVisible(false);
-        TrumpWillTriumph.customText("No progress was achieved what so ever, and for some reason,\nnot many people care "
-                + "that you are infringing on their privacy.\nAs Maryland is a blue state anyways, they have not voted "
-                + "for you.");
+        TrumpWillTriumph.customDialog("AgencyNSA.losing_1", "AgencyNSA.losing_2", "AgencyNSA.losing_3");
         TrumpWillTriumph.lose();
     }
 }

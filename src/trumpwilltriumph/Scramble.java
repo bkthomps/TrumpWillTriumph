@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  */
 class Scramble {
 
-    private final String WORD_LIBRARY[] = {"rock", "puke", "love", "more", "tape", "dizzy", "quark", "waltz", "blitz",
+    private final String[] WORD_LIBRARY = {"rock", "puke", "love", "more", "tape", "dizzy", "quark", "waltz", "blitz",
             "hotel", "strife", "joyful", "jiggle", "jungle", "masque", "maximum", "minimum", "judging", "zombies",
             "freezing"};
 
@@ -30,14 +30,13 @@ class Scramble {
     }
 
     private void doExposition() {
-        TrumpWillTriumph.displayExposition("Mr. Trump, we will test you with a word scramble\ngame. Get 10 points and "
-                + "you will win the state's\nvote. Get one word wrong and you will lose it.");
+        TrumpWillTriumph.expositionDialog("Scramble.exposition_1", "Scramble.exposition_2", "Scramble.exposition_3");
     }
 
     private void copyStrings() {
         random = (int) (Math.random() * 10);
-        word = WORD_LIBRARY[random];
-        answer = WORD_LIBRARY[random];
+        word = TrumpWillTriumph.RESOURCE.getString("Scramble." + WORD_LIBRARY[random]);
+        answer = word;
     }
 
     private void copyCharacterArray() {
@@ -64,7 +63,9 @@ class Scramble {
     }
 
     private void getUserAnswer() {
-        userInput = JOptionPane.showInputDialog(null, score + " points\nUnscramble: " + word,
+        userInput = JOptionPane.showInputDialog(null, score + " "
+                        + TrumpWillTriumph.RESOURCE.getString("Scramble.points") + System.lineSeparator()
+                        + TrumpWillTriumph.RESOURCE.getString("Scramble.unscramble") + " " + word,
                 TrumpWillTriumph.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
         if (userInput == null) {
             System.exit(0);

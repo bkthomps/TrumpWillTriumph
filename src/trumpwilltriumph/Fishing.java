@@ -26,20 +26,16 @@ class Fishing {
     }
 
     private void doExposition() {
-        String exposition = "ERROR";
         switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_MINNESOTA:
-                exposition = "Mr. Trump, ice fishing would greatly improve your success in\nMinnesota. Left click to "
-                        + "throw your line out, right click to bring\nit back in. You only get one cast. The longer "
-                        + "your line is\nout, the higher chance you have of catching something.";
+                TrumpWillTriumph.expositionDialog("Fishing.exposition_minnesota_1", "Fishing.exposition_minnesota_2",
+                        "Fishing.exposition_minnesota_3", "Fishing.exposition_minnesota_4");
                 break;
             case NEUTRAL_DELAWARE:
-                exposition = "Mr. Trump, fishing would greatly improve your success in\nDelaware. Left click to throw "
-                        + "your line out, right click to bring\nit back in. You only get one cast. The longer your "
-                        + "line is\nout, the higher chance you have of catching something.";
+                TrumpWillTriumph.expositionDialog("Fishing.exposition_delaware_1", "Fishing.exposition_delaware_2",
+                        "Fishing.exposition_delaware_3", "Fishing.exposition_delaware_4");
                 break;
         }
-        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void configureGUI() {
@@ -79,10 +75,10 @@ class Fishing {
                     int fish = (int) (Math.random() * 30 / totalTime);
                     frameState.setVisible(false);
                     if (fish == 0) {
-                        TrumpWillTriumph.customText("Mr. Trump, you caught a fish!");
+                        TrumpWillTriumph.customDialog("Fishing.winning");
                         TrumpWillTriumph.win();
                     } else {
-                        TrumpWillTriumph.customText("Mr. Trump, you didn't catch anything...");
+                        TrumpWillTriumph.customDialog("Fishing.losing");
                         TrumpWillTriumph.lose();
                     }
                 }

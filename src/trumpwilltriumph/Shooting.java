@@ -28,22 +28,20 @@ class Shooting {
     }
 
     private void doExposition() {
-        String exposition = "ERROR";
         switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_ALASKA:
-                exposition = "Mr. Trump, a bear has just appeared!\nShoot it quickly in the head so that it does not "
-                        + "run away.\nThis will surely bring us good media coverage in Alaska.";
+                TrumpWillTriumph.expositionDialog("Shooting.alaska_exposition_1", "Shooting.alaska_exposition_2",
+                        "Shooting.alaska_exposition_3");
                 break;
             case NEUTRAL_TEXAS:
-                exposition = "Mr. Trump, a mountain lion has just appeared!\nShoot it quickly in the head so that it "
-                        + "does not run away.\nThis will surely bring us good media coverage in Texas.";
+                TrumpWillTriumph.expositionDialog("Shooting.texas_exposition_1", "Shooting.texas_exposition_2",
+                        "Shooting.texas_exposition_3");
                 break;
             case NEUTRAL_FLORIDA:
-                exposition = "Mr. Trump, an alligator has just appeared!\nShoot it quickly in the head or body so that "
-                        + "it does not run away.\nThis will surely bring us good media coverage in Florida.";
+                TrumpWillTriumph.expositionDialog("Shooting.florida_exposition_1", "Shooting.florida_exposition_2",
+                        "Shooting.florida_exposition_3");
                 break;
         }
-        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void configureGUI() {
@@ -83,10 +81,10 @@ class Shooting {
             public void mousePressed(MouseEvent e) {
                 frameState.setVisible(false);
                 if (isHit(e)) {
-                    TrumpWillTriumph.customText("Congratulations! You killed it!");
+                    TrumpWillTriumph.customDialog("Shooting.killed");
                     TrumpWillTriumph.win();
                 } else {
-                    TrumpWillTriumph.customText("Mr. Trump, you missed!");
+                    TrumpWillTriumph.customDialog("Shooting.missed");
                     TrumpWillTriumph.lose();
                 }
             }
@@ -136,7 +134,7 @@ class Shooting {
                 final long totalTime = (System.nanoTime() - startTime) / TrumpWillTriumph.NANO_SECONDS_PER_SECOND;
                 if (totalTime > 5) {
                     frameState.setVisible(false);
-                    TrumpWillTriumph.customText("Mr. Trump, you took too long, as such it got startled!");
+                    TrumpWillTriumph.customDialog("Shooting.tooSlow");
                     TrumpWillTriumph.lose();
                 }
             }

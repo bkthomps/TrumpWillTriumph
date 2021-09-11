@@ -15,14 +15,14 @@ class Sorting {
 
     enum SortingType {BUBBLE, SELECTION, INSERTION}
 
-    private final int sortingArray[] = new int[5];
+    private final int[] sortingArray = new int[5];
     private SortingType sortingType;
     private String sortingLine;
 
     private final JFrame frameState = new JFrame(TrumpWillTriumph.GAME_TITLE);
-    private final JButton bubbleSort = new JButton("Bubble Sort");
-    private final JButton selectionSort = new JButton("Selection Sort");
-    private final JButton insertionSort = new JButton("InsertionSort");
+    private final JButton bubbleSort = new JButton(TrumpWillTriumph.RESOURCE.getString("Sorting.bubbleSort"));
+    private final JButton selectionSort = new JButton(TrumpWillTriumph.RESOURCE.getString("Sorting.selectionSort"));
+    private final JButton insertionSort = new JButton(TrumpWillTriumph.RESOURCE.getString("Sorting.insertionSort"));
 
     void sorting() {
         doExposition();
@@ -34,8 +34,7 @@ class Sorting {
     }
 
     private void doExposition() {
-        TrumpWillTriumph.displayExposition("Mr. Trump, to test your skill, given the steps produced by\na random "
-                + "sorting algorithm, pick which one was used.");
+        TrumpWillTriumph.expositionDialog("Sorting.exposition_1", "Sorting.exposition_2");
     }
 
     private void configureSortingDisplayContext() {

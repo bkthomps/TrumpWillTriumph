@@ -29,10 +29,10 @@ class SaveOrLoad {
                     saveFile = line;
                 }
             } catch (IOException e) {
-                System.err.println("Error in SaveOrLoad.load: could not open file.");
+                System.err.println(TrumpWillTriumph.RESOURCE.getString("SaveOrLoad.couldNotOpenFile"));
             }
         } catch (IOException x) {
-            System.err.println("Error in SaveOrLoad.load: could not create file.");
+            System.err.println(TrumpWillTriumph.RESOURCE.getString("SaveOrLoad.couldNotCreateFile"));
         } finally {
             if (isFileNonExistent(saveFile)) {
                 saveFile = defaultFile();
@@ -151,12 +151,12 @@ class SaveOrLoad {
                 saveFile += stateDisplay[vertical][horizontal].stateStatusToInt() + " ";
             }
         }
-        byte data[] = saveFile.getBytes();
+        byte[] data = saveFile.getBytes();
         try (OutputStream out = new BufferedOutputStream(
                 Files.newOutputStream(TrumpWillTriumph.FILE, WRITE, TRUNCATE_EXISTING))) {
             out.write(data, 0, data.length);
         } catch (IOException x) {
-            System.err.println("Error in SaveOrLoad.save: could not open or write to file.");
+            System.err.println(TrumpWillTriumph.RESOURCE.getString("SaveOrLoad.couldNotSave"));
         }
     }
 }

@@ -25,22 +25,20 @@ class Clicking {
     }
 
     private void doExposition() {
-        String exposition = "ERROR";
         switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_HAWAII:
-                exposition = "Mr. Trump, Hawaii is a tropical state, so\nto win it, you must break open a coconut\nby "
-                        + "repeatedly left clicking on it.";
+                TrumpWillTriumph.expositionDialog("Clicking.exposition_hawaii_1", "Clicking.exposition_hawaii_2",
+                        "Clicking.exposition_hawaii_3");
                 break;
             case NEUTRAL_WYOMING:
-                exposition = "Mr. Trump, Wyoming is a farming state, so\nto win it, you must collect a "
-                        + "chicken's\neggs. To do so, repeatedly left click on it.";
+                TrumpWillTriumph.expositionDialog("Clicking.exposition_wyoming_1", "Clicking.exposition_wyoming_2",
+                        "Clicking.exposition_wyoming_3");
                 break;
             case NEUTRAL_KANSAS:
-                exposition = "Mr. Trump, Kansas is a farming state,\nso to win it, you must milk a cow.\nTo do so, "
-                        + "repeatedly left click on it.";
+                TrumpWillTriumph.expositionDialog("Clicking.exposition_kansas_1", "Clicking.exposition_kansas_2",
+                        "Clicking.exposition_kansas_3");
                 break;
         }
-        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void configureGUI() {

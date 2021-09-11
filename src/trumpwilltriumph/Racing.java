@@ -20,26 +20,20 @@ class Racing {
     }
 
     private void doExposition() {
-        String exposition = "ERROR";
         switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_MONTANA:
-                exposition = "Mr. Trump, Montana loves horse racing, so to win their vote,\nbet on a horse. This will "
-                        + "be during a four horse race.";
+                TrumpWillTriumph.expositionDialog("Racing.exposition_montana_1", "Racing.exposition_montana_2");
                 break;
             case NEUTRAL_MISSISSIPPI:
-                exposition = "Mr. Trump, Mississippi loves boat racing, so to win their vote,\nbet on a boat. This "
-                        + "will be during a four boat race.";
+                TrumpWillTriumph.expositionDialog("Racing.exposition_mississippi_1", "Racing.exposition_mississippi_2");
                 break;
             case NEUTRAL_INDIANA:
-                exposition = "Mr. Trump, Indiana loves Formula 1, so to win their vote,\nbet on a car. This will be "
-                        + "during a four car race.";
+                TrumpWillTriumph.expositionDialog("Racing.exposition_indiana_1", "Racing.exposition_indiana_2");
                 break;
             case NEUTRAL_ALABAMA:
-                exposition = "Mr. Trump, Alabama loves Nascar, so to win their vote,\nbet on a car. This will be "
-                        + "during a four car race.";
+                TrumpWillTriumph.expositionDialog("Racing.exposition_alabama_1", "Racing.exposition_alabama_2");
                 break;
         }
-        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void configureGUI() {
@@ -47,23 +41,23 @@ class Racing {
         frameState.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frameState.setResizable(false);
 
-        JLabel info = new JLabel("Select What To Bet On - Success Chance");
-        JButton horse87 = new JButton("Horse 87 - 12%");
-        JButton horse17 = new JButton("Horse 17 - 9%");
-        JButton horse65 = new JButton("Horse 65 - 7%");
-        JButton horse37 = new JButton("Horse 37 - 72%");
-        JButton boat12 = new JButton("Boat 12 - 64%");
-        JButton boat16 = new JButton("Boat 16 - 3%");
-        JButton boat56 = new JButton("Boat 56 - 23%");
-        JButton boat37 = new JButton("Boat 37 - 10%");
-        JButton car71 = new JButton("Car 71 - 21%");
-        JButton car87 = new JButton("Car 87 - 56%");
-        JButton car12 = new JButton("Car 12 - 8%");
-        JButton car36 = new JButton("Car 36 - 15%");
-        JButton car45 = new JButton("Car 45 - 18%");
-        JButton car11 = new JButton("Car 11 - 14%");
-        JButton car23 = new JButton("Car 23 - 62%");
-        JButton car73 = new JButton("Car 73 - 6%");
+        JLabel info = new JLabel(TrumpWillTriumph.RESOURCE.getString("Racing.header"));
+        JButton horse87 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.horse_87"));
+        JButton horse17 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.horse_17"));
+        JButton horse65 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.horse_65"));
+        JButton horse37 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.horse_37"));
+        JButton boat12 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.boat_12"));
+        JButton boat16 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.boat_16"));
+        JButton boat56 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.boat_56"));
+        JButton boat37 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.boat_37"));
+        JButton car71 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.car_71"));
+        JButton car87 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.car_87"));
+        JButton car12 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.car_12"));
+        JButton car36 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.car_36"));
+        JButton car45 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.car_45"));
+        JButton car11 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.car_11"));
+        JButton car23 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.car_23"));
+        JButton car73 = new JButton(TrumpWillTriumph.RESOURCE.getString("Racing.car_73"));
 
         JPanel buttonPanel1 = new JPanel();
         JPanel buttonPanel2 = new JPanel();

@@ -35,26 +35,20 @@ class Sports {
     }
 
     private void doExposition() {
-        String exposition = "ERROR";
         switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_COLORADO:
-                exposition = "Mr. Trump, Colorado likes hockey. To gain their vote, get\na ball in net on a free shot. "
-                        + "To do this click swipe and release.";
+                TrumpWillTriumph.expositionDialog("Sports.exposition_colorado_1", "Sports.exposition_colorado_2");
                 break;
             case NEUTRAL_MICHIGAN:
-                exposition = "Mr. Trump, Michigan likes soccer. To gain their vote, get\na ball in net on free kick. "
-                        + "To do this click swipe and release.";
+                TrumpWillTriumph.expositionDialog("Sports.exposition_michigan_1", "Sports.exposition_michigan_2");
                 break;
             case NEUTRAL_OHIO:
-                exposition = "Mr. Trump, Ohio likes football. To gain their vote, get\na ball in goal. To do this "
-                        + "click swipe and release.";
+                TrumpWillTriumph.expositionDialog("Sports.exposition_ohio_1", "Sports.exposition_ohio_2");
                 break;
             case NEUTRAL_GEORGIA:
-                exposition = "Mr. Trump, Georgia likes basketball. To gain their vote, get\na ball in net on free "
-                        + "throw. To do this click swipe and release.";
+                TrumpWillTriumph.expositionDialog("Sports.exposition_georgia_1", "Sports.exposition_georgia_2");
                 break;
         }
-        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void setImageAndFrameSize() {
@@ -118,10 +112,10 @@ class Sports {
                 }
                 frameState.setVisible(false);
                 if (win) {
-                    TrumpWillTriumph.customText("Mr. Trump, you scored!");
+                    TrumpWillTriumph.customDialog("Sports.scored");
                     TrumpWillTriumph.win();
                 } else {
-                    TrumpWillTriumph.customText("Mr. Trump, you missed...");
+                    TrumpWillTriumph.customDialog("Sports.missed");
                     TrumpWillTriumph.lose();
                 }
             }

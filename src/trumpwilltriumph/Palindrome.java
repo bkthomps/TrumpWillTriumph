@@ -4,12 +4,12 @@ import javax.swing.JOptionPane;
 
 /**
  * The user must answer as many palindrome as possible. The longer the palindrome, the more points the user gains. Once
- * the user runs out of attempts, if the user has more or equal to the require amount of points, the user wins. Else,
+ * the user runs out of attempts, if the user has more or equal to the required amount of points, the user wins. Else,
  * the user loses.
  */
 class Palindrome {
 
-    private static final String PALINDROME_LIBRARY[] = {"tattarrattat", "aibohphobia", "detartrated", "kinnikinnik",
+    private static final String[] PALINDROME_LIBRARY = {"tattarrattat", "aibohphobia", "detartrated", "kinnikinnik",
             "deleveled", "evitative", "malayalam", "redivider", "releveler", "rotavator", "adinida", "deified",
             "hagigah", "murdrum", "nauruan", "peeweep", "racecar", "reifier", "repaper", "reviver", "rotator",
             "seities", "sememes", "senones", "sixaxis", "soosoos", "tacocat", "zerorez", "degged", "denned", "hallah",
@@ -39,9 +39,8 @@ class Palindrome {
     }
 
     private void doExposition() {
-        TrumpWillTriumph.displayExposition("Mr. Trump, to win you need 200 points. If the word is a palindrome\nyou "
-                + "will receive the amount of letters times ten in points. The game\nends once you enter three "
-                + "consecutive incorrect palindromes.");
+        TrumpWillTriumph.expositionDialog("Palindrome.exposition_1", "Palindrome.exposition_2",
+                "Palindrome.exposition_3");
     }
 
     private void playEnvironment() {
@@ -56,15 +55,20 @@ class Palindrome {
     }
 
     private void enterWord() {
-        word = JOptionPane.showInputDialog(null, "Enter a palindrome.\n" + correct + "Score: "
-                + score + " points\nTries: " + tries, TrumpWillTriumph.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
+        word = JOptionPane.showInputDialog(null, TrumpWillTriumph.RESOURCE.getString("Palindrome.enter")
+                + System.lineSeparator() + correct + TrumpWillTriumph.RESOURCE.getString("Palindrome.score")
+                + " " + score + " " + TrumpWillTriumph.RESOURCE.getString("Palindrome.points")
+                + System.lineSeparator() + TrumpWillTriumph.RESOURCE.getString("Palindrome.tries") + " "
+                + tries, TrumpWillTriumph.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
         exitIfWordIsNull();
     }
 
     private void retryEnterWord() {
         while ("".equals(word) || word.contains(" ")) {
-            word = JOptionPane.showInputDialog(null, "Put in one palindrome, not two, not zero... "
-                    + "ONE.\n" + correct + "Score: " + score + " points\nTries: "
+            word = JOptionPane.showInputDialog(null, TrumpWillTriumph.RESOURCE.getString("Palindrome.onePalindrome")
+                    + System.lineSeparator() + correct + TrumpWillTriumph.RESOURCE.getString("Palindrome.score") + " "
+                    + score + " " + TrumpWillTriumph.RESOURCE.getString("Palindrome.points") + System.lineSeparator()
+                    + TrumpWillTriumph.RESOURCE.getString("Palindrome.tries") + " "
                     + tries, TrumpWillTriumph.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
             exitIfWordIsNull();
         }
@@ -83,7 +87,7 @@ class Palindrome {
     private void computeIfTechnicalPalindrome() {
         technical = false;
         final int length = word.length();
-        final char letter[] = new char[length];
+        final char[] letter = new char[length];
         for (int counter = 0; counter < length; counter++) {
             letter[counter] = word.charAt(counter);
         }
@@ -119,16 +123,17 @@ class Palindrome {
     private void endRoundFeedback() {
         final int length = word.length();
         if (actual) {
-            correct = "+ " + (10 * length) + " points\n";
+            correct = "+ " + (10 * length) + " " + TrumpWillTriumph.RESOURCE.getString("Palindrome.points")
+                    + System.lineSeparator();
             score += (10 * length);
             tries = 3;
         } else {
             if (used) {
-                correct = "-1 Try... Palindrome already used.\n";
+                correct = TrumpWillTriumph.RESOURCE.getString("Palindrome.alreadyUsed") + System.lineSeparator();
             } else if (technical) {
-                correct = "-1 Try... Not an English word.\n";
+                correct = TrumpWillTriumph.RESOURCE.getString("Palindrome.notWord") + System.lineSeparator();
             } else {
-                correct = "-1 Try... Not a palindrome.\n";
+                correct = TrumpWillTriumph.RESOURCE.getString("Palindrome.notPalindrome") + System.lineSeparator();
             }
             tries--;
         }

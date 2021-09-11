@@ -18,13 +18,14 @@ class AgencyCIA {
 
     private final JFrame frameState = new JFrame(TrumpWillTriumph.GAME_TITLE);
     private final JLabel background = new JLabel(new ImageIcon("Assets/CIA.png"));
-    private final JLabel healthLeft = new JLabel("Health Left: 100%");
-    private final JButton breakArms = new JButton("Break Arms");
-    private final JButton breakLegs = new JButton("Break Legs");
-    private final JButton electrocute = new JButton("Electrocute");
-    private final JButton pullToothOut = new JButton("Pull Tooth Out");
-    private final JButton waterBoard = new JButton("WaterBoard");
-    private final JButton stop = new JButton("Stop");
+    private final JLabel healthLeft = new JLabel(TrumpWillTriumph.RESOURCE.getString("AgencyCIA.healthLeft")
+            + " 100" + TrumpWillTriumph.RESOURCE.getString("AgencyCIA.percentSign"));
+    private final JButton breakArms = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyCIA.breakArms"));
+    private final JButton breakLegs = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyCIA.breakLegs"));
+    private final JButton electrocute = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyCIA.electrocute"));
+    private final JButton pullToothOut = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyCIA.extractTooth"));
+    private final JButton waterBoard = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyCIA.waterboard"));
+    private final JButton stop = new JButton(TrumpWillTriumph.RESOURCE.getString("AgencyCIA.stop"));
 
     private int damage;
 
@@ -35,8 +36,7 @@ class AgencyCIA {
     }
 
     private void doExposition() {
-        TrumpWillTriumph.displayExposition("Mr. Trump, Virginia is the home of the CIA,\nso naturally, we will "
-                + "torture someone.");
+        TrumpWillTriumph.expositionDialog("AgencyCIA.exposition_1", "AgencyCIA.exposition_2");
     }
 
     private void configureGUI() {
@@ -64,9 +64,10 @@ class AgencyCIA {
     private void damageInmate() {
         damage++;
         if (damage < 10) {
-            healthLeft.setText("Health Left: " + 10 * (10 - damage) + "%");
+            healthLeft.setText(TrumpWillTriumph.RESOURCE.getString("AgencyCIA.healthLeft") + " " + 10 * (10 - damage)
+                    + TrumpWillTriumph.RESOURCE.getString("AgencyCIA.percentSign"));
         } else {
-            healthLeft.setText("Inmate Is Dead");
+            healthLeft.setText(TrumpWillTriumph.RESOURCE.getString("AgencyCIA.inmateDied"));
         }
     }
 
@@ -82,13 +83,13 @@ class AgencyCIA {
     private void endGame() {
         frameState.setVisible(false);
         if (damage < 5) {
-            TrumpWillTriumph.customText("Mr. Trump, you didn't damage the inmate enough, the inmate won't talk.");
+            TrumpWillTriumph.customDialog("AgencyCIA.inmateWontTalk");
             TrumpWillTriumph.lose();
         } else if (damage >= 10) {
-            TrumpWillTriumph.customText("Mr. Trump, you killed the inmate!");
+            TrumpWillTriumph.customDialog("AgencyCIA.killedInmate");
             TrumpWillTriumph.lose();
         } else {
-            TrumpWillTriumph.customText("Mr. Trump, great job, we will make sure you win Virginia!");
+            TrumpWillTriumph.customDialog("AgencyCIA.wonVirginia");
             TrumpWillTriumph.win();
         }
     }

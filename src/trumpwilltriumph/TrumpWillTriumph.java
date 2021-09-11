@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import java.util.ResourceBundle;
 
 /**
  * Creates the map of the USA, and performs actions based on how the user interacts with the map. The user can tour by
@@ -33,20 +34,22 @@ import javax.swing.WindowConstants;
  */
 class TrumpWillTriumph {
 
-    static final String GAME_TITLE = "Trump Will Triumph";
+    static final ResourceBundle RESOURCE = ResourceBundle.getBundle("trumpwilltriumph.i18n", Locale.getDefault());
+    static final String GAME_TITLE = RESOURCE.getString("gameTitle");
     static final ImageIcon ICON_TRUMP = new ImageIcon("Assets/Trump.png");
     static final Path FILE = Paths.get("TrumpWillTriumph.txt");
-    private static final String defaultTour = "     Select a state to tour     ";
+    private static final String defaultTour = RESOURCE.getString("defaultTour");
     private static final int MAP_VERTICAL_TILES = 48;
     private static final int MAP_HORIZONTAL_TILES = 64;
+    private static final String SPACING = "     ";
 
     static final int NANO_SECONDS_PER_SECOND = 1000000000;
     static StateStatus touringState;
 
     private static final JFrame frame = new JFrame(GAME_TITLE);
-    private static final JLabel bottomText = new JLabel(defaultTour);
-    private static final JButton tour = new JButton("Tour");
-    private static final JButton reset = new JButton("Reset");
+    private static final JLabel bottomText = new JLabel(SPACING + defaultTour + SPACING);
+    private static final JButton tour = new JButton(RESOURCE.getString("tour"));
+    private static final JButton reset = new JButton(RESOURCE.getString("reset"));
 
     private static final StateStatus[][] stateDisplay = new StateStatus[MAP_VERTICAL_TILES][MAP_HORIZONTAL_TILES];
     private static int guiDisplay, wins, loses;
@@ -69,9 +72,9 @@ class TrumpWillTriumph {
     private void checkOperatingSystem() {
         final String os = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
         if (os.contains("nux")) {
-            errorAndExit("Linux is not currently supported. Only Windows and macOS are supported.");
+            errorAndExit(RESOURCE.getString("linuxUnsupported"));
         } else if (!os.contains("win") && !os.contains("mac") && !os.contains("darwin")) {
-            errorAndExit("Currently, only Windows and macOS are supported.");
+            errorAndExit(RESOURCE.getString("otherUnsupported"));
         }
     }
 
@@ -98,13 +101,14 @@ class TrumpWillTriumph {
         }
         guiDisplay = (int) (guiDisplay / (double) MAP_HORIZONTAL_TILES) * MAP_HORIZONTAL_TILES;
         if (guiDisplay == 0) {
-            errorAndExit("Your Monitor Is Too Small.");
+            errorAndExit(RESOURCE.getString("monitorTooSmall"));
         }
     }
 
     private void errorAndExit(String errorText) {
-        JOptionPane.showConfirmDialog(null, "Critical Error:\n" + errorText + "\nShutting Down.", GAME_TITLE,
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showConfirmDialog(null, RESOURCE.getString("criticalError") + System.lineSeparator()
+                        + errorText + System.lineSeparator() + RESOURCE.getString("shuttingDown"),
+                GAME_TITLE, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         System.exit(0);
     }
 
@@ -127,7 +131,7 @@ class TrumpWillTriumph {
 
     private void informUserIfNoStatesToTour() {
         if (wins + loses == 50) {
-            bottomText.setText("     Reset to play again. Republican States: " + wins + " / 50     ");
+            bottomText.setText(SPACING + RESOURCE.getString("finalScore") + " " + wins + " / 50" + SPACING);
             tour.setEnabled(false);
         }
     }
@@ -135,15 +139,15 @@ class TrumpWillTriumph {
     private void userClicksResetButton() {
         reset.addActionListener((ActionEvent e) -> {
             frame.setVisible(false);
-            final int check = customText("DO YOU REALLY WANT TO RESET ALL DATA?\nTHIS MEANS THAT ALL DATA WILL BE "
-                    + "RESET TO DEFAULT", new String[]{"Reset", "Back"});
+            final int check = customDialog(new String[]{RESOURCE.getString("reset"), RESOURCE.getString("back")},
+                    "resetDataConfirmation", "resetDataImplication");
             if (check == 0) {
                 try {
                     Files.delete(FILE);
                 } catch (IOException x) {
                     // Nothing.
                 }
-                customText("Application will now close, re-launch\nthe application to play it again.");
+                customDialog("applicationClosing", "relaunchToPlay");
                 System.exit(0);
             } else {
                 frame.setVisible(true);
@@ -292,16 +296,17 @@ class TrumpWillTriumph {
                         touringState = stateDisplay[verticalClickPosition][horizontalClickPosition];
                         final int currentState = touringState.stateStatusToInt();
                         if (currentState >= 50 && currentState < 100) {
-                            final String[] STATES = {"Alaska", "Hawaii", "Washington", "Oregon", "California", "Idaho",
-                                    "Nevada", "Utah", "Arizona", "Montana", "Wyoming", "Colorado", "New Mexico",
-                                    "North Dakota", "South Dakota", "Nebraska", "Kansas", "Oklahoma", "Texas",
-                                    "Minnesota", "Iowa", "Missouri", "Arkansas", "Louisiana", "Wisconsin", "Illinois",
-                                    "Mississippi", "Michigan", "Indiana", "Kentucky", "Tennessee", "Alabama", "Ohio",
-                                    "Georgia", "Florida", "New York", "Pennsylvania", "West Virginia", "Virginia",
-                                    "North Carolina", "South Carolina", "Maine", "Vermont", "New Hampshire",
-                                    "Massachusetts", "Rhode Island", "Connecticut", "New Jersey", "Delaware",
-                                    "Maryland"};
-                            bottomText.setText("     Tour " + STATES[currentState - 50] + "?     ");
+                            final String[] STATES = {"alaska", "hawaii", "washington", "oregon", "california", "idaho",
+                                    "nevada", "utah", "arizona", "montana", "wyoming", "colorado", "newMexico",
+                                    "northDakota", "southDakota", "nebraska", "kansas", "oklahoma", "texas",
+                                    "minnesota", "iowa", "missouri", "arkansas", "louisiana", "wisconsin", "illinois",
+                                    "mississippi", "michigan", "indiana", "kentucky", "tennessee", "alabama", "ohio",
+                                    "georgia", "florida", "newYork", "pennsylvania", "westVirginia", "virginia",
+                                    "northCarolina", "southCarolina", "maine", "vermont", "newHampshire",
+                                    "massachusetts", "rhodeIsland", "connecticut", "newJersey", "delaware", "maryland"};
+                            bottomText.setText(SPACING + RESOURCE.getString("tour") + " "
+                                    + RESOURCE.getString(STATES[currentState - 50])
+                                    + RESOURCE.getString("questionMark") + SPACING);
                             tour.setEnabled(true);
                         }
                     }
@@ -358,12 +363,26 @@ class TrumpWillTriumph {
         frame.setVisible(false);
     }
 
-    static void customText(String text) {
-        customText(text, new String[]{"Continue"});
+    static void customDialog(String... text) {
+        customDialog(new String[]{RESOURCE.getString("continue")}, text);
     }
 
-    static int customText(String text, String[] options) {
-        int check = JOptionPane.showOptionDialog(null, text, GAME_TITLE, JOptionPane.DEFAULT_OPTION,
+    static int customDialog(String[] options, String... text) {
+        StringBuilder display = new StringBuilder(RESOURCE.getString(text[0]));
+        return customText(options, display, text);
+    }
+
+    static int customDialogIgnoreFirst(String[] options, String... text) {
+        StringBuilder display = new StringBuilder(text[0]);
+        return customText(options, display, text);
+    }
+
+    private static int customText(String[] options, StringBuilder display, String... text) {
+        for (int i = 1; i < text.length; i++) {
+            display.append(System.lineSeparator());
+            display.append(RESOURCE.getString(text[i]));
+        }
+        int check = JOptionPane.showOptionDialog(null, display.toString(), GAME_TITLE, JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
         if (check == -1) {
             System.exit(0);
@@ -371,19 +390,19 @@ class TrumpWillTriumph {
         return check;
     }
 
-    static void displayExposition(String text) {
+    static void expositionDialog(String... text) {
         frame.setVisible(false);
-        customText(text);
+        customDialog(text);
     }
 
     static void win() {
         wins++;
-        miniGameDone(true, "Mr. Trump, you won!");
+        miniGameDone(true, "youWon");
     }
 
     static void lose() {
         loses++;
-        miniGameDone(false, "Mr. Trump, you lost...");
+        miniGameDone(false, "youLost");
     }
 
     private static void miniGameDone(boolean isRepublicanWin, String message) {
@@ -399,7 +418,7 @@ class TrumpWillTriumph {
             }
         }
         SaveOrLoad.save(wins, loses, stateDisplay);
-        customText(message);
+        customDialog(message);
         touringState = StateStatus.WHITE_SQUARE;
         if (wins + loses != 50) {
             frame.setVisible(true);
@@ -410,13 +429,11 @@ class TrumpWillTriumph {
 
     private static void checkGameWin() {
         if (wins >= 25) {
-            customText("Mr. Trump, you became president!\nTo play again, click the reset\nbutton on the map of the "
-                    + "U.S.A");
+            customDialog("becamePresident", "resetToReplay", "clickButton");
         } else {
-            customText("Mr. Trump, you lost the race to presidency...\nTo play again, click the reset button on "
-                    + "the\nmap of the U.S.A");
+            customDialog("lostRace", "replayButton", "mapOfUSA");
         }
-        bottomText.setText("     Reset to play again. Republican States: " + wins + " / 50     ");
+        bottomText.setText(SPACING + RESOURCE.getString("finalScore") + " " + wins + " / 50" + SPACING);
         tour.setEnabled(false);
         frame.setVisible(true);
     }

@@ -28,39 +28,36 @@ class AnimatedClicking {
     }
 
     private void doExposition() {
-        String exposition = "ERROR";
         switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_CALIFORNIA:
-                exposition = "Mr. Trump, California loves surfing, so to win their vote, just left\nclick on the surf "
-                        + "board as fast as you can to clean it! If you do\nit fast enough, they surely will see us "
-                        + "eye to eye!";
                 startingImage = "Assets/Surfboard1.png";
                 guiWidth = 303;
                 guiHeight = 114;
+                TrumpWillTriumph.expositionDialog("AnimatedClicking.exposition_california_1",
+                        "AnimatedClicking.exposition_california_2", "AnimatedClicking.exposition_california_3");
                 break;
             case NEUTRAL_IDAHO:
-                exposition = "Mr. Trump, Idaho is the potato state, to win\ntheir vote, just left click and chop the "
-                        + "potatoes!";
                 startingImage = "Assets/Potato1.png";
                 guiWidth = 353;
                 guiHeight = 226;
+                TrumpWillTriumph.expositionDialog("AnimatedClicking.exposition_idaho_1",
+                        "AnimatedClicking.exposition_idaho_2");
                 break;
             case NEUTRAL_KENTUCKY:
-                exposition = "Mr. Trump, Kentucky is the chicken state, to win\ntheir vote, just left click and cook "
-                        + "the chicken!";
                 startingImage = "Assets/Chicken1.png";
                 guiWidth = 371;
                 guiHeight = 365;
+                TrumpWillTriumph.expositionDialog("AnimatedClicking.exposition_kentucky_1",
+                        "AnimatedClicking.exposition_kentucky_2");
                 break;
             case NEUTRAL_WISCONSIN:
-                exposition = "Mr. Trump, Wisconsin loves making cheese, to win\ntheir vote, just left click and churn "
-                        + "the cheese!";
                 startingImage = "Assets/Churn1.png";
                 guiWidth = 222;
                 guiHeight = 346;
+                TrumpWillTriumph.expositionDialog("AnimatedClicking.exposition_wisconsin_1",
+                        "AnimatedClicking.exposition_wisconsin_2");
                 break;
         }
-        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void configureGUI() {

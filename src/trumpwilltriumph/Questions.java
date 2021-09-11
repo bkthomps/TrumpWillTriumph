@@ -42,177 +42,218 @@ class Questions {
     }
 
     private void arizona() {
-        setOptions("(Let him speak)", "(Interrupt him)");
-        ask("Senior Trump, I am mexican...", 1, 0);
+        setOptions("Questions.arizona_options_1_1", "Questions.arizona_options_1_2");
+        ask("Questions.arizona_ask_1", 1, 0);
 
-        setOptions("(Let him speak)", "(Interrupt him)");
-        ask("I am deeply offended by your statements...", -1, 0);
+        setOptions("Questions.arizona_options_1_1", "Questions.arizona_options_1_2");
+        ask("Questions.arizona_ask_2", -1, 0);
 
-        setOptions("(Let him speak)", "(Interrupt him)");
-        ask("I will ask you a question...", -1, 0);
+        setOptions("Questions.arizona_options_1_1", "Questions.arizona_options_1_2");
+        ask("Questions.arizona_ask_3", -1, 0);
 
-        setOptions("(Let him speak)", "(Interrupt him)");
-        ask("My question is...", 1, 0);
+        setOptions("Questions.arizona_options_1_1", "Questions.arizona_options_1_2");
+        ask("Questions.arizona_ask_4", 1, 0);
 
-        setOptions("Only Mexico", "No");
-        ask("Would you build a wall around every state in the\nunited states to keep them safe from each other?", 2, 0);
+        setOptions("Questions.arizona_options_2_1", "Questions.arizona_options_2_2");
+        ask("Questions.arizona_ask_5_1", "Questions.arizona_ask_5_2", 2, 0);
 
         endGame(3);
     }
 
     private void illinois() {
-        setOptions("Ok", "Go ahead");
-        ask("Hello, Mr. Trump. I will just ask you a\nfew questions for our interview.", 0, 0);
+        setOptions("Questions.illinois_options_1_1", "Questions.illinois_options_1_2");
+        ask("Questions.illinois_ask_1_1", "Questions.illinois_ask_1_2", 0, 0);
 
-        setOptions("Make Mexico pay", "Challenge Mexico to a game of Janga");
-        ask("Mr. Trump, you have talked a lot about building a wall, realistically, how will you fund it?", 0, -1);
+        setOptions("Questions.illinois_options_2_1", "Questions.illinois_options_2_2");
+        ask("Questions.illinois_ask_2", 0, -1);
 
-        setOptions("I just will", "Get good people on the job");
-        ask("How will you realistically deport all the illegal immigrants?", -1, 0);
+        setOptions("Questions.illinois_options_3_1", "Questions.illinois_options_3_2");
+        ask("Questions.illinois_ask_3", -1, 0);
 
-        setOptions("China", "Illegal Immigrants");
-        ask("Mr. Trump, in your opinion, for what reason do you\nbelieve that our is economy failing?", 2, 1);
+        setOptions("Questions.illinois_options_4_1", "Questions.illinois_options_4_2");
+        ask("Questions.illinois_ask_4_1", "Questions.illinois_ask_4_2", 2, 1);
 
         endGame(1);
     }
 
     private void newYork() {
-        setOptions("I know", "Thank you");
-        ask("Hello, Mr. Trump. It is a pleasure to have you on this show.", -1, 0);
+        setOptions("Questions.newYork_options_1_1", "Questions.newYork_options_1_2");
+        ask("Questions.newYork_ask_1", -1, 0);
 
-        setOptions("Build wall", "Export immigrants");
-        ask("Mr. Trump, if you were to become president,\nwhat is the first thing that you would do?", -1, 0);
+        setOptions("Questions.newYork_options_2_1", "Questions.newYork_options_2_2");
+        ask("Questions.newYork_ask_2_1", "Questions.newYork_ask_2_2", -1, 0);
 
-        setOptions("I would rebuild them!", "I was on 7/11 when it happened!");
-        ask("Mr. Trump, as I'm sure you are aware of, our state is the one in which the\ntwin tower attack occurred. "
-                + "What do you have to say on this matter?", 3, -1);
+        setOptions("Questions.newYork_options_3_1", "Questions.newYork_options_3_2");
+        ask("Questions.newYork_ask_3_1", "Questions.newYork_ask_3_2", 3, -1);
 
-        setOptions("I'm really rich", "I'm almost completely self-funded");
-        ask("For anybody that is on the fence, what would you say the biggest thing going for you is?", -1, 1);
+        setOptions("Questions.newYork_options_4_1", "Questions.newYork_options_4_2");
+        ask("Questions.newYork_ask_4", -1, 1);
 
         endGame(3);
     }
 
     private void westVirginia() {
-        setOptions("Continue");
-        ask("Mr. Trump, West Virginia is considered one of the least intelligent states.\nTo win their vote, just make "
-                + "a YouTube video to be sponsored in their state.", 0);
+        setOptions("Questions.westVirginia_options_1");
+        ask("Questions.westVirginia_ask_1_1", "Questions.westVirginia_ask_1_2", 0);
 
-        setOptions("Flashy", "Loud", "Professional");
-        ask("What type of introduction would you like?", 1, 2, 0);
+        setOptions("Questions.westVirginia_options_2_1", "Questions.westVirginia_options_2_2",
+                "Questions.westVirginia_options_2_3");
+        ask("Questions.westVirginia_ask_2", 1, 2, 0);
 
-        setOptions("Make America Great Again", "Trump Will Triump");
-        ask("What slogan do you want to use?", 2, 1);
+        setOptions("Questions.westVirginia_options_3_1", "Questions.westVirginia_options_3_2");
+        ask("Questions.westVirginia_ask_3", 2, 1);
 
-        setOptions("Immigration", "China", "Wall");
-        ask("What main topic will you to discuss?", 1, 1, 0);
+        setOptions("Questions.westVirginia_options_4_1", "Questions.westVirginia_options_4_2",
+                "Questions.westVirginia_options_4_3");
+        ask("Questions.westVirginia_ask_4", 1, 1, 0);
 
-        setOptions("Memorable", "Flashy", "Loud");
-        ask("What conclusion would you like to use?", 1, 1, 2);
+        setOptions("Questions.westVirginia_options_5_1", "Questions.westVirginia_options_5_2",
+                "Questions.westVirginia_options_5_3");
+        ask("Questions.westVirginia_ask_5", 1, 1, 2);
 
         endGame(5);
     }
 
     private void louisiana() {
-        setOptions("Ok", "D'accord");
-        ask("Mr. Trump, since Louisiana is a French state, we will ask you a\nfew questions to test if you are worth "
-                + "voting for.", 0, 1);
+        setOptions("Questions.louisiana_options_1_1", "Questions.louisiana_options_1_2");
+        ask("Questions.louisiana_ask_1_1", "Questions.louisiana_ask_1_2", 0, 1);
 
-        setOptions("Montgolfière", "Balon à air chaude", "Iritaboulis", "Balon a air chaud");
-        question("How do you say 'hot air balloon' in French?", 0);
+        setOptions("Questions.louisiana_options_2_1", "Questions.louisiana_options_2_2",
+                "Questions.louisiana_options_2_3", "Questions.louisiana_options_2_4");
+        question("Questions.louisiana_ask_2", 0);
 
-        setOptions("Poppile", "Coquelicot", "Popèle", "Aragondessieux");
-        question("How do you say 'poppy' in French?", 1);
+        setOptions("Questions.louisiana_options_3_1", "Questions.louisiana_options_3_2",
+                "Questions.louisiana_options_3_3", "Questions.louisiana_options_3_4");
+        question("Questions.louisiana_ask_3", 1);
 
-        setOptions("Conjugation", "Spelling", "Gender", "According");
-        question("What error is in the following sentence: 'La dame va à le salle de bain'?", 2);
+        setOptions("Questions.louisiana_options_4_1", "Questions.louisiana_options_4_2",
+                "Questions.louisiana_options_4_3", "Questions.louisiana_options_4_4");
+        question("Questions.louisiana_ask_4", 2);
 
-        setOptions("Merci à vous aussi", "Thank you too");
-        ask(answer + "Thank you Mr. Trump, ce fut un plaisir.", 0, 0);
+        setOptions("Questions.louisiana_options_5_1", "Questions.louisiana_options_5_2");
+        askEval("Questions.louisiana_ask_5", 0, 0);
 
         endGame(3);
     }
 
     private void newMexico() {
-        setOptions("Ok", "De acuerdo");
-        ask("Mr. Trump, since New Mexico is a Spanish state, we will ask you a\nfew questions to test if you are worth "
-                + "voting for.", 0, 1);
+        setOptions("Questions.newMexico_options_1_1", "Questions.newMexico_options_1_2");
+        ask("Questions.newMexico_ask_1_1", "Questions.newMexico_ask_1_2", 0, 1);
 
-        setOptions("Groundito", "Solito", "Soloe", "Suelo");
-        question("How do you say 'ground' in Spanish?", 3);
+        setOptions("Questions.newMexico_options_2_1", "Questions.newMexico_options_2_2",
+                "Questions.newMexico_options_2_3", "Questions.newMexico_options_2_4");
+        question("Questions.newMexico_ask_2", 3);
 
-        setOptions("Nicito", "Bonito", "Niceito", "Bontatio");
-        question("How do you say 'nice' in Spanish?", 1);
+        setOptions("Questions.newMexico_options_3_1", "Questions.newMexico_options_3_2",
+                "Questions.newMexico_options_3_3", "Questions.newMexico_options_3_4");
+        question("Questions.newMexico_ask_3", 1);
 
-        setOptions("Artatilio", "Caimán", "Caimánito", "Arstitatio");
-        question("How do you say 'alligator' in Spanish?", 1);
+        setOptions("Questions.newMexico_options_4_1", "Questions.newMexico_options_4_2",
+                "Questions.newMexico_options_4_3", "Questions.newMexico_options_4_4");
+        question("Questions.newMexico_ask_4", 1);
 
-        setOptions("Gracias", "Thank you too");
-        ask(answer + "Thank you Mr. Trump, fue un honor.", 0, 0);
+        setOptions("Questions.newMexico_options_5_1", "Questions.newMexico_options_5_2");
+        askEval("Questions.newMexico_ask_5", 0, 0);
 
         endGame(3);
     }
 
     private void northDakota() {
-        setOptions("Ok", "Fortsetzen");
-        ask("Mr. Trump, since North Dakota is the most German state, we\nwill ask you a few questions to test if you "
-                + "are worth voting for.", 0, 1);
+        setOptions("Questions.northDakota_options_1_1", "Questions.northDakota_options_1_2");
+        ask("Questions.northDakota_ask_1_1", "Questions.northDakota_ask_1_2", 0, 1);
 
-        setOptions("buch", "Buch", "book", "bookich");
-        question("How do you say 'book' in German?", 1);
+        setOptions("Questions.northDakota_options_2_1", "Questions.northDakota_options_2_2",
+                "Questions.northDakota_options_2_3", "Questions.northDakota_options_2_4");
+        question("Questions.northDakota_ask_2", 1);
 
-        setOptions("dutchen", "Darken", "darken", "dunkel");
-        question("How do you say 'dark' in German?", 3);
+        setOptions("Questions.northDakota_options_3_1", "Questions.northDakota_options_3_2",
+                "Questions.northDakota_options_3_3", "Questions.northDakota_options_3_4");
+        question("Questions.northDakota_ask_3", 3);
 
-        setOptions("I am good", "You are good", "I get it", "I understand");
-        question("What does 'Ich bin gut' mean?", 0);
+        setOptions("Questions.northDakota_options_4_1", "Questions.northDakota_options_4_2",
+                "Questions.northDakota_options_4_3", "Questions.northDakota_options_4_4");
+        question("Questions.northDakota_ask_4", 0);
 
-        setOptions("Danke dir auch", "Thank you too");
-        ask(answer + "Thank you Mr. Trump, es war eine Freude.", 0, 0);
+        setOptions("Questions.northDakota_options_5_1", "Questions.northDakota_options_5_2");
+        askEval("Questions.northDakota_ask_5", 0, 0);
 
         endGame(3);
     }
 
     private void utah() {
-        setOptions("Ok", "God bless America");
-        ask("Mr. Trump, I am the arch-bishop of Utah, and I will ask you\na few questions to see if you are worthy "
-                + "voting for.", 0, 1);
+        setOptions("Questions.utah_options_1_1", "Questions.utah_options_1_2");
+        ask("Questions.utah_ask_1_1", "Questions.utah_ask_1_2", 0, 1);
 
-        setOptions("Raven", "Dove", "Seagle", "Eagle");
-        question("In the Bible, after resting on Mount Ararat for 40 days in\nthe ark, what type of bird did Noah "
-                + "first send out?", 0);
+        setOptions("Questions.utah_options_2_1", "Questions.utah_options_2_2",
+                "Questions.utah_options_2_3", "Questions.utah_options_2_4");
+        question("Questions.utah_ask_2_1", "Questions.utah_ask_2_2", 0);
 
-        setOptions("40 years 12 days", "12 years", "40 years", "40 days");
-        question("In the Bible, how long were Moses and his followers in the desert for?", 2);
+        setOptions("Questions.utah_options_3_1", "Questions.utah_options_3_2",
+                "Questions.utah_options_3_3", "Questions.utah_options_3_4");
+        question("Questions.utah_ask_3", 2);
 
-        setOptions("JNKJ", "JCKJ", "ICNR", "INRI");
-        question("In the Bible, what was written above Jesus's cross when he was nailed to it?", 3);
+        setOptions("Questions.utah_options_4_1", "Questions.utah_options_4_2",
+                "Questions.utah_options_4_3", "Questions.utah_options_4_4");
+        question("Questions.utah_ask_4", 3);
 
-        setOptions("Carrot", "Fruit", "Apple", "Plum");
-        question("In the Bible, the eating of what is known as original sin?", 1);
+        setOptions("Questions.utah_options_5_1", "Questions.utah_options_5_2",
+                "Questions.utah_options_5_3", "Questions.utah_options_5_4");
+        question("Questions.utah_ask_5", 1);
 
-        setOptions("I know", "Thank you too");
-        ask(answer + "Thank you Mr. Trump, it was a pleasure.", 0, 0);
+        setOptions("Questions.utah_options_6_1", "Questions.utah_options_6_2");
+        askEval("Questions.utah_ask_6", 0, 0);
 
         endGame(4);
     }
 
     private void setOptions(String... options) {
+        for (int i = 0; i < options.length; i++) {
+            options[i] = TrumpWillTriumph.RESOURCE.getString(options[i]);
+        }
         this.options = options;
     }
 
     private void ask(String text, int... points) {
-        final int index = TrumpWillTriumph.customText(text, options);
+        final int index = TrumpWillTriumph.customDialog(options, text);
+        score += points[index];
+    }
+
+    private void ask(String text_1, String text_2, int... points) {
+        final int index = TrumpWillTriumph.customDialog(options, text_1, text_2);
+        score += points[index];
+    }
+
+    private void askEval(String text, int... points) {
+        final int index = TrumpWillTriumph.customDialogIgnoreFirst(options, answer, text);
         score += points[index];
     }
 
     private void question(String text, int answerIndex) {
-        final int userIndex = TrumpWillTriumph.customText(answer + text, options);
+        final int userIndex;
+        if (answer.isBlank()) {
+            userIndex = TrumpWillTriumph.customDialog(options, text);
+        } else {
+            userIndex = TrumpWillTriumph.customDialogIgnoreFirst(options, answer, text);
+        }
+        question(userIndex, answerIndex);
+    }
+
+    private void question(String text_1, String text_2, int answerIndex) {
+        final int userIndex;
+        if (answer.isBlank()) {
+            userIndex = TrumpWillTriumph.customDialog(options, text_1, text_2);
+        } else {
+            userIndex = TrumpWillTriumph.customDialogIgnoreFirst(options, answer, text_1, text_2);
+        }
+        question(userIndex, answerIndex);
+    }
+
+    private void question(int userIndex, int answerIndex) {
         if (userIndex == answerIndex) {
-            answer = "Correct! ";
+            answer = TrumpWillTriumph.RESOURCE.getString("Questions.correct");
             score++;
         } else {
-            answer = "The correct answer is \"" + options[answerIndex] + "\".\n";
+            answer = TrumpWillTriumph.RESOURCE.getString("Questions.incorrect") + " " + options[answerIndex];
         }
     }
 

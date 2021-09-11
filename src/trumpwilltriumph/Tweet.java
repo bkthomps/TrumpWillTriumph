@@ -19,9 +19,10 @@ class Tweet {
 
     private void getInitialTweet() {
         TrumpWillTriumph.hideMap();
-        sentence = JOptionPane.showInputDialog(null, "Mr. Trump, Oklahoma is considered the least intelligent state,"
-                + "\nI'm sure that if we just wrote a sponsored tweet in their area,\nthey would vote for us since "
-                + "most of them are republican anyways.", TrumpWillTriumph.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
+        sentence = JOptionPane.showInputDialog(null, TrumpWillTriumph.RESOURCE.getString("Tweet.exposition_1")
+                        + System.lineSeparator() + TrumpWillTriumph.RESOURCE.getString("Tweet.exposition_2")
+                        + System.lineSeparator() + TrumpWillTriumph.RESOURCE.getString("Tweet.exposition_3"),
+                TrumpWillTriumph.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
         checkIfUserExit();
     }
 
@@ -34,10 +35,10 @@ class Tweet {
     private void invalidOriginalTweet() {
         while (sentence.length() > 140 || sentence.length() == 0) {
             if (sentence.length() == 0) {
-                sentence = JOptionPane.showInputDialog(null, "You must write something.", TrumpWillTriumph.GAME_TITLE,
-                        JOptionPane.PLAIN_MESSAGE);
+                sentence = JOptionPane.showInputDialog(null, TrumpWillTriumph.RESOURCE.getString("Tweet.empty"),
+                        TrumpWillTriumph.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
             } else if (sentence.length() > 140) {
-                sentence = JOptionPane.showInputDialog(null, "Length cannot exceed 140 characters.",
+                sentence = JOptionPane.showInputDialog(null, TrumpWillTriumph.RESOURCE.getString("Tweet.tooLong"),
                         TrumpWillTriumph.GAME_TITLE, JOptionPane.PLAIN_MESSAGE);
             }
             checkIfUserExit();

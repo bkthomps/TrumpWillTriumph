@@ -20,22 +20,26 @@ class Reactor {
     private final JFrame frameState = new JFrame(TrumpWillTriumph.GAME_TITLE);
 
     private final JPanel temperaturePanel = new JPanel();
-    private final JLabel temperatureLabel = new JLabel("Temperature: 500 °C");
-    private final JButton temperatureButton = new JButton("Cool");
+    private final JLabel temperatureLabel = new JLabel(TrumpWillTriumph.RESOURCE.getString("Reactor.temperature")
+            + " 500 " + TrumpWillTriumph.RESOURCE.getString("Reactor.celsius"));
+    private final JButton temperatureButton = new JButton(TrumpWillTriumph.RESOURCE.getString("Reactor.cool"));
     private final JLabel temperatureWarning = new JLabel(new ImageIcon("Assets/ReactorSafe.png"));
 
     private final JPanel pressurePanel = new JPanel();
-    private final JLabel pressureLabel = new JLabel("Pressure: 250 kPa   ");
-    private final JButton pressureButton = new JButton("Blow");
+    private final JLabel pressureLabel = new JLabel(TrumpWillTriumph.RESOURCE.getString("Reactor.pressure")
+            + " 250 " + TrumpWillTriumph.RESOURCE.getString("Reactor.kpa") + "   ");
+    private final JButton pressureButton = new JButton(TrumpWillTriumph.RESOURCE.getString("Reactor.blow"));
     private final JLabel pressureWarning = new JLabel(new ImageIcon("Assets/ReactorSafe.png"));
 
     private final JPanel rotationsPanel = new JPanel();
-    private final JLabel rotationsLabel = new JLabel("Rotations: 2500 rpm");
-    private final JButton rotationsButton = new JButton("Slow");
+    private final JLabel rotationsLabel = new JLabel(TrumpWillTriumph.RESOURCE.getString("Reactor.rotations")
+            + " 2500 " + TrumpWillTriumph.RESOURCE.getString("Reactor.rpm"));
+    private final JButton rotationsButton = new JButton(TrumpWillTriumph.RESOURCE.getString("Reactor.slow"));
     private final JLabel rotationsWarning = new JLabel(new ImageIcon("Assets/ReactorSafe.png"));
 
     private final JPanel timePanel = new JPanel();
-    private final JLabel timeLabel = new JLabel("Time Until System Restore: 60 seconds");
+    private final JLabel timeLabel = new JLabel(TrumpWillTriumph.RESOURCE.getString("Reactor.timeUntilRestore")
+            + " 60 " + TrumpWillTriumph.RESOURCE.getString("Reactor.seconds"));
 
     private static final int CRITICAL_TEMPERATURE = 1000, CRITICAL_PRESSURE = 500, CRITICAL_ROTATIONS = 5000;
     private static final int MAX_SAFE_TEMPERATURE = 800, MAX_SAFE_PRESSURE = 400, MAX_SAFE_ROTATIONS = 4000;
@@ -50,18 +54,16 @@ class Reactor {
     }
 
     private void doExposition() {
-        String exposition = "ERROR";
         switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_WASHINGTON:
-                exposition = "Mr. Trump, the Grand Coulee Dam is going out of control!\nYou need to operate it while "
-                        + "the engine room shuts down.\nThis will take one minute.";
+                TrumpWillTriumph.expositionDialog("Reactor.washington_exposition_1", "Reactor.washington_exposition_2",
+                        "Reactor.washington_exposition_3");
                 break;
             case NEUTRAL_SOUTH_CAROLINA:
-                exposition = "Mr. Trump, a nuclear power plant is going out of control\nand our security personnel is "
-                        + "nowhere to be found.\nPlease keep the reactor from melting down for one minute!";
+                TrumpWillTriumph.expositionDialog("Reactor.southCarolina_exposition_1",
+                        "Reactor.southCarolina_exposition_2", "Reactor.southCarolina_exposition_3");
                 break;
         }
-        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void configureGUI() {
@@ -117,10 +119,14 @@ class Reactor {
     }
 
     private void setText() {
-        temperatureLabel.setText("Temperature: " + temperature + " °C");
-        pressureLabel.setText("Pressure: " + pressure + " kPa   ");
-        rotationsLabel.setText("Rotations: " + rotations + " rpm");
-        timeLabel.setText("Time Until System Restore: " + time / 10 + " seconds");
+        temperatureLabel.setText(TrumpWillTriumph.RESOURCE.getString("Reactor.temperature") + " " + temperature
+                + " " + TrumpWillTriumph.RESOURCE.getString("Reactor.celsius"));
+        pressureLabel.setText(TrumpWillTriumph.RESOURCE.getString("Reactor.pressure") + " " + pressure
+                + " " + TrumpWillTriumph.RESOURCE.getString("Reactor.kpa") + "   ");
+        rotationsLabel.setText(TrumpWillTriumph.RESOURCE.getString("Reactor.rotations") + " " + rotations
+                + " " + TrumpWillTriumph.RESOURCE.getString("Reactor.rpm"));
+        timeLabel.setText(TrumpWillTriumph.RESOURCE.getString("Reactor.timeUntilRestore") + " " + time / 10
+                + " " + TrumpWillTriumph.RESOURCE.getString("Reactor.seconds"));
     }
 
     private void setImages() {
@@ -148,18 +154,18 @@ class Reactor {
             timer.cancel();
             frameState.setVisible(false);
             if (TrumpWillTriumph.touringState == StateStatus.NEUTRAL_WASHINGTON) {
-                TrumpWillTriumph.customText("Evacuate! The dam is going to explode!");
+                TrumpWillTriumph.customDialog("Reactor.explode");
             } else {
-                TrumpWillTriumph.customText("Evacuate! A meltdown will soon occur!");
+                TrumpWillTriumph.customDialog("Reactor.meltdown");
             }
             TrumpWillTriumph.lose();
         } else if (isShutDown()) {
             timer.cancel();
             frameState.setVisible(false);
             if (TrumpWillTriumph.touringState == StateStatus.NEUTRAL_WASHINGTON) {
-                TrumpWillTriumph.customText("Mr. Trump, the hydroelectric dam successfully shut down!");
+                TrumpWillTriumph.customDialog("Reactor.success_1");
             } else {
-                TrumpWillTriumph.customText("Mr. Trump, the power plant successfully shut down!");
+                TrumpWillTriumph.customDialog("Reactor.success_2");
             }
             TrumpWillTriumph.win();
         }

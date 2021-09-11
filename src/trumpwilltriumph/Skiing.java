@@ -28,25 +28,21 @@ class Skiing {
     }
 
     private void doExposition() {
-        String exposition = "ERROR";
         switch (TrumpWillTriumph.touringState) {
             case NEUTRAL_NORTH_CAROLINA:
-                exposition = "Mr. Trump, North Carolina loves water skiing; therefore,\nsuch is what you should do to "
-                        + "gain their vote. Type the left\nkey when red is shown and right when blue is shown.\nYou "
-                        + "will need to immediately use your keyboard!";
+                TrumpWillTriumph.expositionDialog("Skiing.exposition_northCarolina_1",
+                        "Skiing.exposition_northCarolina_2", "Skiing.exposition_northCarolina_3",
+                        "Skiing.exposition_northCarolina_4");
                 break;
             case NEUTRAL_MAINE:
-                exposition = "Mr. Trump, Maine loves tubing; therefore, such is what\nyou should do to gain their "
-                        + "vote. Type the left key\nwhen red is shown and right when blue is shown.\nYou will need to "
-                        + "immediately use your keyboard!";
+                TrumpWillTriumph.expositionDialog("Skiing.exposition_maine_1", "Skiing.exposition_maine_2",
+                        "Skiing.exposition_maine_3", "Skiing.exposition_maine_4");
                 break;
             case NEUTRAL_VERMONT:
-                exposition = "Mr. Trump, Vermont loves downhill skiing; therefore,\nsuch is what you should do to "
-                        + "gain their vote. Type the left\nkey when red is shown and right when blue is shown.\nYou "
-                        + "will need to immediately use your keyboard!";
+                TrumpWillTriumph.expositionDialog("Skiing.exposition_vermont_1", "Skiing.exposition_vermont_2",
+                        "Skiing.exposition_vermont_3", "Skiing.exposition_vermont_4");
                 break;
         }
-        TrumpWillTriumph.displayExposition(exposition);
     }
 
     private void configureGUI() {

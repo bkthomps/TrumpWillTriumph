@@ -16,8 +16,8 @@ class Rally {
 
     private final JFrame frameState = new JFrame(TrumpWillTriumph.GAME_TITLE);
     private final JLabel background = new JLabel(new ImageIcon("Assets/IowaBackground.png"));
-    private final JButton optionOne = new JButton("How stupid are the people of Iowa");
-    private final JButton optionTwo = new JButton("I love the people of Iowa");
+    private final JButton optionOne = new JButton(TrumpWillTriumph.RESOURCE.getString("Rally.question_1_1"));
+    private final JButton optionTwo = new JButton(TrumpWillTriumph.RESOURCE.getString("Rally.question_1_2"));
 
     private int score, rallyStatus;
 
@@ -52,23 +52,23 @@ class Rally {
         switch (rallyStatus) {
             case 0:
                 score = (buttonNumber == 1) ? (score - 1) : (score + 1);
-                optionOne.setText("How stupid are the American people");
-                optionTwo.setText("I love America");
+                optionOne.setText(TrumpWillTriumph.RESOURCE.getString("Rally.question_2_1"));
+                optionTwo.setText(TrumpWillTriumph.RESOURCE.getString("Rally.question_2_2"));
                 break;
             case 1:
                 score = (buttonNumber == 1) ? (score - 1) : (score + 1);
-                optionOne.setText("I will build a wall");
-                optionTwo.setText("I will make America great again");
+                optionOne.setText(TrumpWillTriumph.RESOURCE.getString("Rally.question_3_1"));
+                optionTwo.setText(TrumpWillTriumph.RESOURCE.getString("Rally.question_3_2"));
                 break;
             case 2:
                 score = (buttonNumber == 1) ? (score + 1) : (score + 2);
-                optionOne.setText("Hillary Clinton was the worst secretary of state");
-                optionTwo.setText("Hillary Clinton is a great person");
+                optionOne.setText(TrumpWillTriumph.RESOURCE.getString("Rally.question_4_1"));
+                optionTwo.setText(TrumpWillTriumph.RESOURCE.getString("Rally.question_4_2"));
                 break;
             case 3:
                 score = (buttonNumber == 1) ? (score + 1) : (score - 2);
-                optionOne.setText("Mexican are bringing drugs and crime");
-                optionTwo.setText("Some Mexicans are good people");
+                optionOne.setText(TrumpWillTriumph.RESOURCE.getString("Rally.question_5_1"));
+                optionTwo.setText(TrumpWillTriumph.RESOURCE.getString("Rally.question_5_2"));
                 break;
             case 4:
                 score = (buttonNumber == 1) ? (score + 1) : (score - 1);

@@ -30,8 +30,7 @@ class Memory {
     }
 
     private void doExposition() {
-        TrumpWillTriumph.displayExposition("Mr. Trump, to test your memory, you shall play a memory game!\nTo play, "
-                + "just hit the arrow keys on your keyboard when prompted to type.");
+        TrumpWillTriumph.expositionDialog("Memory.exposition_1", "Memory.exposition_2");
     }
 
     private void configureGUI() {
